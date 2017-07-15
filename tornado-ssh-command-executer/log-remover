@@ -1,0 +1,13 @@
+SUCMD="runuser - root -c "
+
+case "${1}" in
+        status)
+                ;;
+        start)
+                $SUCMD "python /root/log-remover.py 9999 /var/lib/brand-server/cache/zip/"
+                ;;
+        stop)
+                ;;
+        restart)
+                ;;
+esac
