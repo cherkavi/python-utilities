@@ -1,0 +1,16 @@
+{
+    "maps": [
+        {
+            "id": "map1",
+            "category": "0"
+        },
+        {
+            "id": "map2",
+            "category": "0"
+        }
+    ],
+    "om_points": "value",
+    "parameters": {
+        "id": "valore"
+    }
+}
