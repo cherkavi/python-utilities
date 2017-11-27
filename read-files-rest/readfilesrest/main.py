@@ -1,13 +1,25 @@
 import configparser, sys, os, json
 import tornado.ioloop, tornado.web
 
-folder = ""
-nodes = None
+endpoint_list = "/list";
+endpoint_file = "/file/"
 
 class SourceFolder:
-	def __init__(self, path_to_folder):
-		self.files = [subfolder_files for subfolder_files in os.listdir(path_to_folder)]
+	def __init__(self, path_to_folder, nodes):
+		file_list = read_from_folder(path_to_folder)
+		for each_node in nodes:
+			file_list = file_list + read_from_node(each_node)		 
+		self.files = [subfolder_files for subfolder_files in file_list]
 		self.index = -1
+
+	def read_from_folder(self, path):
+		try:
+			return os.listdir(path_to_folder)
+		except:
+			return []
+
+	def read_from_node(self, url):
+		return []		
 
 	def __iter__(self):
 		return self
@@ -34,8 +46,7 @@ def main(ini_file):
 	config.read(ini_file)
 	folder = config["local"]["folder"]
 	nodes = [ each.strip() for each in config["remote"]["nodes"].split(",")]
-	# print("folders: %s  nodes: %s " % (folder, nodes))
-	app = tornado.web.Application([ (r"/list", ListHandler, dict(folder=folder)), ])
+	app = tornado.web.Application([ (endpoint_list, ListHandler, dict(folder=folder)), ])
 	app.listen(9090)
 	tornado.ioloop.IOLoop.current().start()
 
