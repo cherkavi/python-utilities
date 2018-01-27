@@ -1,0 +1,1 @@
+echo exit | sqlplus <db-login>/<db-password>@<host>:<port>/service @query.sql
