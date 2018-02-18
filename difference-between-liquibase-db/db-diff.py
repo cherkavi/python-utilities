@@ -64,7 +64,7 @@ def main(version_1, version_2, jdbc_user, path_sql_create_user, override_user, n
 
     if need_to_create_jira:
         jira_ticket = jirawrapper.JiraWrapper("username", cherkavi.linux_password)\
-            .create_release_request(summary="BrandServer release request",
+            .create_release_request(summary="app release request",
                                     description="please prepare DB using script.ini file",
                                     sql_script=output_file)
         print("JIRA ticket have been created: " + jira_ticket)
@@ -73,7 +73,7 @@ def main(version_1, version_2, jdbc_user, path_sql_create_user, override_user, n
 
 if __name__ == "__main__":
     # input parameters
-    parser = argparse.ArgumentParser(description='SQL difference between two versions of BrandServer ')
+    parser = argparse.ArgumentParser(description='SQL difference between two versions of app ')
     parser.add_argument('--version1',
                         help='version of first RPM/WAR package',
                         required=True)
@@ -85,7 +85,7 @@ if __name__ == "__main__":
                         required=True)
     parser.add_argument('--destination_user',
                         help='user of DB where script should be applied ',
-                        required=False, default="brand_server_data")
+                        required=False, default="default_app")
     parser.add_argument('--create_user_sql',
                         help='path to file with sql file ( drop connections, drop user, create user, add permissions )',
                         required=True)
