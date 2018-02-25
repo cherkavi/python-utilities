@@ -1,9 +1,11 @@
 from pprint import pprint
 from selenium import webdriver
 from xvfbwrapper import Xvfb
+from pyvirtualdisplay import Display
 
 
 vdisplay = Xvfb()
+# vdisplay = Display(visible=0)
 vdisplay.start()
 response = webdriver.Firefox()
 # url = 'http://www.mctrek.de/bekleidung-unisex-herren/wintersport-skibekleidung/jacken/jack-wolfskin-icy-storm-flex-jacke-m_4047919'
