@@ -17,8 +17,7 @@ if __name__ == "__main__":
 
     file_name = sys.argv[1]
     if not os.path.isfile(file_name):
-        print("file was not found: "+file_name)
-        sys.exit(1)
+        raise Exception("file was not found: "+file_name)
 
     for each_line in read_tail(file_name, 5):
         print each_line[:-1]
