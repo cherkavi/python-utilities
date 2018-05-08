@@ -1,0 +1,1 @@
+mvn dependency:tree | python duplication.py
