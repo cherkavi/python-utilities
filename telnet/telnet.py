@@ -17,7 +17,7 @@ try:
     #print("waiting for password")
     telnet.read_until(bytes("word:", "utf8"))
     #print("enter password:")
-    telnet.write(bytes("fenics\n\r", "utf8"))
+    telnet.write(bytes("admin\n\r", "utf8"))
     telnet.read_until(bytes("\n\r: ", "utf8"))
     print("menu information")
     telnet.write(bytes("i", "utf8"))
