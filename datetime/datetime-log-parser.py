@@ -13,5 +13,5 @@ if t2<(t+timedelta(seconds=30)):
     print("less than 30 seconds")
 else:
     print("more than 30 seconds")
-
+#datetime.datetime.now()
 print(t.strftime("%H:%M:%S"))
