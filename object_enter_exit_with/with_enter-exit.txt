@@ -1,0 +1,26 @@
+
+  def __enter__(self)
+  def __exit__(self, exc_type, exc_value, traceback)
+
+
+In your example above, you'd use
+
+class Package:
+    def __init__(self):
+        self.files = []
+
+    def __enter__(self):
+        return self
+
+    # ...
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        for file in self.files:
+            os.unlink(file)
+Then, when someone wanted to use your class, they'd do the following:
+
+
+
+
+with Package() as package_obj:
+    # use package_obj
