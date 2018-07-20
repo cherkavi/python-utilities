@@ -1,0 +1,1 @@
+cat input-data-v1.txt | python3 map-reduce-combining-v1.py
