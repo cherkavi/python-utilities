@@ -50,5 +50,11 @@ print(list(filter(lambda x: x>3, [1,2,3,4,5,6,7,8,9,10])))
 print(">>> forzenset <<<")
 # ---
 fs = frozenset([1,1,1,3,3,3,4,5,6,7,7,7])
+print(fs)
 # method not exists: fs.remove(3)
+
+print(">>> max, min <<<")
+# ---
+print( max([1,1,1,3,3,3,4,5,6,7,7,7]) )
+print( min([1,1,1,3,3,3,4,5,6,7,7,7]) )
 
