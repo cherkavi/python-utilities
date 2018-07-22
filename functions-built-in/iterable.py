@@ -54,10 +54,11 @@ fs = frozenset([1,1,1,3,3,3,4,5,6,7,7,7])
 print(fs)
 # method not exists: fs.remove(3)
 
-print(">>> max, min <<<")
+print(">>> max, min, sum <<<")
 # ---
 print( max([1,1,1,3,3,3,4,5,6,7,7,7]) )
 print( min([1,1,1,3,3,3,4,5,6,7,7,7]) )
+print( sum([1,1,1,3,3,3,4,5,6,7,7,7]) )
 
 
 print(">>> range <<<")
@@ -71,7 +72,15 @@ print(list(reversed([1,2,3,4,5])))
 print(">>> sorted list: 5,3,4,2,1 <<<")
 print(list(sorted([5,3,4,2,1])))
 
+
 print(">>> slice, sub-list <<<")
 values = range(1,10)
 object_slice = slice(2,5)
 print(list(values[object_slice]))
+
+
+print(">>> zip <<<")
+a = [1,2,3]
+b = [4,5,6,7,8]
+zipped = zip(a,b)
+print(list(  zipped ))
