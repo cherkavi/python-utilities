@@ -1,0 +1,8 @@
+aut	1	4
+aut	2	2
+bene	2	1
+de	2	1
+mortuis	2	1
+nihil	1	1
+nihil	2	1
+Caesar	1	1
