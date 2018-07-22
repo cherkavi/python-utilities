@@ -10,7 +10,7 @@ settings file contains three lines:
 '''
 
 def main(file_lines):
-    print(file_lines)
+    # print(file_lines)
     answer_before = file_lines[0]
     answer_after = file_lines[2]
     time_frontier = datetime.datetime.strptime(file_lines[1], "%H:%M")
@@ -19,7 +19,7 @@ def main(file_lines):
     time_to_compare = datetime.time(time_frontier.hour, time_frontier.minute, 0)
     time_now = datetime.time(datetime.datetime.now().hour, datetime.datetime.now().minute, 0)
 
-    print(time_to_compare, time_now)
+    # print(time_to_compare, time_now)
     if time_now>time_to_compare:
         print(answer_after)
     else:
