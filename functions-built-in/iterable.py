@@ -62,3 +62,16 @@ print( min([1,1,1,3,3,3,4,5,6,7,7,7]) )
 
 print(">>> range <<<")
 print(list(range(5,10,2)))
+
+
+print(">>> reversed list: 1,2,3,4,5 <<<")
+print(list(reversed([1,2,3,4,5])))
+
+
+print(">>> sorted list: 5,3,4,2,1 <<<")
+print(list(sorted([5,3,4,2,1])))
+
+print(">>> slice, sub-list <<<")
+values = range(1,10)
+object_slice = slice(2,5)
+print(list(values[object_slice]))
