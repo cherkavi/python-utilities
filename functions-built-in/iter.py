@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 class ObjectList:
 
 	def __init__(self):
@@ -26,6 +27,8 @@ for i in iter(ObjectList().__next__,3):
 	print(i)
 
 
+# ---------------------------------------------
+
 class Iterable:
 
 	def __init__(self):
@@ -40,14 +43,10 @@ print(">>> for with iter object with limit <<<")
 for i in iter(Iterable().next,3):
 	print(i)
 
+# ----------------------------------------------
 
-my_personal_value = 0
-def next_value():
-	my_personal_value+=1
-	return my_personal_value;
-
-
-print(">>> for with iter function with limit <<<")
-for i in iter(next_value,3):
-	print(i)
-
+print("execute 'next' function over 'ObjectList'")
+values = ObjectList()
+print (next(values))
+print (next(values))
+print (next(values))
