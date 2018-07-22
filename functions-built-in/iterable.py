@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 print(">>> all <<<") 
 # ---
 
@@ -58,3 +59,6 @@ print(">>> max, min <<<")
 print( max([1,1,1,3,3,3,4,5,6,7,7,7]) )
 print( min([1,1,1,3,3,3,4,5,6,7,7,7]) )
 
+
+print(">>> range <<<")
+print(list(range(5,10,2)))
