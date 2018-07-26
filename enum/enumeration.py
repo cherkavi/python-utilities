@@ -9,9 +9,9 @@ print(Furniture.Table)
 print(Furniture.Chair)
 
 
-print(">>> extends from enumeration")
-
 import enum
+
+print(">>> extends from enumeration")
 
 class WriteTools(enum.Enum):
 	# Pencil, Pen = range(2)
@@ -30,3 +30,8 @@ class Angles(enum.Enum):
 	Pentagrame = (5, "five")
 
 print(Angles.Triangle.value)
+
+
+print(">>> runtime creation from string")
+employee = enum.Enum("Employee", "Jack Ralph Maria")
+print(employee)
