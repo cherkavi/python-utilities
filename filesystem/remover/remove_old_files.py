@@ -31,7 +31,7 @@ if __name__=="__main__":
 	if len(sys.argv)>1:
 		control_folder = sys.argv[1]
 
-	print(control_folder)
+	# print("working folder: " + control_folder)
 
 	if not os.path.exists(control_folder):
 		print("path is not exists")
