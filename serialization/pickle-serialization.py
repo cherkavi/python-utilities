@@ -20,3 +20,10 @@ with open('filename','rb') as f:
     var = pickle.load(f)
     print(var)
     print(type(var))
+
+
+print("# serialize into ASCII ")
+raw_value = pickle.dumps(Example("hello2"), protocol=0)
+print(raw_value)
+
+print(pickle.loads(raw_value))
