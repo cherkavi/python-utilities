@@ -32,6 +32,7 @@ def main(zip_folder, file_prefix, destination_folder, processed_folder):
         move_processed_file(path_to_zip_file, processed_folder)
 
 
+# --sourceFolder /home/technik/projects/temp/zip-tester/source --targetFileExtension .behdat --destinationFolder /home/technik/projects/temp/zip-tester/destination --processedFolder /home/technik/projects/temp/zip-tester/processed
 if __name__ == "__main__":
     app_description = """ 
     application to read ZIP files from source folder
