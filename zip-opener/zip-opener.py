@@ -18,7 +18,7 @@ def extract_zip_file(zip_file, file_prefix, destination_folder):
         for file in zipper.namelist():
             if file.endswith(file_prefix):
                 logging.info("new file:"+file)
-                zipper.extract(file, os.path.join(destination_folder, file))
+                zipper.extract(file, destination_folder)
 
 
 def main(zip_folder, file_prefix, destination_folder, processed_folder):
