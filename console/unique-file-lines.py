@@ -29,6 +29,7 @@ if __name__=='__main__':
 		print(">>> 'first_file' and [left,right,equals] and 'second_file' files are mandatory")
 		sys.exit(1)
 
+	operation = None
 	left = read_file_lines(sys.argv[1])
 	if sys.argv[2] == "equals":
 		operation = diff_eq
