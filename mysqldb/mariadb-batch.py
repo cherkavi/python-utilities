@@ -49,15 +49,15 @@ if __name__=='__main__':
         # logger/subfolder/filename
         name = values[2]+"/"+values[3]+"/"+values[4]
         size = values[0]
-        if len(batch)<BATCH_LIMIT:
-            batch.append( (vendor_id, session_id, name, size) )
-        else:
+        batch.append( (vendor_id, session_id, name, size) )
+        if len(batch)>=BATCH_LIMIT:
             insert_batch(db, cursor, batch)
             del batch[:]
-        counter = counter + cursor.rowcount
+            counter = counter + cursor.rowcount
 
     if len(batch)>0:
         insert_batch(db, cursor, batch)        
+        counter = counter + cursor.rowcount
     print(counter)
     cursor.close()
 #  cat intel-filelist.txt | awk -F ' ' '{print $5$8}' | awk -F '/' '{print $1" "$10" "$11" "$12" "$13}' | python sql-insert-files-size-intel.py
