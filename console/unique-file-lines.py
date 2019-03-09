@@ -24,7 +24,7 @@ def diff_eq(list1, list2):
 
 
 if __name__=='__main__':
-	if len(sys.argv) < 3:
+	if len(sys.argv) <= 3:
 		print(sys.argv)
 		print(">>> 'first_file' and [left,right,equals] and 'second_file' files are mandatory")
 		sys.exit(1)
