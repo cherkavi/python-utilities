@@ -11,7 +11,8 @@ if os.path.exists(output_folder):
 	# if not os.path.isdir(control_folder):
 
 	# remove folder, delete folder
-	shutil.os.remove(output_folder)
+	# shutil.os.remove(output_folder)
+	shutil.rmtree(output_folder)
 
 # create folder 
 os.makedirs(output_folder)
