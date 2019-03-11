@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import subprocess
 import sys
@@ -30,7 +31,7 @@ def splitFileStrings(path_to_file, parts):
 		line_counter = 0
 		for each_line in text_file:
 			line_counter = line_counter + 1
-			if line_counter % part_size == 1:
+			if (line_counter % part_size == 1) and ( (int(line_counter/part_size)+1)*part_size < amount_of_lines ):
 				if output_file:
 					output_file.close()
 				output_file = open(filename % (int(line_counter/part_size), ), "w")
