@@ -1,6 +1,9 @@
 import sys
 import os
 
+# print last lines from file
+# ( hard coded to 5 last lines )
+
 def read_tail(file_path, length):
     return_value = list()
     with open(file_path) as data_file:

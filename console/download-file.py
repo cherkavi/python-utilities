@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+# download file via http and save it locally
+
 import requests
 from tqdm import tqdm
 

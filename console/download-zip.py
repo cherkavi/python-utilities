@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+
+# download file via http
+# ( save via copyfileobj )
+
 import requests
 import shutil
 import time

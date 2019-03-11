@@ -1,5 +1,10 @@
 import sys
 
+# boolean comparasion of two text files
+# - lines exist in first file and not exist in second
+# - lines exist in both files
+# - lines exist not exist in first file but exist in second
+
 
 def read_file_lines(path_to_file):
 	with open(path_to_file) as f:

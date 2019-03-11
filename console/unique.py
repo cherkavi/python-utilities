@@ -1,5 +1,8 @@
 import sys
 
+# print unique elements from file
+# order is not guarantee !!! ( replace 'set' with 'list')
+
 def main(arguments) :
     if len(arguments) == 0:
         print("name of file should be specified")

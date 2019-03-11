@@ -1,5 +1,7 @@
 import sys
 
+# - check line of text for matching with input parameters
+# ( parameters can be even variants in list )
 
 def line_contains(line, option):
 	if type(option) is list:

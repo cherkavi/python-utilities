@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+
+# remove duplication in specified folder
+# ( duplication - with equals md5sum )
+
 import logging
 import os
 import sys
