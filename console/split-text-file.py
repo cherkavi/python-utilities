@@ -3,6 +3,10 @@ import subprocess
 import sys
 import shutil
 
+# split text file to bunch of parts:
+# - { text file } { amount of expected parts }
+# - { text file } { start line :included } { end line :included }
+
 def countAmountOfLines(path_to_file):
 	with open(path_to_file) as text_file:
 		line_counter = 0
