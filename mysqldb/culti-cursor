@@ -1,0 +1,70 @@
+import sys
+import mysql.connector
+
+
+def get_db():
+    return mysql.connector.connect(
+        host="127.0.0.1",
+        port=3310,
+        user="root",
+        passwd="example",
+        database="files"
+    )
+
+
+sql_request_select_sessions=" select id from sessions "
+sql_request_select_files = """ 
+ select sessions.name, files.name
+ from files
+inner join sessions on sessions.id=id_session and sessions.id=%s
+where
+ id_vendor in (4,7)
+ group by files.name 
+ having count(files.name)>1
+"""
+
+
+def print_files(cursor, id_session):
+    cursor.execute(sql_request_select_files, (id_session, ))
+    for each_record in cursor:
+        print( "%s %s" % (str(each_record[0]),str(each_record[1])))
+
+
+# def get_cursor():
+#    return get_db().cursor()
+# !!! don't do that, it leads to "ReferenceError: weakly-referenced object no longer exists"
+
+
+class Connection(object):
+    '''
+    connection with DB, self.db must be a part of object, otherwise - weak reference error
+    '''
+
+    def __init__(self, host, port, user, password, database_name):
+        self.host = host
+        self.port = port
+        self.user = user
+        self.password = password
+        self.database_name = database_name
+
+
+    def __enter__(self):
+        self.db = mysql.connector.connect(host=self.host,port=self.port, user=self.user,passwd=self.password,database=self.database_name)
+        self.cursor = self.db.cursor()
+        return self.cursor
+
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.cursor.close()
+        self.db.close()
+
+
+if __name__=='__main__':
+    # multi with, multiply with 
+    with Connection("127.0.0.1",3310,"root","example","files") as cursor1, Connection("127.0.0.1",3310,"root","example","files") as cursor2:
+        # for multiple connection you should open multiple conneciton/cursors
+        cursor1.execute(sql_request_select_sessions)
+        for each_record in cursor1:
+            print_files(cursor2, each_record[0])
+        
+
