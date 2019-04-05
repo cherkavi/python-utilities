@@ -49,7 +49,7 @@ class Connection(object):
 
 
     def __enter__(self):
-        self.db = mysql.connector.connect(host=self.host,port=self.port, user=self.user,passwd=self.password,database=self.database_name)
+        self.db = mysql.connector.connect(host=self.host,port=self.port, user=self.user,passwd=self.password,database=self.database_name,connect_timeout=360000)
         self.cursor = self.db.cursor()
         return self.cursor
 
