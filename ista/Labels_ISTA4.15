@@ -1,0 +1,388 @@
+// Maximale Anzahl an Messgrößen ist 200
+ARG[0]=" ";
+ARG_Name[0]=__Text("20000372508862");
+Labels[0]="nn";
+ARG_NameString[0]="nn";
+
+ARG[1]="ITKUA";
+ARG_Name[1]=__Text("20000372508954");
+Labels[1]="CEngDsT_tSnsrFild";
+ARG_NameString[1]="Coolant temperature";
+
+ARG[2]="IVKMH";
+ARG_Name[2]=__Text("20000372508957");
+Labels[2]="VehV_v";
+ARG_NameString[2]="Vehicle speed";
+
+ARG[3]="SBEGA";
+ARG_Name[3]=__Text("20000372508956");
+Labels[3]="gangi_msg";
+ARG_NameString[3]="Gear";
+
+ARG[4]="IFPWG";
+ARG_Name[4]=__Text("20000372508955");
+Labels[4]="APP_r";
+ARG_NameString[4]="Accelerator pedal position";
+
+ARG[5]="INMOT";
+ARG_Name[5]=__Text("20000372508939");
+Labels[5]="Epm_nEng";
+ARG_NameString[5]="Engine speed";
+
+ARG[6]="IWDKL";
+ARG_Name[6]=__Text("20000372508951");
+Labels[6]="ThrVlv_ratActPosnB1";
+ARG_NameString[6]="Throttle valve position";
+
+ARG[7]="IPLAD";
+ARG_Name[7]=__Text("20000372508945");
+Labels[7]="pvd_w_msg";
+ARG_NameString[7]="Charge air pressure";
+
+ARG[8]="ITANS";
+ARG_Name[8]=__Text("20000372508936");
+Labels[8]="tans_msg";
+ARG_NameString[8]="Intake air temperature";
+
+ARG[9]="I_DRUCK_RAIL_ABS_FILT_NEU";
+ARG_Name[9]=__Text("20000372508947");
+Labels[9]="FuPHi_pRail";
+ARG_NameString[9]="Rail pressure";
+
+ARG[10]="IPUMG";
+ARG_Name[10]=__Text("20000372508932");
+Labels[10]="PEnv_p";
+ARG_NameString[10]="Ambient pressure";
+
+ARG[11]="TEMP_KRAFTSTOFF";
+ARG_Name[11]=__Text("20000372508926");
+Labels[11]="tkrst_msg";
+ARG_NameString[11]="Fuel temperature";
+
+ARG[12]="LAMBDA_SONDE_IST";
+ARG_Name[12]=__Text("20000372508938");
+Labels[12]="SwSABMW_LamOutSnsr";
+ARG_NameString[12]="Lambda signal before catalytic converter";
+
+ARG[13]="STATUS_SYNCHROMOD";
+ARG_Name[13]=__Text("20000372508867");
+Labels[13]="Epm_stSync";
+ARG_NameString[13]="Status synchronisation camshaft-crankshaft";
+
+ARG[14]="I_BETRIEBSART";
+ARG_Name[14]=__Text("20000372508946");
+Labels[14]="opmodi_msg";
+ARG_NameString[14]="Operating mode";
+
+ARG[15]="IMOST";
+ARG_Name[15]=__Text("20000372508863");
+Labels[15]="CoEng_st";
+ARG_NameString[15]="Engine status";
+
+ARG[16]="I_EWG_POS";
+ARG_Name[16]=__Text("20000372508822");
+Labels[16]="SwSABMW_ratPosWgeTst";
+ARG_NameString[16]="Actuation rate wastegate";
+
+ARG[17]="ILUZ1";
+ARG_Name[17]=__Text("20000372967115");
+Labels[17]="BasSvrAppl_LauZyl_msg_0";
+ARG_NameString[17]="Rough running cylinder 1";
+
+ARG[18]="ILUZ2";
+ARG_Name[18]=__Text("20000372967116");
+Labels[18]="BasSvrAppl_LauZyl_msg_1";
+ARG_NameString[18]="Rough running cylinder 2";
+
+ARG[19]="ILUZ3";
+ARG_Name[19]=__Text("20000372967117");
+Labels[19]="BasSvrAppl_LauZyl_msg_2";
+ARG_NameString[19]="Rough running cylinder 3";
+
+ARG[20]="ILUZ4";
+ARG_Name[20]=__Text("20000372967118");
+Labels[20]="BasSvrAppl_LauZyl_msg_3";
+ARG_NameString[20]="Rough running cylinder 4";
+
+ARG[21]="ILUZ5";
+ARG_Name[21]=__Text("20000372967119");
+Labels[21]="BasSvrAppl_LauZyl_msg_4";
+ARG_NameString[21]="Rough running cylinder 5";
+
+ARG[22]="ILUZ6";
+ARG_Name[22]=__Text("20000373112581");
+Labels[22]="BasSvrAppl_LauZyl_msg_5";
+ARG_NameString[22]="Rough running cylinder 6";
+
+ARG[23]="ILUZ7";
+ARG_Name[23]=__Text("20000373112582");
+Labels[23]="BasSvrAppl_LauZyl_msg_6";
+ARG_NameString[23]="Rough running cylinder 7";
+
+ARG[24]="ILUZ8";
+ARG_Name[24]=__Text("20000373112583");
+Labels[24]="BasSvrAppl_LauZyl_msg_7";
+ARG_NameString[24]="Rough running cylinder 8";
+
+ARG[25]="ILUZ9";
+ARG_Name[25]=__Text("20000373112584");
+Labels[25]="BasSvrAppl_LauZyl_msg_8";
+ARG_NameString[25]="Rough running cylinder 9";
+
+ARG[26]="ILUZ10";
+ARG_Name[26]=__Text("20000373112585");
+Labels[26]="BasSvrAppl_LauZyl_msg_9";
+ARG_NameString[26]="Rough running cylinder 10";
+
+ARG[27]="ILUZ11";
+ARG_Name[27]=__Text("20000373112586");
+Labels[27]="BasSvrAppl_LauZyl_msg_10";
+ARG_NameString[27]="Rough running cylinder 11";
+
+ARG[28]="ILUZ12";
+ARG_Name[28]=__Text("20000373112587");
+Labels[28]="BasSvrAppl_LauZyl_msg_11";
+ARG_NameString[28]="Rough running cylinder 12";
+
+ARG[29]="ZAEHLER_AUSSETZERK_ZYL1";
+ARG_Name[29]=__Text("20000373112588");
+Labels[29]="BasSvrAppl_ZahAussZyl_msg_0";
+ARG_NameString[29]="Misfire cylinder 1";
+
+ARG[30]="ZAEHLER_AUSSETZERK_ZYL2";
+ARG_Name[30]=__Text("20000373112589");
+Labels[30]="BasSvrAppl_ZahAussZyl_msg_1";
+ARG_NameString[30]="Misfire cylinder 2";
+
+ARG[31]="ZAEHLER_AUSSETZERK_ZYL3";
+ARG_Name[31]=__Text("20000373113161");
+Labels[31]="BasSvrAppl_ZahAussZyl_msg_2";
+ARG_NameString[31]="Misfire cylinder 3";
+
+ARG[32]="ZAEHLER_AUSSETZERK_ZYL4";
+ARG_Name[32]=__Text("20000373113162");
+Labels[32]="BasSvrAppl_ZahAussZyl_msg_3";
+ARG_NameString[32]="Misfire cylinder 4";
+
+ARG[33]="ZAEHLER_AUSSETZERK_ZYL5";
+ARG_Name[33]=__Text("20000373113163");
+Labels[33]="BasSvrAppl_ZahAussZyl_msg_4";
+ARG_NameString[33]="Misfire cylinder 5";
+
+ARG[34]="ZAEHLER_AUSSETZERK_ZYL6";
+ARG_Name[34]=__Text("20000373113164");
+Labels[34]="BasSvrAppl_ZahAussZyl_msg_5";
+ARG_NameString[34]="Misfire cylinder 6";
+
+ARG[35]="ZAEHLER_AUSSETZERK_ZYL7";
+ARG_Name[35]=__Text("20000373113165");
+Labels[35]="BasSvrAppl_ZahAussZyl_msg_6";
+ARG_NameString[35]="Misfire cylinder 7";
+
+ARG[36]="ZAEHLER_AUSSETZERK_ZYL8";
+ARG_Name[36]=__Text("20000373113166");
+Labels[36]="BasSvrAppl_ZahAussZyl_msg_7";
+ARG_NameString[36]="Misfire cylinder 8";
+
+ARG[37]="ZAEHLER_AUSSETZERK_ZYL9";
+ARG_Name[37]=__Text("20000373113167");
+Labels[37]="BasSvrAppl_ZahAussZyl_msg_8";
+ARG_NameString[37]="Misfire cylinder 9";
+
+ARG[38]="ZAEHLER_AUSSETZERK_ZYL10";
+ARG_Name[38]=__Text("20000373113168");
+Labels[38]="BasSvrAppl_ZahAussZyl_msg_9";
+ARG_NameString[38]="Misfire cylinder 10";
+
+ARG[39]="ZAEHLER_AUSSETZERK_ZYL11";
+ARG_Name[39]=__Text("20000373113169");
+Labels[39]="BasSvrAppl_ZahAussZyl_msg_10";
+ARG_NameString[39]="Misfire cylinder 11";
+
+ARG[40]="ZAEHLER_AUSSETZERK_ZYL12";
+ARG_Name[40]=__Text("20000373113181");
+Labels[40]="BasSvrAppl_ZahAussZyl_msg_11";
+ARG_NameString[40]="Misfire cylinder 12";
+
+ARG[41]="nicht verwendet";
+ARG_Name[41]=__Text("20000377321511");
+Labels[41]="BasSvrAppl_Fun_Zyl_msg_0";
+ARG_NameString[41]="combustion period cylinder 1";
+
+ARG[42]="nicht verwendet";
+ARG_Name[42]=__Text("20000377321512");
+Labels[42]="BasSvrAppl_Fun_Zyl_msg_1";
+ARG_NameString[42]="combustion period cylinder 2";
+
+ARG[43]="nicht verwendet";
+ARG_Name[43]=__Text("20000377321513");
+Labels[43]="BasSvrAppl_Fun_Zyl_msg_2";
+ARG_NameString[43]="combustion period cylinder 3";
+
+ARG[44]="nicht verwendet";
+ARG_Name[44]=__Text("20000377321514");
+Labels[44]="BasSvrAppl_Fun_Zyl_msg_3";
+ARG_NameString[44]="combustion period cylinder 4";
+
+ARG[45]="nicht verwendet";
+ARG_Name[45]=__Text("20000377321515");
+Labels[45]="BasSvrAppl_Fun_Zyl_msg_4";
+ARG_NameString[45]="combustion period cylinder 5";
+
+ARG[46]="nicht verwendet";
+ARG_Name[46]=__Text("20000377321516");
+Labels[46]="BasSvrAppl_Fun_Zyl_msg_5";
+ARG_NameString[46]="combustion period cylinder 6";
+
+// Brenndauer für 8 Zylinder  2-Bank
+ARG[47]="nicht verwendet";
+ARG_Name[47]=__Text("20000377321515");
+Labels[47]="BasSvrAppl_Fun_Zyl_msg_0";
+ARG_NameString[47]="combustion period cylinder 5";
+
+ARG[48]="nicht verwendet";
+ARG_Name[48]=__Text("20000377321516");
+Labels[48]="BasSvrAppl_Fun_Zyl_msg_1";
+ARG_NameString[48]="combustion period cylinder 6";
+
+ARG[49]="nicht verwendet";
+ARG_Name[49]=__Text("20000377321517");
+Labels[49]="BasSvrAppl_Fun_Zyl_msg_2";
+ARG_NameString[49]="combustion period cylinder 7";
+
+ARG[50]="nicht verwendet";
+ARG_Name[50]=__Text("20000377321518");
+Labels[50]="BasSvrAppl_Fun_Zyl_msg_3";
+ARG_NameString[50]="combustion period cylinder 8";
+
+// Brenndauer für 12 Zylinder 2-Bank 
+ARG[51]="IZFZ1";
+ARG_Name[51]=__Text("20000377321517");
+Labels[51]="BasSvrAppl_Fun_Zyl_msg_0";
+ARG_NameString[51]="combustion period cylinder 7";
+
+ARG[52]="IZFZ2";
+ARG_Name[52]=__Text("20000377321518");
+Labels[52]="BasSvrAppl_Fun_Zyl_msg_1";
+ARG_NameString[52]="combustion period cylinder 8";
+
+ARG[53]="IZFZ3";
+ARG_Name[53]=__Text("20000377321519");
+Labels[53]="BasSvrAppl_Fun_Zyl_msg_2";
+ARG_NameString[53]="combustion period cylinder 9";
+
+ARG[54]="IZFZ4";
+ARG_Name[54]=__Text("20000377322421");
+Labels[54]="BasSvrAppl_Fun_Zyl_msg_3";
+ARG_NameString[54]="combustion period cylinder 10";
+
+ARG[55]="IZFZ5";
+ARG_Name[55]=__Text("20000377322422");
+Labels[55]="BasSvrAppl_Fun_Zyl_msg_4";
+ARG_NameString[55]="combustion period cylinder 11";
+
+ARG[56]="IZFZ6";
+ARG_Name[56]=__Text("20000377322423");
+Labels[56]="BasSvrAppl_Fun_Zyl_msg_5";
+ARG_NameString[56]="combustion period cylinder 12";
+
+ARG[57]="ITOEL";
+ARG_Name[57]=__Text("2000040861654");
+Labels[57]="toel_w_msg";
+ARG_NameString[57]="Oil temperature";
+
+ARG[58]="ITUMG";
+ARG_Name[58]=__Text("2000040861779");
+Labels[58]="EnvT_t";
+ARG_NameString[58]="Ambient temperature";
+
+ARG[59]="S_RAILDRUCKREGELUNG_NEU";
+ARG_Name[59]=__Text("2000043076470");
+Labels[59]="FuPHi_pRailSP";
+ARG_NameString[59]="Setpoint Rail pressure";
+
+ARG[60]="VORSTEUERWERT_MSV";
+ARG_Name[60]=__Text("2000043076537");
+Labels[60]="dwmsvvst_w_msg";
+ARG_NameString[60]="Setpoint fuel delivery period of quantity control valve";
+
+ARG[61]="FOERDERDAUER_MSV_GRAD_KW";
+ARG_Name[61]=__Text("2000043076591");
+Labels[61]="dwmsvd_w_msg";
+ARG_NameString[61]="fuel delivery period of quantity control valve";
+
+ARG[62]="FPC_TV";
+ARG_Name[62]=__Text("2000043076628");
+Labels[62]="PSP_rPs";
+ARG_NameString[62]="duty cycle fuel pump control electronics";
+
+ARG[63]="FPC_MASSETAST_DATA";
+ARG_Name[63]=__Text("2000043101362");
+Labels[63]="PSPDia_stFPCEnfGnd";
+ARG_NameString[63]="faultbit fuel pump control electronics";
+
+ARG[64]="FUELLST_TANKH_R";
+ARG_Name[64]=__Text("2000043102230");
+Labels[64]="fsttankr_msg";
+ARG_NameString[64]="fuel tank level right";
+
+ARG[65]="FUELLST_TANKH_L";
+ARG_Name[65]=__Text("2000043102271");
+Labels[65]="fsttankl_msg";
+ARG_NameString[65]="fuel tank level left";
+
+ARG[66]="IKTFS";
+ARG_Name[66]=__Text("2000043102272");
+Labels[66]="Fstt_msg";
+ARG_NameString[66]="fuel tank level";
+
+ARG[67]="DIFFDRUCK_MITTEL_OPF";
+ARG_Name[67]=__Text("2000043313455");
+Labels[67]="Exh_pSensPPFltDiff";
+ARG_NameString[67]="differential pressure gasoline particulate filter";
+
+ARG[68]="TEMP_TEMPSENS_VOR_OPF_B1";
+ARG_Name[68]=__Text("2000043313515");
+Labels[68]="Exh_tSensTPFltUsB1";
+ARG_NameString[68]="exhaust temperature befor gasoline particulate filter";
+
+ARG[69]="TEMP_TEMPSENS_VOR_OPF_B2";
+ARG_Name[69]=__Text("2000043313528");
+Labels[69]="Exh_tSensTPFltUsB2";
+ARG_NameString[69]="exhaust temperature befor gasoline particulate filter 2";
+
+ARG[70]="ABGTEMP_KRUEM_AMOT_BANK1";
+ARG_Name[70]=__Text("2000043313562");
+Labels[70]="PFlt_tFilDevB1";
+ARG_NameString[70]="exhaust temperature in gasoline particulate filter";
+
+ARG[71]="ABGTEMP_KRUEM_AMOT_BANK2";
+ARG_Name[71]=__Text("2000043313566");
+Labels[71]="PFlt_tFilDevB2";
+ARG_NameString[71]="exhaust temperature in gasoline particulate filter 2";
+
+ARG[72]="ANTEIL_RUSS_OPF";
+ARG_Name[72]=__Text("2000043313589");
+Labels[72]="PFltLd_mSotLoad";
+ARG_NameString[72]="carbon black mass in gasoline particulate filter";
+
+ARG[73]="ANTEIL_RUSS_OPF_BANK2";
+ARG_Name[73]=__Text("2000043313592");
+Labels[73]="PFltLd_mSotLoadB2";
+ARG_NameString[73]="carbon black mass in gasoline particulate filter 2";
+
+ARG[74]="RUSSMASSE_OPF_B1";
+ARG_Name[74]=__Text("2000043313661");
+Labels[74]="PFltLd_mSotLoadB2";
+ARG_NameString[74]="carbon black mass and soot load in gasoline particulate filter 2";
+
+ARG[75]="RUSSMASSE_OPF_B2";
+ARG_Name[75]=__Text("2000043313660");
+Labels[75]="PFltLd_mSotLoadB2";
+ARG_NameString[75]="carbon black mass and soot load in gasoline particulate filter 2";
+
+ARG[76]="DIFFDRUCK_MITTEL_OPF_BANK2";
+ARG_Name[76]=__Text("2000043474766");
+Labels[67]="Exh_pSensPPFltDiffB2";
+ARG_NameString[76]="differential pressure gasoline particulate filter 2 ";
+
