@@ -34,6 +34,7 @@ class Path:
             value = value + each
         return value
 
+    @staticmethod
     def to_path(list_of_tuples, color="ff0000"):
         """ print xml element to console """
         print("<path")
@@ -42,6 +43,7 @@ class Path:
         print('  style="fill:none;stroke:#'+color+';stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:0.26499999,0.79499996;stroke-dashoffset:0"')
         print ("/>")
 
+    @staticmethod
     def create_element(xml_root, list_of_tuples, x, y, text, color="ff0000"):
         """ create xml sub-element in xml element """
         etree.SubElement(xml_root, 'path',
@@ -52,7 +54,6 @@ class Path:
         text_element = etree.SubElement(xml_root, 'text', style="font-style:normal;font-weight:normal;font-size:10.0px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25", x=str(x), y=str(y), id='text'+str(random.randint(50000, 99999)))
         tspan = etree.SubElement(text_element, 'tspan', x=str(x), y=str(y), id='tspan'+str(random.randint(50000, 99999)), style="stroke-width:0.26458332;font-size:4.58611111px;fill:#"+color)         
         tspan.text=text
-
 
 
 class Math:
@@ -123,5 +124,3 @@ def create_file(source_file, destination_file):
 
 if __name__=="__main__":
     create_file(sys.argv[1], sys.argv[2])
-
-# ./interpolation.py red-line.svg red-line-output.svg
