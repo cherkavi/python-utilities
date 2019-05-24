@@ -1,3 +1,5 @@
+#!/usr/bin/env python
 import datetime
-# timestamp to date
-datetime.datetime.fromtimestamp(1558082585166/1000)
+import sys
+# expected input: 1558082585167
+d=datetime.datetime.fromtimestamp(int(sys.argv[1])/1000);print(str(d.day)+"."+str(d.month)+"."+str(d.year)+" "+str(d.hour)+":"+str(d.minute)+":"+str(d.second))
