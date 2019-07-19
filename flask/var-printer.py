@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def execute_application():
+    # job_request = request.get_json(silent=True)
     remote_request_argument = request.args.get("message")
     result = subprocess.check_output(["echo $"+remote_request_argument], shell=True).splitlines()
     return ("result of your request is <b>%s</b> " % result)
