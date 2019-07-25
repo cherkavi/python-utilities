@@ -11,6 +11,7 @@ def main(path_to_list, destination_folder):
     with open(path_to_list) as input_file:
         for each_line in input_file:
             file_candidate = each_line.strip()
+            # is file exists, existance of file
             if os.path.isfile(file_candidate):
                 print("%s %s" % (destination_folder,file_candidate))
                 shutil.copy(file_candidate, destination_folder)
