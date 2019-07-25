@@ -90,9 +90,9 @@ def update_svg_elements(source_file, archimate_description, destination_file):
 
 
 if __name__=="__main__":
-    path_to_archimate=sys.argv[0]
-    path_to_svg_source=sys.argv[1]
-    path_to_svg_destination=sys.argv[2]
+    path_to_archimate=sys.argv[1]
+    path_to_svg_source=sys.argv[2]
+    path_to_svg_destination=sys.argv[3]
 
     archimate_description = archi_elements(path_to_archimate)
     update_svg_elements(path_to_svg_source, archimate_description, path_to_svg_destination)
