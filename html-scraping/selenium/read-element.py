@@ -1,7 +1,10 @@
-from pprint import pprint
+# pip install selenium
+# wget `curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep browser_download_url | grep linux64 | cut -d '"' -f 4`
+# export PATH="$PATH:/path/to/geckodriver/folder"
 from selenium import webdriver
 from xvfbwrapper import Xvfb
 from pyvirtualdisplay import Display
+from pprint import pprint
 
 
 vdisplay = Xvfb()

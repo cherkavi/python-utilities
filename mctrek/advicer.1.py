@@ -1,4 +1,7 @@
 from pprint import pprint
+# pip install selenium
+# wget `curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep browser_download_url | grep linux64 | cut -d '"' -f 4`
+# export PATH="$PATH:/path/to/geckodriver/folder"
 from selenium import webdriver
 from xvfbwrapper import Xvfb
 
@@ -20,7 +23,7 @@ next_page = next_page_generator()
 html_url = next_page.next()
 xpath = '/html/body/div[9]/div/div[2]/div[2]/div[6]/div[4]/a/div[1]'
 
-
+# virtual display init
 vdisplay = Xvfb()
 vdisplay.start()
 response = webdriver.Firefox()
