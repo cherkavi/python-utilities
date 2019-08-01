@@ -9,6 +9,16 @@ https://github.com/cherkavi/docker-images/blob/master/automation4app/Archi-svg-e
 """
 from xml.dom.minidom import parse, parseString, Element
 import sys
+from typing import Dict
+
+
+class ArchiDoc:
+    def __init__(self, url, title):
+        self.url = url
+        self.title = title
+
+# example of typing, generic type example
+ArchiDocList = Dict[str, ArchiDoc]
 
 
 def is_archimate_component(element):
@@ -28,21 +38,28 @@ def get_first_http_link(lines):
     return lines_with_links[0] if len(lines_with_links) > 0 else None
 
 
-def archi_elements(path_to_source_file):
+def archi_elements(path_to_source_file) -> ArchiDocList:
     """ find all elements inside 'archimate' that contain a description 
     return dictionary: text -> url
     """
     dom = parse(path_to_source_file)  # parse an XML file by name
     components = [each_element for each_element in dom.getElementsByTagName("element")
                   if is_archimate_component(each_element)]
-    components_description = map(lambda x: (x.getAttribute("name"),
+    components_description = map(lambda x: (#0
+                                            x.getAttribute("name"),
+                                            #1
                                             get_first_http_link([each_child.firstChild.nodeValue
                                                                  for each_child in x.childNodes
-                                                                 if is_element_has_documentation(each_child)])
+                                                                 if is_element_has_documentation(each_child)]
+                                                                ),
+                                            #2
+                                            "\n".join([each_child.firstChild.nodeValue
+                                             for each_child in x.childNodes
+                                             if is_element_has_documentation(each_child)])
                                             ),
                                  components)
-    non_empty_description = filter(lambda x: x[1], components_description)
-    return dict((n, d) for n, d in non_empty_description)
+    non_empty_description = filter(lambda x: x[1] or x[2], components_description)
+    return dict((name, ArchiDoc(url, doc)) for name, url, doc in non_empty_description)
 
 
 def has_attr_clip_path(element: Element):
@@ -55,18 +72,21 @@ def save_xml_to_file(root_node, output_file_path):
         root_node.writexml(file)
 
 
-def wrap_node_with_anchor(dom, url, xml_elements):
+def wrap_node_with_anchor(dom, url: str, title: str, xml_elements):
     """ replace current element with anchor and put current element inside it """
     for each_node in xml_elements:
         parent = each_node.parentNode
         parent.removeChild(each_node)
         anchor = dom.createElement("a")
-        anchor.setAttribute("xlink:href", url)
+        if url:
+            anchor.setAttribute("xlink:href", url)
+        if title:
+            anchor.setAttribute("xlink:title", title)
         anchor.appendChild(each_node)
         parent.appendChild(anchor)
 
 
-def update_svg_elements(source_file, archimate_description, destination_file):
+def update_svg_elements(source_file, archimate_description:ArchiDocList, destination_file):
     """find all elements inside SVG file  """
     dom = parse(source_file) 
     # list of elements: xml_node, text, @clip-path
@@ -93,9 +113,9 @@ def update_svg_elements(source_file, archimate_description, destination_file):
             name_xmlnodes[text] = xml_elements
 
     # walk through all objects and wrap with <a>
-    for (name, url) in archimate_description.items():
+    for (name, archiDoc) in archimate_description.items():
         if name in name_xmlnodes:
-            wrap_node_with_anchor(dom, url, name_xmlnodes[name])
+            wrap_node_with_anchor(dom, archiDoc.url, archiDoc.title, name_xmlnodes[name])
 
     save_xml_to_file(dom, destination_file)
 
