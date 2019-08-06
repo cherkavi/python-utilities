@@ -7,6 +7,7 @@ if __name__ == "__main__":
     parser.add_argument('--version1',
                         help='version of first RPM/WAR package',
                         required=True)
+    # parser.add_argument('operation', choices=['create', 'delete', 'waiting_for_execution'])
     parser.add_argument('--destination_user',
                         help='user of DB where script should be applied ',
                         required=False, default="default_schema")
