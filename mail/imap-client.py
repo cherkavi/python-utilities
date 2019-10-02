@@ -20,6 +20,7 @@ with IMAPClient(mail_server, port=mail_port, use_uid=True) as server:
         try:
                 login_result = server.login(mail_login, mail_password)
                 server.select_folder('INBOX')
+                # 'NOT DELETED', '1:50'
                 messages = server.search(['NOT', 'DELETED'])
                 response = server.fetch( messages, ['RFC822', 'BODY[TEXT]'] )
 
