@@ -1,8 +1,11 @@
 # pip install imapclient
 import sys
-import getch
-from imapclient import IMAPClient
+from imapclient import IMAPClient, FLAGGED, SEEN
+from getkey import getkey, keys
 
+if len(sys.argv)<2:
+    print("<login> <password>")
+    sys.exit(1)
 mail_login = sys.argv[1]
 mail_password = sys.argv[2]
 
@@ -51,22 +54,37 @@ def convert_to_lines():
 with IMAPClient(mail_server, port=mail_port, use_uid=True) as server:
     try:
         login_result = server.login(mail_login, mail_password)
+        # print(login_result) # b'LOGIN completed'
+        print("--- capabilities ---")        
+        print(server.capabilities())
+        print("--------------------")
         inbox_folder = server.select_folder('INBOX')
+        print("---- inbox ---")
         print(inbox_folder)
+        print("---- ----- ---")
         # 'ALL', 'BEFORE date', 'ON date', 'SINCE date', 'SUBJECT string', 'BODY string', 'TEXT string', 'FROM string','TO string','CC string','BCC string', 'SEEN', 'UNSEEN', 'ANSWERED', 'UNANSWERED', 'DELETED','UNDELETED','DRAFT','UNDRAFT', 'FLAGGED', 'UNFLAGGED', 'LARGER N', 'SMALLER N', 'NOT search-key', 'OR search-key1 search-key2'.
         # messages = server.search(['NOT', 'DELETED', '1:2'])
-        messages = server.search(['UNDELETED', '1:2'])
-        print(messages)
-        response = server.fetch(messages, ['RFC822', 'BODY[TEXT]'])
+        # messages = server.search(['UNDELETED', '1:2'])
+        messages = server.search(['UNDELETED', 'UNFLAGGED', '1:10'])
+        # print(messages)
 
+        response = server.fetch(messages, ['RFC822', 'BODY[TEXT]'])
+        counter = 0
         for msgid, data in response.items():
             text_lines = convert_to_lines()
             # print(msgid)
             print(retrive_url(text_lines))
             print(retrieve_time(text_lines))
             print(retrieve_title(text_lines))
-            print("---")
-            server.delete_messages([msgid, ]) # add "DELETE" flag
+            print("???")
+            user_choice = getkey()
+            if user_choice == keys.DELETE:
+                server.delete_messages([msgid, ]) # add "DELETE" flag
+                continue
+            if user_choice == keys.ESCAPE:
+                break
+            server.set_flags([msgid], [SEEN, FLAGGED])
+            # server.move(msgid, "work-to-consider")
         server.expunge() # remove all messages with flag "DELETE"
     except Exception as e:
         print("error:", e.args[0])
