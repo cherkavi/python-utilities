@@ -65,10 +65,11 @@ with IMAPClient(mail_server, port=mail_port, use_uid=True) as server:
         # 'ALL', 'BEFORE date', 'ON date', 'SINCE date', 'SUBJECT string', 'BODY string', 'TEXT string', 'FROM string','TO string','CC string','BCC string', 'SEEN', 'UNSEEN', 'ANSWERED', 'UNANSWERED', 'DELETED','UNDELETED','DRAFT','UNDRAFT', 'FLAGGED', 'UNFLAGGED', 'LARGER N', 'SMALLER N', 'NOT search-key', 'OR search-key1 search-key2'.
         # messages = server.search(['NOT', 'DELETED', '1:2'])
         # messages = server.search(['UNDELETED', '1:2'])
-        messages = server.search(['UNFLAGGED', '1:10'])
-        print(messages)
+        messages = server.search('UNDELETED UNFLAGGED')
+        message_amount = len(messages)
 
-        response = server.fetch(messages, ['RFC822', 'BODY[TEXT]'])
+        # response = server.fetch(messages[:10], ['RFC822', 'BODY[TEXT]'])
+        response = server.fetch(messages[:10], ['RFC822', 'BODY[TEXT]'])
         counter = 0
         for msgid, data in response.items():
             text_lines = convert_to_lines()
@@ -76,7 +77,8 @@ with IMAPClient(mail_server, port=mail_port, use_uid=True) as server:
             print(retrive_url(text_lines))
             print(retrieve_time(text_lines))
             print(retrieve_title(text_lines))
-            print("???")
+            counter += 1
+            print(f"??? {counter}/{message_amount}")
             user_choice = getkey()
             if user_choice == keys.DELETE:
                 server.delete_messages([msgid, ]) # add "DELETE" flag
