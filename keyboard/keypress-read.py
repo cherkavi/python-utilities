@@ -17,4 +17,5 @@ def waiting_for_key()->[]:
     else:
         return [read_symbol_ord, ]
 
-print(waiting_for_key())
+while True:
+    print(waiting_for_key())
