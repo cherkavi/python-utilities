@@ -2,6 +2,7 @@ from flask import Flask
 from flask import jsonify
 
 from flask_restplus import Api
+from flask_restplus import Resource
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 
