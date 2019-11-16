@@ -9,6 +9,11 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 class Health(Resource):
     def get(self):
+        # request.args.get("path")
+        # or
+        # parser = reqparse.RequestParser()
+        # parser.add_argument('command', type=str, help='command line that should be executed')
+        # args = parser.parse_args()
         return jsonify(message="readiness probe")
 
 
