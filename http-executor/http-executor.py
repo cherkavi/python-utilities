@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import Flask
 from flask import request
 from flask import jsonify
@@ -8,12 +9,7 @@ from flask_restplus import reqparse
 
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-import subprocess
-
-PORT=13713
-
-
-import os, sys, subprocess
+import os, sys
 
 def open_file(filename):
     if sys.platform == "win32" or sys.platform == "win64": 
@@ -23,37 +19,72 @@ def open_file(filename):
         # not working properly subprocess.call([opener, filename], shell=False, )
         return os.system(opener+" "+filename+"&")
 
+
 class Open(Resource):
+    ARGUMENT_NAME = "path"
     def get(self):
         """
         open file with default program 
-        waiting for request parameter "path" - path to file
+        
+        :param path: request parameter - path to file
+        :return: system code of execution
+        :rtype: int
         """
-        return open_file(request.args.get("path"))
+        # request.args.get("path"))
+        args = reqparse \
+            .RequestParser() \
+            .add_argument(Open.ARGUMENT_NAME,
+                          type=str,
+                          help='path to file that should be opened with default app',
+                          required=True,
+                          nullable=False) \
+            .parse_args()
+        return open_file(args[Open.ARGUMENT_NAME])
 
-DEFAULT_UI_EDITOR="code"
 
 class Edit(Resource):
+    DEFAULT_UI_EDITOR = "code"
+    ARGUMENT_NAME = "path"
     def get(self):
         """
         edit text file with VisualCode editor ('code' alias)
-        waiting for request parameter "path" - path to file
+
+        :param path: request parameter - path to file
+        :return: system code of execution
+        :rtype: int
         """
-        return os.system(DEFAULT_UI_EDITOR + ' %s &' % (request.args.get("path")))
+        # request.args.get("path"))
+        args = reqparse \
+            .RequestParser() \
+            .add_argument(Edit.ARGUMENT_NAME,
+                          type=str,
+                          help='path to file that should be edited',
+                          required=True,
+                          nullable=False) \
+            .parse_args()
+        return os.system(Edit.DEFAULT_UI_EDITOR + ' %s &' % (args[Edit.ARGUMENT_NAME]))
 
-
-TERMINAL_TEMPLATE = "xterm -fullscreen -fa 'Monospace' -fs 12 -hold -e %s &"
 
 class Terminal(Resource):
+    TERMINAL_TEMPLATE = "xterm -fullscreen -fa 'Monospace' -fs 12 -hold -e %s &"
+    ARGUMENT_NAME = "command"
     def get(self):
         """
         execute command in terminal 'xterm'
-        waiting for request parameter "command" - command for execution in terminal
+
+        :param command: request parameter - command for execution in terminal
+        :return: system code of execution
+        :rtype: int
         """
-        parser = reqparse.RequestParser()
-        parser.add_argument('command', type=str, help='command line that should be executed')
-        args = parser.parse_args()
-        return os.system(TERMINAL_TEMPLATE % (args["command"], ) )
+        args = reqparse\
+            .RequestParser()\
+            .add_argument(Terminal.ARGUMENT_NAME,
+                          type=str,
+                          help='command line that should be executed',
+                          required=True,
+                          nullable=False)\
+            .parse_args()
+        return os.system(Terminal.TERMINAL_TEMPLATE % (args[Terminal.ARGUMENT_NAME], ))
 
 
 if __name__ == "__main__":
@@ -69,4 +100,12 @@ if __name__ == "__main__":
     api.add_resource(Terminal, "/terminal", endpoint="terminal")
     api.add_resource(Open, "/open", endpoint="open")
     api.add_resource(Edit, "/edit", endpoint="edit")
-    app.run(host="0.0.0.0", port=PORT, debug=False)
+    app.run(host="0.0.0.0", port=13413, debug=False)
+
+    # examples:
+    # http://localhost:13413/edit?path=%22/home/technik/hello.txt%22
+    # http://localhost:13413/edit?path=%22$HOME/hello.txt%22
+    #
+    # http://localhost:13413/terminal?command=%22docker%20ps%20-a%22
+    #
+    # http://localhost:13413/open?path=%22/home/technik/hello.txt%22
