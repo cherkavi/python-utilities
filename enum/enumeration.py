@@ -29,7 +29,8 @@ class Angles(enum.Enum):
 	Rectangle = (4, "four")
 	Pentagrame = (5, "five")
 
-print(Angles.Triangle.value)
+print("enum value: ", Angles.Triangle.value)
+print("enum value type: ", type(Angles.Triangle.value))
 
 
 print(">>> runtime creation from string")
