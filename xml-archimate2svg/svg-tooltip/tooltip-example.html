@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <script>
+        function showTooltip(evt, text) {
+            let tooltip = document.getElementById("tooltip");
+            tooltip.innerHTML = text;
+            tooltip.style.display = "block";
+            tooltip.style.left = evt.pageX + 10 + 'px';
+            tooltip.style.top = evt.pageY + 10 + 'px';
+        }
+        
+        function hideTooltip() {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "none";
+        }
+    </script>
+    <style>
+        #tooltip {
+            background: cornsilk;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 5px;
+        }    
+    </style>
+</head>
+
+<body>
+      <div id="tooltip" display="none" style="position: absolute; display: none;"></div>
+      
+      <svg>
+        <rect width="100" height="50" style="fill: blue;" onmousemove="showTooltip(evt, 'This is blue');" onmouseout="hideTooltip();" >
+        </rect>
+      </svg>
+</body>
+</html>
