@@ -4,7 +4,8 @@
 # approach 1
 import sys
 # insert at 1, 0 is the script path (or '' in REPL)
-sys.path.insert(1, '/path/to/application/app/folder')
+# sys.path.insert(1, '/path/to/application/app/folder')
+sys.path.append('/path/to/application/app/folder')
 import destination_file
 
 # approach 2
