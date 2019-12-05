@@ -9,6 +9,7 @@ usage example
 ```
 curl -X GET google.com | python3 curl-output-html-parser.py "/html/head/title"
 curl -X GET google.com | python3 curl-output-html-parser.py "/html/body/a/@href"
+curl --cookie cookie.txt --silent "http://loveread.books/read_book.php?id=66258&p=100" | iconv --from-code WINDOWS-1251 --to-code UTF-8 | python3 curl-output-html-parser.py "/html/body/table/tr[2]/td/table/tr/td[2]/div[3]"
 ```
 """
 
