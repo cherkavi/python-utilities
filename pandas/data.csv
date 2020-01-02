@@ -1,4 +1,8 @@
-head-1,head-2,head-3
-1, one, first
-2, , second
-3, three, third
+price,head-1,head-2,head-3
+10,1,one,first
+20,2,,second
+30,3,three,third
+15,1,one,fourth
+25,2,two,fifth
+35,3,three,first
+40,4,four,second
