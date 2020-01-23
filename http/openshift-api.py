@@ -4,6 +4,9 @@ import requests
 import json
 import yaml
 
+# suppress printing warnings
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def clear_binary_line(b_line):
     next_line = b_line.decode('utf-8')
