@@ -12,7 +12,9 @@ app = Flask(__name__)
 def execute_application():
     # job_request = request.get_json(silent=True)
     remote_request_argument = request.args.get("message")
+    # result = subprocess.check_output(["tail /home/projects/current-task/results.output"], shell=True).decode("utf-8").splitlines()
     result = subprocess.check_output(["echo $"+remote_request_argument], shell=True).splitlines()
+    return "<br />".join(result)
     return ("result of your request is <b>%s</b> " % result)
 
 if __name__ == "__main__":
