@@ -1,7 +1,10 @@
 import json
 
 example = {"a":10, "b":20}
+# convert to json string
 print(json.dumps(example))
+# convert to json string and then move back to object 
+#              - read from string
 print(json.loads(json.dumps(example)))
 
 
