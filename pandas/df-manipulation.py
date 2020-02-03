@@ -14,6 +14,9 @@ print("# take subset of the DataFrame")
 print(data_frame[["head-3", "head-2"]])
 print("# rename column")
 data_frame.rename(columns={"head-1": "head-001"}, inplace=True)
+# for one column - don't use 'columns'
+# data_frame.rename("head-1", inplace=True)
+
 print(data_frame)
 print("# print types")
 print(data_frame.dtypes)
