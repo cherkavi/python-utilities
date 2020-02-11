@@ -1,6 +1,7 @@
 try:
     f = open('readme.md')
-except IOError as e:
+except (ValueError, IOError) as e:
+    # just an example of multiply exception
     if isinstance(e, Iterable) and len(e) > 0:
         error_message = e[0].message
     else:
