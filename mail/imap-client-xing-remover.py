@@ -89,6 +89,7 @@ def replace_german_chars(text: str) -> str:
     return_value = return_value.replace("=E2=84=96", "№")
     return_value = return_value.replace("=C3=B6", "ö")
     return_value = return_value.replace("=C3=9", "ss")
+    return_value = return_value.replace("=C3=A4", "ä")
     return return_value
 
 
