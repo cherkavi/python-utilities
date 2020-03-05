@@ -58,7 +58,8 @@ class PredefinedNames(NamingStrategy):
 
 def split_file_to_parts(path_to_file: str, parts: int, part_naming: NamingStrategy):
     amount_of_lines = count_amount_of_lines(path_to_file)
-    part_size = int(amount_of_lines / parts) + 1
+    part_size = int(amount_of_lines / parts)
+    part_size = part_size if part_size > 1 else part_size + 1
 
     output_file = None
     with open(path_to_file) as text_file:
