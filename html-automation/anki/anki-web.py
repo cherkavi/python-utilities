@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import sys
 
+# browser automation 
 # export your words from translate.google.com to Google tables
 # open file and leave only column with word and translation
 # copy-paste to text file
