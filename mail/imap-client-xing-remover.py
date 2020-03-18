@@ -23,10 +23,9 @@ def trim_right(text: str, need_to_remove: str) -> str:
     return text[:-len(need_to_remove)] if text.endswith(need_to_remove) else text
 
 
-def read_lines(file_name) -> List[str]:
+def read_lines_from_blacklist(file_name) -> List[str]:
     with open(file_name, "r") as file:
-        return list(
-            filter(lambda each_line: len(each_line.strip()) > 0, [trim_right(each, "\n") for each in file.readlines()]))
+        return [trim_right(each, "\n") for each in file.readlines() if len(each.strip()) > 0 and not each.startswith("#") ]
 
 
 def convert_to_lines(data: dict) -> List[str]:
@@ -105,7 +104,7 @@ def any_words_in(message_text: str, criterias: List[str]) -> Union[str, None]:
 
 with IMAPClient(mail_server, port=mail_port, use_uid=True) as server:
     try:
-        criteria_black_list = read_lines(mail_black_list_words)
+        criteria_black_list = read_lines_from_blacklist(mail_black_list_words)
         login_result = server.login(mail_login, mail_password)
         inbox_folder = server.select_folder('INBOX')
         messages = server.search('UNDELETED UNFLAGGED')
