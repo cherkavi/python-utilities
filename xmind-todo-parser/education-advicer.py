@@ -8,10 +8,20 @@ skip.txt contains lines to skip from output
 
 import xmind
 # git clone https://github.com/xmindltd/xmind-sdk-python.git,   python setup.py install
+# or just "pip3 install xmind"
 import sys
 
 
 DELIMITERS = [":", "="]
+
+def clear_binary_line(b_line):
+    next_line = b_line.decode('utf-8')
+    if next_line[len(next_line)-1] == "\n":
+        next_line = next_line[:-1]
+    index = next_line.rfind("/")
+    if index >= 0:
+        next_line = next_line[index+1:]
+    return next_line
 
 
 def parse_notes(notes, param):
@@ -29,9 +39,9 @@ def parse_notes(notes, param):
 class Leaf:
 
     def __init__(self, topic):
-        self.name = topic.getTitle().encode("utf-8").strip()
+        self.name = topic.getTitle().strip()
         if topic.getNotes():
-            notes = topic.getNotes().getContent().encode("utf-8").strip()
+            notes = topic.getNotes().strip()
             self.time = parse_notes(notes, "time")
             if self.time:
                 self.time = int(self.time)
@@ -44,11 +54,11 @@ class Leaf:
             self.time = None
             self.tag = None
         if topic.getHyperlink():
-            self.url = topic.getHyperlink().encode("utf-8").strip()
+            self.url = topic.getHyperlink().strip()
         else:
             self.url = None
         if topic.getMarkers() and len(topic.getMarkers()) > 0:
-            self.markers = [each_marker.getMarkerId().name.encode("utf-8") for each_marker in topic.getMarkers()]
+            self.markers = [each_marker.getMarkerId().name for each_marker in topic.getMarkers()]
         else:
             self.markers = []
 
@@ -110,7 +120,6 @@ def main(parameters):
         print_html_block("by time: " + str(time),
                          [topic for topic in (topics-red_flags-exercises-skip)
                           if topic.time and topic.time <= time and topic.name not in skip])
-
 
 if len(sys.argv) < 2:
     print("name of the file should be specified")
