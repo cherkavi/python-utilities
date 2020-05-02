@@ -1,7 +1,18 @@
 # simple application for translate all Disney subtitles (JS filter "seg") 
 # from DEutsch to RUssian
 # 
+# file example
+# 00:01:06.691 --> 00:01:09.069 line:14.96%,start
+# 20 Jahre zuvor
+#
+# 00:01:11.196 --> 00:01:15.992
+# Was machen wir nur hier? Kannst du sie
+# nicht einfach dazu bringen, Ja zu sagen?
 # 
+# 00:01:16.076 --> 00:01:18.495 line:85.04%,end
+# Ich kÃ¶nnte, aber das ist nicht meine Art.
+
+
 import sys
 import subprocess
 
