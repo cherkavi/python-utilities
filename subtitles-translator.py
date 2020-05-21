@@ -15,6 +15,7 @@
 
 import sys
 import subprocess
+from time import sleep
 
 def clear_binary_line(b_line):
     return b_line.decode('utf-8').rstrip()
@@ -29,6 +30,7 @@ for line in sys.stdin:
     
     remove_marker = prepared_line.find("-->")    
     if remove_marker > 0:
+        sleep(5)
         translation = subprocess.check_output(["trans", "--no-warn", "-source", "de","-target","ru", "-brief", buffer])
         print(buffer, "   ")
         print("```",clear_binary_line(translation),"```")
