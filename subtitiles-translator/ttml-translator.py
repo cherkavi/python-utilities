@@ -34,4 +34,5 @@ if __name__ == "__main__":
     for each_component in components:
         print("===", each_component.getAttribute("begin"), each_component.getAttribute("end"))
         text = child_nodes_to_text(each_component.childNodes)
-        print(text, "\n", translate_from_german(text))
+        #print(text, "\n", translate_from_german(text))
+        print(text)
