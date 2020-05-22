@@ -12,6 +12,9 @@
 # 00:01:16.076 --> 00:01:18.495 line:85.04%,end
 # Ich kÃ¶nnte, aber das ist nicht meine Art.
 
+# usage example
+# cat subtitles.txt | python3 subtitles-translator.py<F12>
+
 
 import sys
 import subprocess
