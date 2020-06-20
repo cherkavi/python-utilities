@@ -39,16 +39,16 @@ def summarize_another()->int:
 
 # ----------------------------------------
 # function with parameters, decorator with parameters 
-def my_complex_decorator(description:str):
-    def complex_decorator(func):
-        def complex_decorator_wrapper(*args, **kwargs):
+def decorator_factory(description:str):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
             return_value = func(*args, **kwargs)
             print(f"{description}:  {return_value}")
             return return_value
-        return complex_decorator_wrapper
-    return complex_decorator
+        return wrapper
+    return decorator
 
-@my_complex_decorator(description="my own description: ")
+@decorator_factory(description="my own description: ")
 def summarize_complex(a:int)->int:
     return a+a
 
