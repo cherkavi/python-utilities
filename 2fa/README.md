@@ -1,3 +1,23 @@
+```bash
+# set up environment
+export AUTHY_API_KEY=""
+
+# registration 
+python3 authy-user-register.py some-email@gmail.com 15035354000 49
+
+export AUTHY_USER_ID="268229999"
+
+# print status
+python3 authy-user-status.py
+
+# check provided token 
+python3 authy-user-verify.py 860988
+```
+
+
+
+
+
 # collection of links 
 https://authy.com/
 https://authy.com/blog/understanding-2fa-the-authy-app-and-sms/
