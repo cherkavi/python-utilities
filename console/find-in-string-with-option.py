@@ -6,6 +6,8 @@ import sys
 def line_contains(line, option):
 	if type(option) is list:
 		for each_option in option:
+                        # index without exception
+                        # find in string without exception
 			if line.find(each_option)>0:
 				return True
 		return False
