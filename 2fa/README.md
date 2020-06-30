@@ -9,7 +9,8 @@ export AUTHY_USER_ID="268229999"
 
 # print status
 python3 authy-user-status.py
-
+# scan QR code with GoogleAuthenticator
+python3 authy-user-qr-show.py
 # check provided token 
 python3 authy-user-verify.py 860988
 ```
