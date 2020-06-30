@@ -1,0 +1,31 @@
+        <script type="text/ecmascript"><![CDATA[
+            function changerect(event) {
+                var rectangle = event.target;
+                rectangle.setAttribute ('x', parseInt(rectangle.getAttribute('x')) + 300 + "");
+                // tooltip with whole text
+                rectangle.innerHTML="<title>updated text</title>";
+                console.log(rectangle.getAttribute("custom_attribute"));
+
+                var doc = document.getElementById("tooltip_doc");
+                doc.setAttribute('x', parseInt(rectangle.getAttribute('x'))+20);
+                doc.setAttribute('y', parseInt(rectangle.getAttribute('y'))+20);
+                doc.parentElement.setAttribute('xlink:href', "https://mail.ru");
+                doc.parentElement.setAttribute('xlink:title', "some title");                
+                doc.textContent = "new text";
+                console.log(doc);
+            }
+            ]]>
+        </script>
+        
+        <rect id="tooltip" x="100" y="100" width="70" height="40" 
+              style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"
+              custom_attribute="my custom text "
+              onclick='changerect(event)'>
+              <title>some text</title>
+        </rect>
+        <a xlink:href="" xlink:title="">
+            <text id="tooltip_doc" x="100" y="100" width="70" height="40" style="fill:rgb(0,0,255)" >
+                this is a text
+            </text>
+        </a>
+
