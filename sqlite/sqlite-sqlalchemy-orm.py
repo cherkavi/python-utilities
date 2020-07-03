@@ -30,23 +30,35 @@ class Messages(Base):
     content = Column('content', types.Text(), default=u'')
 
     def __str__(self):
-        return f"id:{self.id}  receive_time: {self.receive_time} message_title: {self.message_title}"
+        return f"id:{self.id}  receive_time: {self.receive_time} message_title: {self.message_title} " \
+               f"message_url: {self.message_url}  message_full_url: {self.message_full_url}"
 
 
 if __name__ == '__main__':
     engine = create_engine(path_to_database, echo=True)
     Base.metadata.create_all(engine, checkfirst=True)
-    Session = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+    session_builder: sessionmaker = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 
-    session = Session()
+    session = session_builder()
     # session.begin()
     message = Messages()
     message.message_title = "hello"
     message.receive_time = datetime.now()
     session.add(message)
     session.commit()
+    message = Messages()
+    message.message_title = "hello2"
+    message.receive_time = datetime.now()
+    session.add(message)
+    session.commit()
 
-    session2 = Session()
-    print(">>", session2.query(Messages).filter_by(message_title="hello").one_or_none())
-    print(">>>", session2.query(Messages).filter(Messages.message_title.isnot(None)).one_or_none())
+    session_another = session_builder()
+    object_message: Messages = session_another.query(Messages).filter_by(message_title="hello").one_or_none()
+    object_message.message_full_url = "https://this.is.some_url.com"
+    session_another.add(object_message) # not possible to attach to another session session.add(object_message)
+    session_another.commit()
+
+    # read multiply objects, read updates from another transaction
+    for each_record in session.query(Messages).filter(Messages.message_title.isnot(None)):
+        print(each_record)
     # connection = engine.connect()
