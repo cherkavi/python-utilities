@@ -42,3 +42,9 @@ t_zur_image = Table(
 )
 
 ```
+
+long lasting records processing ( records loop )
+```
+# error text: can't update object from different Thread 
+engine = create_engine(f"sqlite:///{db_path}?cache=shared", echo=False, connect_args={'check_same_thread': False})
+```

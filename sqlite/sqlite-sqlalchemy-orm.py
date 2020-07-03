@@ -59,6 +59,7 @@ if __name__ == '__main__':
     session_another.commit()
 
     # read multiply objects, read updates from another transaction
+    # alchemy operations "http://www.leeladharan.com/sqlalchemy-query-with-or-and-like-common-filters"
     for each_record in session.query(Messages).filter(Messages.message_title.isnot(None)):
         print(each_record)
     # connection = engine.connect()

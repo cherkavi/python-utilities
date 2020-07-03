@@ -2,6 +2,10 @@ import os
 import sqlite3
 from datetime import datetime
 
+# f"sqlite://{db_path}:?cache=shared"
+# sqlite:///:memory: (or, sqlite://)
+# sqlite:///relative/path/to/file.db
+# sqlite:////absolute/path/to/file.db
 path_to_database = os.environ.get("PATH_TO_SQLITE")
 if not path_to_database:
     path_to_database = "file::memory:?cache=shared"
