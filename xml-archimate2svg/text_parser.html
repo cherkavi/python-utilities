@@ -1,0 +1,38 @@
+<html>
+
+	<head>
+		<script>
+		// 1. Code runs as you type: edit message
+function getLink(textLine){
+  let lineElements = textLine.split(":");
+  if(lineElements.length<2){
+    return null
+  }
+  if(lineElements[1].trim().toLowerCase().startsWith("http")){
+     return Array.of(lineElements[0], lineElements.slice(1,lineElements.length).join(":"))
+  }
+  return null
+}
+
+function parseText(fullText){
+  lines = fullText.split("\n")
+  for(let eachIndex in lines){
+    let links = getLink(lines[eachIndex])
+    if(links){
+      console.log(links[0], " >>> ",links[1])
+    }else{
+      console.log(lines[eachIndex])
+    }
+  }
+}
+parseText(`main_url: https://mail.ru
+another text
+additional_url: http://confluence.com
+and just a text here`)  
+
+		</script>
+	</head>
+
+	<body>
+	</body>
+</html>
