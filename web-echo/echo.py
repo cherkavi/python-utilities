@@ -10,6 +10,11 @@ class MainHandler(tornado.web.RequestHandler):
         self.write(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         self.finish()
 
+    def post(self):
+        data = self.get_argument('body', 'No data received')
+        self.write(data)
+        self.finish()
+
 
 def make_app():
     return tornado.web.Application([
