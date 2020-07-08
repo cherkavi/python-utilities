@@ -8,7 +8,7 @@ except ImportError:
     import httplib as http_client
 http_client.HTTPConnection.debuglevel = 1
 
-# You must initialize logging, otherwise you'll not see debug output.
+# requests log, requests investigation, custom logging
 logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
 requests_log = logging.getLogger("requests.packages.urllib3")
