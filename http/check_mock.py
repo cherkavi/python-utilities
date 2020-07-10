@@ -5,7 +5,7 @@ import socket
 
 def check_positive_get_response(url):
     try:
-        response = requests.get(url, timeout=3)
+        response:requests.Response = requests.get(url, timeout=3)
         return 200 <= response.status_code < 300
     except Exception as e:
         return False

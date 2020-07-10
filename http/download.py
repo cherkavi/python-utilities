@@ -5,7 +5,7 @@ from tqdm import tqdm
 def main():
 	url = "http://localhost:8808/published/resources/affin.zip.md5"
 	for i in range(1,10):
-		response = requests.get(url, stream=True)
+                response:requests.Response = requests.get(url, stream=True)
 		file_name = "affin.zip.md5"+str(i)
 		with open(file_name, "wb") as handle:
 	    		for data in tqdm(response.iter_content()):
