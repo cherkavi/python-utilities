@@ -1,3 +1,10 @@
+Logging example
+```
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+
+flask_app.config['SQLALCHEMY_ECHO'] = settings.SQLALCHEMY_ECHO
+```
+
 Error:
 ```text
 sqlAlchemy detached instance error
