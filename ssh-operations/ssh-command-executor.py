@@ -21,5 +21,11 @@ def execute_command(command:str) -> List[str]:
 	finally:
 		ssh.close()
 
-if __name__=="__main__":
+if __name__=="__main__":	
+#        url = f"{airflow_url}/api/experimental/dags/{airflow_dag_name}/dag_runs"
+#        airflow_pass_fixed='"'+airflow_pass+'"'
+#        command = f"curl --data-binary {data_body} -u {airflow_user}:{airflow_pass_fixed} -X POST {url}"
+#        print(airflow_user, airflow_pass_fixed, data_body)
+#        return self.execute_command(command, True)
+	
     print(execute_command("pwd"))
