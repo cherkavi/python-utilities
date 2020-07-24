@@ -2,7 +2,11 @@
 
 Archimate to SVG export improvement.
 Update destination SVG with all links from documentation properties ( also add popup hints to elements)
-
+Property should looks like:
+```
+code: https://github.com/cherkavi/
+doc: https://my.confluence.com/cherkavi
+```
 
 example of 
 ```html
