@@ -1,17 +1,3 @@
-<g>
-        <a onclick='showTooltip(event)' data-doc="doc:http://link.to.somewhere | readme: https://another.link.to.somewhere" >
-            <text>some text</text>
-        </a>
-
-        <rect id="tooltip" x="100" y="100" width="70" height="40" 
-              style="fill:rgb(255,0,0);stroke-width:3;stroke:rgb(0,0,0)"
-              custom_attribute="my custom text "
-              onclick='hideTooltip()'>
-              <title>some text</title>
-        </rect>
-
-</g>
-        <script type="text/ecmascript"><![CDATA[            
             function getOrCreateElementById(elementId){
                 var returnValue = document.getElementById(elementId);
                 if(returnValue){
@@ -55,12 +41,13 @@
                 var doc = getOrCreateElementById("tooltip_"+parseInt(index));
                 doc.setAttribute('x', x);
                 doc.setAttribute('y', y);
-                doc.setAttribute('style', "fill:rgb(0,0,255)");
-                doc.parentElement.setAttribute('href', link); // xlink:
-                doc.parentElement.setAttribute('title', title); //xlink:                
+                doc.setAttribute('style', "fill:rgb(0,0,0);stroke-dasharray='0';font-family='Arial'");
+                doc.parentElement.setAttribute('href', link); 
+                doc.parentElement.setAttribute('title', title);
                 doc.textContent = title;                
-                doc.style["display"]=""
-                doc.parentElement.style["display"]=""
+                doc.style["display"]="";
+                doc.style["stroke-width"]=0;
+                doc.parentElement.style["display"]="";
             }
 
             function showLinks(objectWithLinks, positionX, positionY){
@@ -72,7 +59,7 @@
                     }
                     amount_of_elements = amount_of_elements + 1;
                 }
-                let width = max_word_length*12;
+                let width = max_word_length*8;
 
                 let margin = 20;
                 let stepY = 25;
@@ -85,14 +72,16 @@
                 let height = margin+amount_of_elements*stepY;
                 tooltip.setAttribute('x', positionX - width/2);
                 tooltip.setAttribute('y', positionY-height-margin);
-                tooltip.setAttribute('width', width);
+                tooltip.setAttribute('width', margin+width+margin);
                 tooltip.setAttribute('height', height);
             }
 
             function showTooltip(event) {
                 links = parseText(event.target.parentElement.getAttribute("data-doc"));
                 showLinks(links, parseInt(event.target.getAttribute("x")), parseInt(event.target.getAttribute("y")))
-                document.getElementById("tooltip").style["display"]="";
+                let tooltip = document.getElementById("tooltip");
+                tooltip.style["display"]="";
+                tooltip.getElementsByTagName("title")[0].innerHTML = event.target.parentElement.getAttribute("data-doc");
             }
             
             function hideTooltip(){
@@ -104,5 +93,3 @@
                     }
                 }
             }
-            ]]>
-        </script>    

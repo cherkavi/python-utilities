@@ -48,17 +48,14 @@ def archi_elements(path_to_source_file) -> ArchiDocList:
     components_description = map(lambda x: (#0
                                             x.getAttribute("name"),
                                             #1
-                                            get_first_http_link([each_child.firstChild.nodeValue
-                                                                 for each_child in x.childNodes
-                                                                 if is_element_has_documentation(each_child)]
-                                                                ),
+                                            "showTooltip(event)",
                                             #2
-                                            "\n".join([each_child.firstChild.nodeValue
+                                            " | ".join("".join([each_child.firstChild.nodeValue
                                              for each_child in x.childNodes
-                                             if is_element_has_documentation(each_child)])
+                                             if is_element_has_documentation(each_child)]).split("\n"))
                                             ),
                                  components)
-    non_empty_description = filter(lambda x: x[1] or x[2], components_description)
+    non_empty_description = filter(lambda x: x[2] is not None and len(x[2])>0, components_description)
     return dict((name, ArchiDoc(url, doc)) for name, url, doc in non_empty_description)
 
 
@@ -79,8 +76,9 @@ def wrap_node_with_anchor(dom, url: str, title: str, xml_elements):
         parent.removeChild(each_node)
         anchor = dom.createElement("a")
         if url:
-            anchor.setAttribute("xlink:href", url)
+            anchor.setAttribute("onclick", url)
         if title:
+            anchor.setAttribute("data-doc", title)
             anchor.setAttribute("xlink:title", title)
         anchor.appendChild(each_node)
         parent.appendChild(anchor)
@@ -120,10 +118,45 @@ def update_svg_elements(source_file, archimate_description:ArchiDocList, destina
     save_xml_to_file(dom, destination_file)
 
 
+def content_of_file(path_to_file: str)->str:
+    with open(path_to_file, "r") as file:
+        return "".join(file.readlines())
+
+
+def add_javascript(svg_original:str, svg_updated: str, js_script:str):
+    # open file
+    dom = parse(svg_original)         
+    # insert JavaScript 
+    svg_root = dom.getElementsByTagName("svg")[0]
+    script_element = dom.createElement("script")        
+    script_element.setAttribute("type", "text/ecmascript")        
+    ### not working with: 
+    ### script_element.innerHTML = content_of_file(js_script)    
+    ### script_element.text = content_of_file(js_script)    
+    script_element.appendChild(dom.createCDATASection(content_of_file(js_script)))
+    svg_root.appendChild(script_element)
+
+    # tooltip placeholder
+    svg_graphics = dom.getElementsByTagName("g")[0]
+    svg_rect = dom.createElement("rect")
+    svg_rect.setAttribute("id", "tooltip")
+    svg_rect.setAttribute("style", "fill:rgb(255,255,0);display: none")
+    svg_rect.setAttribute("onclick", "hideTooltip()")
+    svg_rect.appendChild(dom.createElement("title"))
+
+    svg_graphics.appendChild(svg_rect)
+
+    # save file
+    save_xml_to_file(dom, svg_updated)
+
+
 if __name__ == "__main__":
     path_to_archimate = sys.argv[1]
     path_to_svg_source = sys.argv[2]
     path_to_svg_destination = sys.argv[3]
 
+    path_to_javascript = "svg-dynamic-tooltip.js-svg"
+
+    add_javascript(path_to_svg_source, path_to_svg_destination, path_to_javascript)
     archimate_description = archi_elements(path_to_archimate)
-    update_svg_elements(path_to_svg_source, archimate_description, path_to_svg_destination)
+    update_svg_elements(path_to_svg_destination, archimate_description, path_to_svg_destination)
