@@ -8,6 +8,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 
 class Health(Resource):
+    # @google_maps_namespace.marshal_with(google_maps_search_candidate, as_list=True)
+    # @google_maps_namespace.doc(params={"command": "text for searching on Google Maps"})
     def get(self):
         # request.args.get("path")
         # or
