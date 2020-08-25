@@ -1,3 +1,8 @@
+database connection
+```python
+db.engine.execute(text("SELECT 1"))
+```
+
 Logging example
 ```
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
