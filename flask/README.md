@@ -14,3 +14,16 @@ flask view, flask complex return view
     'practices': fields.List(cls_or_instance=fields.String(required=True, description='practices'),
                              attribute=lambda x: x["practices"].split(","))
 ```
+
+header, header request
+```python
+    @namespace.response(200, "by user ")
+    # !!! DON'T USER UNDERSCORE !!!
+    @namespace.param(name="userid", description="id of user", _in="header")
+    def get(self):
+        input_arg = reqparse.RequestParser()\
+            .add_argument(name="userid", type=int, location="headers")\
+            .parse_args()
+        user_id = input_arg["userid"]
+
+```
