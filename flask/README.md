@@ -27,3 +27,9 @@ header, header request
         user_id = input_arg["userid"]
 
 ```
+
+> No API definition provided.
+need to check all 'object_view'
+```python
+@namespace.marshal_with(object_view)
+```
