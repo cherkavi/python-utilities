@@ -27,3 +27,15 @@ header, header request
         user_id = input_arg["userid"]
 
 ```
+
+initialization
+```python
+
+    @app.before_first_request
+    def load_db_settings(engine=None):
+        if engine is None:
+            engine = db.engine
+        with engine.connect() as connection:
+            settings.load_database_config(connection)
+
+```
