@@ -28,6 +28,12 @@ header, header request
 
 ```
 
+> No API definition provided.
+need to check all 'object_view'
+```python
+@namespace.marshal_with(object_view)
+```
+
 initialization
 ```python
 
