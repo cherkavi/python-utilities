@@ -45,3 +45,10 @@ initialization
             settings.load_database_config(connection)
 
 ```
+
+DateTime, datetime, default datetime
+```python
+    # added = Column(DateTime, nullable=False, server_default=sqlalchemy.sql.func.now())
+    # added = Column(DateTime, nullable=False, server_default=text('NOW()'))
+
+```
