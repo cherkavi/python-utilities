@@ -46,9 +46,11 @@ initialization
 
 ```
 
-DateTime, datetime, default datetime
+DateTime, datetime, default datetime, onupdate
 ```python
     # added = Column(DateTime, nullable=False, server_default=sqlalchemy.sql.func.now())
     # added = Column(DateTime, nullable=False, server_default=text('NOW()'))
 
+    first_created = Column(DateTime(), default=datetime.datetime.now)
+    last_modified = Column(DateTime(), onupdate=datetime.datetime.now)
 ```
