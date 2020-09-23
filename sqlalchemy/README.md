@@ -57,8 +57,46 @@ t_zur_image = Table(
 
 ```
 
-long lasting records processing ( records loop )
+save record
+```python
+
+def session_aware(logic: Callable[[Session], Any], commit=False, expire_on_commit=True):
+    """
+    wrapper for executing ORM "queries"
+    :param logic: - function with one parameter - session
+    :param commit: commit after function execution
+    :param expire_on_commit: when you need to have DetachedORM Object for View
+    :return:
+    """
+    session = None
+    try:
+        with db.engine.connect() as connection:
+            session = Session(bind=connection, expire_on_commit=expire_on_commit)
+            return_value = logic(session)
+            if commit:
+                session.commit()
+            return return_value
+    finally:
+        if session:
+            session.close()
+
+
+def connection_aware(logic: Callable[[Connection], Any]):
+    """
+    wrapper for executing native queries
+    :param logic: - function with one parameter - connection
+    :return: result of function
+    """
+    with db.engine.connect() as connection:
+        return logic(connection)
+
+
+session_aware(lambda session: session.add(HlmImage.build(user_id, listing_id, image_name)), commit=True)
+
 ```
+
+long lasting records processing ( records loop )
+```python
 # error text: can't update object from different Thread 
 engine = create_engine(f"sqlite:///{db_path}?cache=shared", echo=False, connect_args={'check_same_thread': False})
 ```
