@@ -95,6 +95,13 @@ session_aware(lambda session: session.add(HlmImage.build(user_id, listing_id, im
 
 ```
 
+update object
+```python
+        image: HlmImage = session_aware(lambda session: session.query(HlmImage)
+                                        .filter(HlmImage.image_id==image_without_name.image_id)
+                                        .update({"image_name":image_name}), commit=True)
+```
+
 long lasting records processing ( records loop )
 ```python
 # error text: can't update object from different Thread 
