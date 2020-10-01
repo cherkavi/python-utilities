@@ -1,7 +1,7 @@
 import csv
 
 with open("sample.csv") as csv_file:
-    reader = csv.reader(csv_file,)
+    reader = csv.reader(csv_file,delimiter='\t')
     is_header = True
     for row in reader:
         if is_header:
