@@ -13,6 +13,11 @@ flask view, flask complex return view
                            attribute=lambda x: x["pgroups"].split(",")),
     'practices': fields.List(cls_or_instance=fields.String(required=True, description='practices'),
                              attribute=lambda x: x["practices"].split(","))
+
+    'practices': fields.Nested(name="practice", as_list=True,
+                               model={'practice': fields.Integer(attribute=lambda x: x)},
+                               attribute=lambda row: [row['practice1'], row['practice2'], row['practice3']],
+                               description="practices, delimited by comma"),			     
 ```
 
 header, header request
