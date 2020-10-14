@@ -62,6 +62,9 @@ DateTime, datetime, default datetime, onupdate
 
 Download file
 ```python
+# for inpath parameter name avoid char '/'
+# @image_namespace.route('/item/<int:image_id>/<string:name>')
+#
 @image_namespace.route('/item/<int:image_id>/<int:size_id>')
 @image_namespace.response(404, 'Image(s) by Listing id not found.')
 class Image(Resource):
