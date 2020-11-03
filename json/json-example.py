@@ -5,7 +5,7 @@ example = {"a":10, "b":20}
 print(json.dumps(example))
 # convert to json string and then move back to object 
 #              - read from string
-print(json.loads(json.dumps(example)))
+print(json.loads(json.dumps(example, sort_keys=True, indent=4)))
 
 
 class Example:
