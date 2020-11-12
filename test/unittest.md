@@ -17,3 +17,18 @@ class MyTestCase(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 ```
+
+fix environ
+```python
+import os
+from unittest import TestCase, mock
+
+
+@mock.patch.dict(os.environ, {"IMAGE_LOCAL_STORAGE": "test"})
+class TestAmemberUtils(TestCase):
+```
+
+check exception, test exception
+```python
+self.assertRaises(ValueError, read_user_id, PHPSESSID)
+```
