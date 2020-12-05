@@ -7,6 +7,12 @@ throw exception
                 lawfirm_namespace.abort(404, 'LawFirm not exists by provided id')
 ```
 
+flask namespace
+```python
+# !!! don't use braces in description !!!
+yelp_namespace = Namespace('yelp', description='Yelp review, communication with Yelp API')
+```
+
 flask view, flask complex return view
 ```python
     'pgroups': fields.List(cls_or_instance=fields.String(required=True, description='id of groups'),
