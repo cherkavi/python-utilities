@@ -13,3 +13,6 @@ execution example
 ```sh
 python3 update-archimate.py source.archimate exported_from_archimate.svg enriched_with_tooltips.svg
 ```
+
+## improvement. using jupyter as link consumer
+![using jupyter](https://i.postimg.cc/wvvdfN7Y/archi2svg-with-jupyter.jpg)
