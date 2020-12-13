@@ -85,3 +85,9 @@ def main(ini_file):
 
 if __name__ == "__main__":
     main(sys.argv[1])
+
+
+# read file 
+#        with open(f"${path_to_messages}/${each_message.content_file}","r") as each_message_file_content:
+#            message_content = each_message_file_content.readlines()
+
