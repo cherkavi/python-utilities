@@ -172,3 +172,31 @@ class ImageItems(Resource):
             image_namespace.abort(500, "internal storage (temp) error")
         return full_path_to_image, file_format
 ```
+
+
+```sh
+    app.config['MAX_CONTENT_LENGTH'] = settings.FLASK_MAX_CONTENT_LENGTH
+
+    @app.before_request
+    def check_directory(request: Request):
+        if (client_origin := get_client_url(request)):
+
+
+    @app.after_request
+    def add_cors_headers(response: Response) -> Response:
+        # nginx settings:
+        # proxy_set_header X-Real-IP $remote_addr
+        remote_client = request.referrer[0:request.referrer.find("/", 9)] if request.referrer else request.remote_addr
+
+
+    @app.before_first_request
+    def load_db_settings(engine=None):
+        if engine is None:
+
+
+    @app.route('/')
+    def get():
+    	@after_this_request
+	def add_header(response):
+		return response
+```
