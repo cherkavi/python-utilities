@@ -95,6 +95,12 @@ session_aware(lambda session: session.add(HlmImage.build(user_id, listing_id, im
 
 ```
 
+select object
+```python
+return session.query(Message) \
+        .filter(Message.process_flag == id, Message.showed > 0)
+```
+
 update object
 ```python
         image: HlmImage = session_aware(lambda session: session.query(HlmImage)
