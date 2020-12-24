@@ -200,3 +200,20 @@ class ImageItems(Resource):
 	def add_header(response):
 		return response
 ```
+
+example of reading all htto request parameters
+```python
+    @app.before_request
+    def check_directory():
+        if (client_origin := get_client_url(request)):
+            if settings.DEFAULT_ID:
+                g.directory_id = settings.DEFAULT_DIRECTORY_ID
+            else:
+                print("   ".join([f"{each_key}:{request.environ.get(each_key)}" for each_key in request.environ.keys()]))
+                print(
+                    f">>> {request.url_root}  {request.remote_addr}  {request.referrer}  {request.host_url}  {request.host}  {request.base_url}")
+                g.directory_id = settings.LIST.get(client_origin, None)
+                if not g.directory_id:
+                    log.warning(f"current id is unknown for {client_origin}")
+
+```
