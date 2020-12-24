@@ -16,3 +16,9 @@ msg['To'] = "vitali.cherkashyn@vodafone.com"
 s = smtplib.SMTP('localhost:2525')
 s.sendmail("vitali.cherkashyn@localhost.com", ["vitali.cherkashyn@vodafone.com"], msg.as_string())
 s.quit()
+
+
+import yagmail
+yag = yagmail.SMTP(user=mail_login, password=mail_password)
+yag.send('somename@somewhere.com', subject = None, contents = 'Hello')
+
