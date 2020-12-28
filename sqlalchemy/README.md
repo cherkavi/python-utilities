@@ -99,6 +99,7 @@ select object
 ```python
 return session.query(Message) \
         .filter(Message.process_flag == id, Message.showed > 0)
+	.order_by(Message.id.desc())
 ```
 
 update object
