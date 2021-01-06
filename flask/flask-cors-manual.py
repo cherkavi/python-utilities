@@ -19,6 +19,8 @@ def configure_app(app):
         # proxy_set_header X-Real-IP $remote_addr
         remote_client = request.remote_addr
         if remote_client in settings.SERVERS_WHITE_LIST:
+            # response.headers.add('Access-Control-Allow-Origin', request.headers['origin'])
+            # response.headers.add('Access-Control-Allow-Origin', '*')
             response.headers.add('Access-Control-Allow-Origin', remote_client)
             response.headers.add('Access-Control-Allow-Credentials', 'true')
             response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
