@@ -26,6 +26,11 @@ from unittest import TestCase, mock
 
 @mock.patch.dict(os.environ, {"IMAGE_LOCAL_STORAGE": "test"})
 class TestAmemberUtils(TestCase):
+	def test_one(self):
+		# given
+		...
+		# when !!!!!!! important - import your code here, not in header 
+		import path.to.my.code.for.testing
 ```
 
 check exception, test exception
