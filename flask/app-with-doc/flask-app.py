@@ -3,6 +3,7 @@ from flask import jsonify
 
 from flask_restplus import Api
 from flask_restplus import Resource
+# pip3 install Werkzeug==0.16.1
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 
