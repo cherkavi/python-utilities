@@ -217,3 +217,39 @@ example of reading all htto request parameters
                     log.warning(f"current id is unknown for {client_origin}")
 
 ```
+
+```python
+def null_int(field_name: str) -> Callable[[RowProxy], Optional[int]]:
+    '''
+    wrapper for 'fields.Integer' - avoid null value
+    ```attribute=null_int('lead_id'))```
+    :param field_name: name of Integer field
+    :return: function for assigning to 'attribute'
+    '''
+    def avoid_null(row: RowProxy) -> Optional[int]:
+        integer_value = row[field_name]
+        if isinstance(integer_value, int):
+            return integer_value
+        if integer_value and isinstance(integer_value, str) and len(integer_value) and integer_value.isdigit():
+            return int(integer_value)
+        else:
+            return None
+
+    return avoid_null
+
+
+def position_decoder(field_name: str) -> Callable[[RowProxy], Optional[str]]:
+    '''
+    wrapper for 'fields.Integer' - avoid null value
+    ```attribute=null_int('lead_id'))```
+    :param field_name: name of Integer field
+    :return: function for assigning to 'attribute'
+    '''
+    def decode_decimal(row: RowProxy) -> Optional[str]:
+        if field_name not in row or row[field_name] is None:
+            return ""
+        return "%.8f" % row[field_name]
+    return decode_decimal
+    
+```
+
