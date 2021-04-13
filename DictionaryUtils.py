@@ -4,12 +4,14 @@ class DictionaryUtils(object):
 
     @staticmethod
     def readFromPropertyFile(pathToFile):
+        """ property to map, property to dict, property file to dict 
+        """
         if(pathToFile==None):
             return None
         if not os.path.isfile(pathToFile):
             return None
         myprops = {}
-        with open('filename.properties', 'r') as f:
+        with open(pathToFile, 'r') as f:
             for line in f:
                 #removes trailing whitespace and '\n' chars
                 line = line.rstrip()
