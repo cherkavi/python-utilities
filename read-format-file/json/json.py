@@ -1,7 +1,11 @@
 import json
 from pprint import pprint
 
-data = json.load(open('example.json'))
+with open('example.json') as f:
+    data = json.load(f)
+
+# for unix don't do this:
+# data = json.load(open('example.json'))
 
 pprint(data)
 

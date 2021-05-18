@@ -14,7 +14,8 @@ class ClassExample:
 	def del_data(self):
 		del self.__value__
 	
-	@property
+        # getter attribute
+        @property
 	def data2(self):
 		return self.__value__
 	

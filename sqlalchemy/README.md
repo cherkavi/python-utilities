@@ -1,5 +1,11 @@
 [sqlalchemy examples](https://www.programcreek.com/python/example/51986/sqlalchemy.sql.text)
 
+postgresql connection string
+```
+# pip3 install psycopg2-binary
+postgres://admin:donotusethispassword@aws-us-east-1-portal.19.dblayer.com:15813/compose"
+```
+
 database connection
 ```python
 db.engine.execute(text("SELECT 1"))
