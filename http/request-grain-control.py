@@ -5,6 +5,9 @@ from requests import RequestException
 
 s = requests.Session()
 
+# authentication
+# s.auth = (USER_NAME, PASSWORD)
+
 retries = Retry(total=5,
                 backoff_factor=0.1,
                 status_forcelist=[ 500, 502, 503, 504 ])

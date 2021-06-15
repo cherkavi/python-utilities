@@ -1,3 +1,4 @@
+# for else
 for each in range(5):
     print(each)
 else:
@@ -9,4 +10,4 @@ for each in range(5):
         break
     print(each)
 else:
-    print("else for break")
+    print("else for break will never be")
