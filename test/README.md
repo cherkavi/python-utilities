@@ -8,3 +8,9 @@ from testfixtures import LogCapture
             (AIRFLOW_TASK_LOGGER, "INFO", f"Image found."),
         )
 
+
+# catch exception 
+	with self.assertRaises(ShopifyException) as ex:
+            service_variants.add(result_standalone["product"]["id"], product_variant)
+        self.assertTrue("{'price': [\"can't be blank\"]}" in ex.exception.message )
+
