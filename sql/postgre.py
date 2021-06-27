@@ -1,4 +1,20 @@
 # pip3 install psycopg2-binary
+
+import urlparse # for python 3+ use: from urllib.parse import urlparse
+result = urlparse.urlparse("postgresql://postgres:postgres@localhost/postgres")
+# also in python 3+ use: urlparse("YourUrl") not urlparse.urlparse("YourUrl") 
+username = result.username
+password = result.password
+database = result.path[1:]
+hostname = result.hostname
+connection = psycopg2.connect(
+    database = database,
+    user = username,
+    password = password,
+    host = hostname
+)
+
+
 class SQLVariantStorage(VariantStorage):
 
     def __init__(self, host: str, port: int, database: str, username: str, password: str, prefix: str):
