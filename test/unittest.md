@@ -26,6 +26,13 @@ from unittest import TestCase, mock
 
 @mock.patch.dict(os.environ, {"IMAGE_LOCAL_STORAGE": "test"})
 class TestAmemberUtils(TestCase):
+
+        def setUp(self):
+               """shared content """
+
+        def tearDown(self):
+               """ release resources """
+
 	def test_one(self):
 		# given
 		...
