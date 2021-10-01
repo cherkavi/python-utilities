@@ -61,6 +61,8 @@ class SQLVariantStorage(VariantStorage):
         """
         try:
             cursor = self._connection.cursor()
+            # insert replacement:
+            # The format string is not really a normal Python format string. You must always use %s for all fields
             cursor.execute(f"INSERT INTO testaccount01_variant (variant_key, sku) VALUES (%s, %s);", (variant_key, sku))
             self._connection.commit()
             return self.get(variant_key)
