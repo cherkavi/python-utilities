@@ -71,6 +71,17 @@ print(list(reversed([1,2,3,4,5])))
 
 print(">>> sorted list: 5,3,4,2,1 <<<")
 print(list(sorted([5,3,4,2,1])))
+class Custom(object):
+    def __init__(self, name, number):
+        self.name = name
+        self.number = number
+ 
+    def __cmp__(self, other):
+        if hasattr(other, 'number'):
+            return self.number.__cmp__(other.number)
+
+roll_list1 = [('Jack', 76), ('Beneth', 78), ('Cirus', 77), ('Faiz', 79)]; roll_list1.sort()
+# [(‘Beneth’, 78), (‘Cirus’, 77), (‘Faiz’, 79), (‘Jack’, 76)
 
 
 print(">>> slice, sub-list <<<")

@@ -1,6 +1,8 @@
+import enum
+
 print(">>> just a simple static elements")
 
-class Furniture:
+class Furniture(enum.Enum):
 	Table = 1
 	Chair = 2
 	Briefcase = 3
@@ -36,3 +38,12 @@ print("enum value type: ", type(Angles.Triangle.value))
 print(">>> runtime creation from string")
 employee = enum.Enum("Employee", "Jack Ralph Maria")
 print(employee)
+
+print(">>> parse enum from string, enum valueof")
+parsed_value:Furniture = Furniture["Table"]
+print(parsed_value.name)
+print(parsed_value.value)
+
+parsed_value:Furniture = Furniture["NotExists"]
+print(parsed_value.name)
+print(parsed_value.value)
