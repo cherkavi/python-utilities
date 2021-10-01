@@ -13,7 +13,7 @@ pex -v --disable-cache -r requirements.txt -o target/naked_example.pex --python=
 
 ## pex execution
 ```sh
-./target/naked_example.pex naked_example/main.py
+./target/naked_example.pex naked_example/main.py simple.json
 ```
 
 -------------------------------------------------
