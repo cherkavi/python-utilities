@@ -53,4 +53,17 @@ while 1:
     time.sleep(3)
 
 
+###########################################################
+def register_signals(self) -> None:
+        """Register signals that stop child processes"""
+        signal.signal(signal.SIGINT, self._exit_gracefully)
+        signal.signal(signal.SIGTERM, self._exit_gracefully)
+        signal.signal(signal.SIGUSR2, self._debug_dump)
 
+    def _exit_gracefully(self, signum, frame) -> None:
+        sig_name = signal.Signals(signum).name
+        
+        """Helper method to clean up processor_agent to avoid leaving orphan processes."""
+        if not _is_parent_process():
+            # Only the parent process should perform the cleanup.
+            return
