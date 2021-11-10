@@ -32,3 +32,6 @@ if __name__ == "__main__":
     file_csv = sys.argv[2]
 
     main(file_json, file_csv)
+
+    # pretty print
+    print(json.dumps("{'one': 'two', 'three': 'four'}", indent=4, sort_keys=True))
