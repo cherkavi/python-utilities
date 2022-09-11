@@ -6,7 +6,9 @@ from pyspark import SparkContext
 
 try:
     sc = SparkContext("local", "test-app")
+    print("------------")
     print(sc)
+    print("------------")
 finally:
     sc.stop()
 
