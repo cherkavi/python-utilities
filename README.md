@@ -9,5 +9,13 @@ The workflow is divided into 3 steps:
 ```bash
 
 # Preprocessing: Generate markdown files from the original scripts
-bash generate_markdown.sh
+bash scripts/generate_markdown.sh doc/pages
+```
+
+To setup sphinx, run the following commands:
+
+```bash
+python3 -m pip install -- sphinx sphinx_rtd_theme
+cd doc
+make html
 ```
