@@ -4,7 +4,7 @@ This is a walkthrough of the SPHINX workflow. It is intended to be a quick refer
 
 ## Setup
 
-The workflow is divided into 3 steps:
+1. The workflow is divided into 3 steps:
 
 ```bash
 
@@ -12,10 +12,16 @@ The workflow is divided into 3 steps:
 bash scripts/generate_markdown.sh doc/pages
 ```
 
-To setup sphinx, run the following commands:
+2. To embed the code into markdown files, run the following command:
 
 ```bash
-python3 -m pip install -- sphinx sphinx_rtd_theme
+# TODO: Add the command to embed the code
+```
+
+3. To setup sphinx, run the following commands:
+
+```bash
+python3 -m pip install -U sphinx sphinx_rtd_theme myst-parser
 cd doc
 make html
 ```
