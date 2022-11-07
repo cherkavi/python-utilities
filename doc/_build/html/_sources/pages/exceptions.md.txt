@@ -1,3 +1,4 @@
+# exceptions
 
 ## raise exception
 ```python

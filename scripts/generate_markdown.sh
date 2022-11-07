@@ -34,6 +34,7 @@ function create_markdown {
 
     rm -f "$DEST_DIR/$folder_name.md"
     touch "$DEST_DIR/$folder_name.md"
+    echo "# $folder_name" >>"$DEST_DIR/$folder_name.md"
 }
 
 # Function to generate the markdown

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>294. airflow_shopify &mdash; Python Utilities  documentation</title>
+  <title>63. pip-install-package &mdash; Python Utilities  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="298. foxyproxy generator" href="proxy.html" />
-    <link rel="prev" title="290. magic_name" href="pex.html" /> 
+    <link rel="next" title="64. proxy" href="proxy.html" />
+    <link rel="prev" title="62. pex" href="pex.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,390 +41,106 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="2fa.html">1. authy user qr show</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2fa.html#authy-user-register">2. authy user register</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2fa.html#authy-user-status">3. authy user status</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2fa.html#authy-user-verify">4. authy user verify</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html">5. bash_templating</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#branch-dag">6. branch_dag</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#cleaning-tweet">7. cleaning_tweet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#data-api-call">8. data_api_call</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#docker-celery-dag">9. docker_celery_dag</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#dynamic-dag">10. dynamic_dag</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#hello-world">11. hello_world</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#hook-dag">12. hook_dag</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#http-call">13. http_call</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#plugin-hook-dag">14. plugin_hook_dag</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#plugin-operator-dag">15. plugin_operator_dag</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#plugins">16. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id1">17. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id2">18. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id3">19. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id4">20. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id5">21. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id6">22. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id7">23. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id8">24. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id9">25. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#id10">26. plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#simple-dag-backfill">27. simple_dag_backfill</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#sla-dag">28. sla_dag</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#subdag-dag">29. subdag_dag</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#subdag-factory">30. subdag_factory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#twitter-dag-final">31. twitter_dag_final</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#twitter-dag-v-1">32. twitter_dag_v_1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#twitter-dag-v-2">33. twitter_dag_v_2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airflow.html#xcom-dag">34. xcom_dag</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansible.html">35. libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aws.html">36. dynamodb</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aws.html#lambda-code">37. lambda code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aws.html#lambda-sns">38. lambda sns</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aws.html#s3-external">39. s3 external</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aws.html#s3">40. s3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aws.html#s3-read-files">41. s3 read files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aws.html#s3-snapshot">42. s3 snapshot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aws.html#ssm">43. ssm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch-executor-with-http-status.html">44. notifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="class-additional-extension.html">45. class extends</a></li>
-<li class="toctree-l1"><a class="reference internal" href="confluence.html">46. confluence api</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html">47. autocomplete example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#cut-text-file">48. cut text file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#download-file">49. download file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#download-zip">50. download zip</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#envvar">51. envvar</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#find-in-string-with-option">52. find in string with option</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#input-argument-selector">53. input argument selector</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#input-arguments">54. input_arguments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#md5-duplication-remover">55. md5 duplication remover</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#pipe-example">56. pipe example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#remove-left">57. remove_left</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#remove-right">58. remove_right</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#return-result-emulator">59. return_result_emulator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#return-result-waiting">60. return_result_waiting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#split-text-file">61. split text file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#string-in-list">62. string in list</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#tail-reader">63. tail_reader</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#trim-strings">64. trim_strings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#unique-file-lines">65. unique file lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#unique">66. unique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console.html#zip-two-files">67. zip two files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="country-phone.html">68. generate insert</a></li>
-<li class="toctree-l1"><a class="reference internal" href="csv.html">69. csv2sql</a></li>
-<li class="toctree-l1"><a class="reference internal" href="csv.html#csv-reader">70. csv reader</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datetime.html">71. datetime log parser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datetime.html#timestamp">72. timestamp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datetime.html#t-time2timestamp">73. t time2timestamp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="db-key-value.html">74. shelve example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decorator.html">75. custom decorator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="difference-between-liquibase-db.html">76. db diff</a></li>
-<li class="toctree-l1"><a class="reference internal" href="difference-between-liquibase-db.html#downloadutils">77. downloadutils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="difference-between-liquibase-db.html#filesystemutils">78. filesystemutils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="difference-between-liquibase-db.html#jirawrapper">79. jirawrapper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="difference-between-liquibase-db.html#zipwrapper">80. zipwrapper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="email.html">81. quoted printable</a></li>
-<li class="toctree-l1"><a class="reference internal" href="email.html#send-cli">82. send cli</a></li>
-<li class="toctree-l1"><a class="reference internal" href="email.html#sendgrid">83. sendgrid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="enum.html">84. enumeration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions.html">85. raise exception</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions.html#read-file">86. read_file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions.html#simple-extension">87. simple extension</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html">88. archiver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#brand-xml-clear">89. brand xml clear</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#calculate-files">90. calculate files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#copy-list-of-file-to-dest">91. copy list of file to dest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#cp">92. cp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#create-remove-folder">93. create remove folder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#find-delete-by-mask">94. find delete by mask</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#memory-file">95. memory file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#old-file-list">96. old file list</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#print-current-path">97. print_current_path</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#remover">98. remover</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html#temp-file">99. temp file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flask.html">100. app_error</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flask.html#app">101. app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flask.html#app-with-doc">102. app with doc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flask.html#echo">103. echo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flask.html#flask-cors-manual">104. flask cors manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flask.html#flask-restful-cors-authorize">105. flask restful cors authorize</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flask.html#inline-parameter">106. inline parameter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flask.html#test-app">107. test_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flask.html#var-printer">108. var printer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="format-output.html">109. format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions-built-in.html">110. iterable</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions-built-in.html#iter">111. iter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generator.html">112. generator_wrapper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generator.html#read-lines-from-filelist">113. read lines from filelist</a></li>
-<li class="toctree-l1"><a class="reference internal" href="git-check-branches.html">114. git check merged branches</a></li>
-<li class="toctree-l1"><a class="reference internal" href="git-print-all-diff.html">115. git print all diffs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html-automation.html">116. anki</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html-scraping.html">117. lxml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html-scraping.html#id1">118. lxml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html-scraping.html#id2">119. lxml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html-scraping.html#request-html">120. request html</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html-scraping.html#selenium">121. selenium</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html-scraping.html#id3">122. selenium</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html-scraping.html#id4">123. selenium</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html">124. check_mock</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#download2">125. download2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#download">126. download</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#download-zip">127. download zip</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#http-request">128. http request</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#openshift-api">129. openshift api</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#request-debug">130. request debug</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#request-get">131. request get</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#request-grain-control">132. request grain control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#request-post">133. request post</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#tornado-get-params">134. tornado get params</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#tornado-upload">135. tornado upload</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http.html#web">136. web</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http-executor.html">137. http executor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="images.html">138. image operations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="import.html">139. import module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="import.html#id1">140. import module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="import.html#id2">141. import module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="import.html#id3">142. import module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="import.html#remote-import">143. remote import</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input-parameters.html">144. custom parser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input-parameters.html#input-args">145. input_args</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input-parameters.html#input-params">146. input_params</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input-parameters.html#parameters-extractor">147. parameters_extractor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ista.html">148. soft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ista.html#id1">149. soft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ista.html#id2">150. soft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ista.html#id3">151. soft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jdbc.html">152. jdbc mysql</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jenkins-notification.html">153. jenkins job waiting for finish</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jenkins-notification.html#jenkins-pipeline-info">154. jenkins pipeline info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jenkins-notification.html#windows-notification">155. windows_notification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="json.html">156. json2csv</a></li>
-<li class="toctree-l1"><a class="reference internal" href="json.html#json-example">157. json example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kafka.html">158. kafka producer consumer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="keyboard.html">159. keyboard automation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="keyboard.html#keypress-getkey">160. keypress getkey</a></li>
-<li class="toctree-l1"><a class="reference internal" href="keyboard.html#keypress-read">161. keypress read</a></li>
-<li class="toctree-l1"><a class="reference internal" href="list.html">162. list sort</a></li>
-<li class="toctree-l1"><a class="reference internal" href="list.html#list-substraction">163. list substraction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="list.html#list-substraction-via-set">164. list substraction via set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="list.html#list-unpacking">165. list_unpacking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="log-remover.html">166. log remover</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">167. log example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mail.html">168. imap client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mail.html#imap-client-xing-remover">169. imap client xing remover</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce.html">170. combiner</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce.html#reducer">171. reducer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce.html#usersessioncounter">172. UserSessionCounter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce.html#usersessioncounterrunner">173. UserSessionCounterRunner</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-graph.html">174. short path breadth mapper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-graph.html#short-path-breadth-reducer">175. short path breadth reducer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-graph.html#short-path-deykstra">176. short path deykstra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html">177. map reduce combining v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#map-reduce-combining-v2">178. map reduce combining v2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#page-rank">179. page rank</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id1">180. page rank</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#specific">181. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id2">182. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id3">183. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id4">184. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id5">185. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id6">186. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id7">187. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id8">188. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id9">189. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id10">190. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id11">191. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id12">192. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id13">193. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id14">194. specific</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#tf-idf">195. tf idf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id15">196. tf idf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id16">197. tf idf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html#id17">198. tf idf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-streaming.html">199. mapper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map-reduce-streaming.html#reducer">200. reducer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mapr-stream.html">201. kafka consumer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mapr-stream.html#kafka-producer">202. kafka producer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="maven-dependencies.html">203. dependency finder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="maven-dependencies.html#dependency-splitter">204. dependency splitter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="maven-duplication.html">205. duplication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mctrek.html">206. advicer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mctrek.html#id1">207. advicer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html">208. arguments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#array-slicing">209. array slicing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#base64">210. base64</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#browser-open">211. browser open</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#builder">212. builder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#class-abstract">213. class abstract</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#clipboard">214. clipboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#decorator">215. decorator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#decorator-with-parameters">216. decorator with parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#default-parameter-list">217. default_parameter_list</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#dict-comprehension">218. dict comprehension</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#dict-comprehensive">219. dict comprehensive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#dictionaryutils">220. DictionaryUtils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#dynamic-class">221. dynamic class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#dynamic-vars">222. dynamic vars</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#elastic">223. elastic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#else-for">224. else for</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#envvar-set">225. envvar set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#execute-another-script">226. execute another script</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#expand-dictionary">227. expand_dictionary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#file-extension">228. file extension</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#find-file">229. find file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#flatmap">230. flatmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#for-else">231. for else</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#function-by-name">232. function by name</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#generator">233. generator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#generic-function">234. generic function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#global-module">235. global_module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#hash256">236. hash256</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#hashmd5">237. hashmd5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#http-current-date-time">238. http current date time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#jupyter-utils">239. jupyter_utils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#mail-send">240. mail send</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#md5-example">241. md5 example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#md5">242. md5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#method-by-name">243. method_by_name</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#module-attributes-check">244. module attributes check</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#multi-argument-for">245. multi argument for</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#multiply-inheritance">246. multiply inheritance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#named-tuple">247. named tuple</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#object-copy">248. object copy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#operator-override">249. operator override</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#os-package">250. os package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#os-signal">251. os signal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#partial">252. partial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#pip-manage">253. pip manage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#port-check">254. port check</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#print-to-error">255. print to error</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#private-memeber">256. private memeber</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#process-kill">257. process kill</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#random">258. random</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#range">259. range</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#return-none-or-str">260. return_None_or_str</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#spark-command-line-document-here">261. spark command line document here</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#spark-command-line-wrapper">262. spark command line wrapper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#sql-file-processor">263. sql file processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#string2byte">264. string2byte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#string-regexp">265. string regexp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#string-remove-after-last">266. string_remove_after_last</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#string-validation">267. string validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html#str-repr">268. str repr</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mongo.html">269. json2mongo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mouse.html">270. mouse automation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mysqldb.html">271. mariadb batch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mysqldb.html#mariadb-connect">272. mariadb connect</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mysqldb.html#select-big-query">273. select big query</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">274. numpy example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="object-with-properties.html">275. get_attr</a></li>
-<li class="toctree-l1"><a class="reference internal" href="object-with-properties.html#index-object">276. index object</a></li>
-<li class="toctree-l1"><a class="reference internal" href="object-with-properties.html#object">277. object</a></li>
-<li class="toctree-l1"><a class="reference internal" href="object-with-properties.html#set-attr">278. set_attr</a></li>
-<li class="toctree-l1"><a class="reference internal" href="object_class.html">279. object class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="object_enter_exit_with.html">280. with_yield</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oracle.html">281. simple operations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oracle.html#id1">282. simple operations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oracle.html#utils">283. utils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oracle.html#id2">284. utils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pandas.html">285. df manipulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pandas.html#fetching-tweet">286. fetching_tweet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pandas.html#pandas-example">287. pandas example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parameter-for-app.html">288. parameter reader</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parameters.html">289. parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pex.html">290. magic_name</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pex.html#naked-example">291. naked_example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pex.html#id1">292. naked_example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pex.html#id2">293. naked_example</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">294. airflow_shopify</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id1">295. airflow_shopify</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id2">296. airflow_shopify</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#setup">297. setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="proxy.html">298. foxyproxy generator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="read-format-file.html">299. ini</a></li>
-<li class="toctree-l1"><a class="reference internal" href="read-format-file.html#json">300. json</a></li>
-<li class="toctree-l1"><a class="reference internal" href="read-format-file.html#properties">301. properties</a></li>
-<li class="toctree-l1"><a class="reference internal" href="read-format-file.html#id1">302. properties</a></li>
-<li class="toctree-l1"><a class="reference internal" href="read-format-file.html#txt">303. txt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="read-format-file.html#xml">304. xml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="read-format-file.html#id2">305. xml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="read-format-file.html#id3">306. xml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="read-format-file.html#yaml">307. yaml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="redis.html">308. connect</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rest-files-read.html">309. readfilesrest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rest-files-read.html#id1">310. readfilesrest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rest-files-read.html#setup">311. setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rest-files-write.html">312. file_uploader</a></li>
-<li class="toctree-l1"><a class="reference internal" href="script-exec.html">313. execute string</a></li>
-<li class="toctree-l1"><a class="reference internal" href="selenium.html">314. selenium_utils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="selenium.html#test-selenium-utils">315. test_selenium_utils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serialization.html">316. pickle serialization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sort.html">317. sort file by datetime</a></li>
-<li class="toctree-l1"><a class="reference internal" href="spark.html">318. pyspark sql</a></li>
-<li class="toctree-l1"><a class="reference internal" href="spark.html#spark-test-connection">319. spark test connection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="spark.html#spark-words-count">320. spark words count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="spark-csv-panda.html">321. spark csv matplot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="spark-kafka.html">322. spark kafka json</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sql.html">323. postgre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sql.html#postgre-tool">324. postgre tool</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlalchemy.html">325. in memory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlalchemy.html#job-status">326. job_status</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlalchemy.html#schema">327. schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlalchemy.html#sessionmaker-engine-creator">328. sessionmaker_engine_creator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlalchemy.html#session-scope">329. session_scope</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlalchemy.html#test-create-tables">330. test_create_tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlite.html">331. sqlite connection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlite.html#sqlite-sqlalchemy-orm">332. sqlite sqlalchemy orm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlite.html#sqlite-sqlalchemy">333. sqlite sqlalchemy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ssh-operations.html">334. brand server dev is process alive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ssh-operations.html#brand-server-dev-tomcat-process-count">335. brand server dev tomcat process count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ssh-operations.html#ssh-brandserver-version-checker">336. ssh brandserver version checker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ssh-operations.html#ssh-clear-logs-bs-on-machine">337. ssh clear logs bs on machine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ssh-operations.html#ssh-clear-logs-on-machine">338. ssh clear logs on machine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ssh-operations.html#ssh-command-executor">339. ssh command executor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ssh-operations.html#ssh-command-repeater">340. ssh command repeater</a></li>
-<li class="toctree-l1"><a class="reference internal" href="standart-build-tool.html">341. scrabber</a></li>
-<li class="toctree-l1"><a class="reference internal" href="standart-build-tool.html#setup">342. setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subprocess.html">343. check file existence</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subprocess.html#check-ip">344. check ip</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subprocess.html#curl">345. curl</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subprocess.html#execute-batch-job">346. execute batch job</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subprocess.html#execute-jar-file">347. execute jar file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subprocess.html#execute-line">348. execute_line</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subprocess.html#stdout-to-null">349. stdout to null</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subprocess.html#subprocess-example">350. subprocess example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subtitiles-translator.html">351. subtitles translator disney</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subtitiles-translator.html#ttml-translator2">352. ttml translator2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subtitiles-translator.html#ttml-translator">353. ttml translator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="telnet.html">354. telnet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="template.html">355. jinja</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test.html">356. doctest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test.html#pytest">357. pytest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="text.html">358. clear prefix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="text.html#read-file-fix-line">359. read file fix line</a></li>
-<li class="toctree-l1"><a class="reference internal" href="text.html#unique">360. unique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="thread.html">361. function in thread</a></li>
-<li class="toctree-l1"><a class="reference internal" href="thread.html#thread">362. thread</a></li>
-<li class="toctree-l1"><a class="reference internal" href="token.html">363. jwt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tor.html">364. change tor ip</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tor.html#tor-signal">365. tor signal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tornado-ssh-command-executer.html">366. log remover</a></li>
-<li class="toctree-l1"><a class="reference internal" href="web-echo.html">367. echo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="web-echo.html#echo-ssl">368. echo ssl</a></li>
-<li class="toctree-l1"><a class="reference internal" href="web-file-response.html">369. file server tornado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="web-socket.html">370. socket client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="web-socket.html#socket-server">371. socket server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="web-socket.html#vars">372. vars</a></li>
-<li class="toctree-l1"><a class="reference internal" href="xmind-todo-parser.html">373. education advicer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="xml-archimate2svg.html">374. update archimate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="xml-minidom.html">375. read xml2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="xml-xpath.html">376. column_finder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="xml-xpath.html#column-mapper">377. column_mapper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="xml-xpath.html#svg-parse">378. svg parse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="xml-xpath.html#xml2json">379. xml2json</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zip.html">380. zip archive unarchive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zip.html#zip-read">381. zip read</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zip.html#zip-write">382. zip write</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zip-codes-us.html">383. csv to sql</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zip-opener.html">384. zip opener</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2fa.html">1. 2fa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="airflow.html">2. airflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ansible.html">3. ansible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">4. aws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-executor-with-http-status.html">5. batch-executor-with-http-status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class-additional-extension.html">6. class-additional-extension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confluence.html">7. confluence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console.html">8. console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="country-phone.html">9. country-phone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csv.html">10. csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datetime.html">11. datetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db-key-value.html">12. db-key-value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">13. decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="difference-between-liquibase-db.html">14. difference-between-liquibase-db</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">15. email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enum.html">16. enum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">17. exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filesystem.html">18. filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask.html">19. flask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="format-output.html">20. format-output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions-built-in.html">21. functions-built-in</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">22. generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-check-branches.html">23. git-check-branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-print-all-diff.html">24. git-print-all-diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="html-automation.html">25. html-automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="html-scraping.html">26. html-scraping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http.html">27. http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http-executor.html">28. http-executor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="images.html">29. images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">30. import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input-parameters.html">31. input-parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ista.html">32. ista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jdbc.html">33. jdbc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jenkins-notification.html">34. jenkins-notification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json.html">35. json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kafka.html">36. kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keyboard.html">37. keyboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list.html">38. list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="log-remover.html">39. log-remover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">40. logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mail.html">41. mail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map-reduce.html">42. map-reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map-reduce-graph.html">43. map-reduce-graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map-reduce-improvements.html">44. map-reduce-improvements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map-reduce-streaming.html">45. map-reduce-streaming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapr-stream.html">46. mapr-stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maven-dependencies.html">47. maven-dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maven-duplication.html">48. maven-duplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mctrek.html">49. mctrek</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">50. misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mongo.html">51. mongo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mouse.html">52. mouse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysqldb.html">53. mysqldb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy.html">54. numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object-with-properties.html">55. object-with-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_class.html">56. object_class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_enter_exit_with.html">57. object_enter_exit_with</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oracle.html">58. oracle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas.html">59. pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameter-for-app.html">60. parameter-for-app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">61. parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pex.html">62. pex</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">63. pip-install-package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proxy.html">64. proxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="read-format-file.html">65. read-format-file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="redis.html">66. redis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest-files-read.html">67. rest-files-read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest-files-write.html">68. rest-files-write</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script-exec.html">69. script-exec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selenium.html">70. selenium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serialization.html">71. serialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort.html">72. sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">73. spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark-csv-panda.html">74. spark-csv-panda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark-kafka.html">75. spark-kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">76. sql</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sqlalchemy.html">77. sqlalchemy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sqlite.html">78. sqlite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh-operations.html">79. ssh-operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standart-build-tool.html">80. standart-build-tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subprocess.html">81. subprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subtitiles-translator.html">82. subtitiles-translator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="telnet.html">83. telnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="template.html">84. template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">85. test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">86. text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread.html">87. thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="token.html">88. token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tor.html">89. tor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tornado-ssh-command-executer.html">90. tornado-ssh-command-executer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web-echo.html">91. web-echo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web-file-response.html">92. web-file-response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web-socket.html">93. web-socket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xmind-todo-parser.html">94. xmind-todo-parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml-archimate2svg.html">95. xml-archimate2svg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml-minidom.html">96. xml-minidom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml-xpath.html">97. xml-xpath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">98. zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip-codes-us.html">99. zip-codes-us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip-opener.html">100. zip-opener</a></li>
 </ul>
 
         </div>
@@ -441,7 +157,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">294. </span>airflow_shopify</li>
+      <li class="breadcrumb-item active"><span class="section-number">63. </span>pip-install-package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/pages/pip-install-package.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -451,37 +167,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="airflow-shopify">
-<h1><span class="section-number">294. </span>airflow_shopify<a class="headerlink" href="#airflow-shopify" title="Permalink to this heading"></a></h1>
+  <section id="pip-install-package">
+<h1><span class="section-number">63. </span>pip-install-package<a class="headerlink" href="#pip-install-package" title="Permalink to this heading"></a></h1>
+<section id="airflow-shopify">
+<h2><span class="section-number">63.1. </span>airflow_shopify<a class="headerlink" href="#airflow-shopify" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="n">package</span><span class="o">/</span><span class="n">airflow_shopify</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </section>
 <section id="id1">
-<h1><span class="section-number">295. </span>airflow_shopify<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h2><span class="section-number">63.2. </span>airflow_shopify<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="n">package</span><span class="o">/</span><span class="n">airflow_shopify</span><span class="o">/</span><span class="n">shopify</span><span class="o">/</span><span class="n">collection</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </section>
 <section id="id2">
-<h1><span class="section-number">296. </span>airflow_shopify<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h1>
+<h2><span class="section-number">63.3. </span>airflow_shopify<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="n">package</span><span class="o">/</span><span class="n">airflow_shopify</span><span class="o">/</span><span class="n">shopify</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </section>
 <section id="setup">
-<h1><span class="section-number">297. </span>setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h1>
+<h2><span class="section-number">63.4. </span>setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="n">package</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pex.html" class="btn btn-neutral float-left" title="290. magic_name" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="proxy.html" class="btn btn-neutral float-right" title="298. foxyproxy generator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pex.html" class="btn btn-neutral float-left" title="62. pex" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="proxy.html" class="btn btn-neutral float-right" title="64. proxy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
