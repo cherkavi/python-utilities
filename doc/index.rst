@@ -6,10 +6,16 @@
 Welcome to Python Utilities's documentation!
 ============================================
 
+.. https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :numbered:
+   :glob:
+   :titlesonly:
    :caption: Contents:
 
+   pages/*
 
 
 Indices and tables
