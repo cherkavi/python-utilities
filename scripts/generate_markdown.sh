@@ -24,12 +24,14 @@ echo "Generated on $(date)"
 echo "DEST_DIR: $DEST_DIR"
 
 # Replace folder names with headers and subfolders with subheaders and return the string
-function create_markdowns {
+function create_markdown {
     local file_name="$1"
+    # split current directory from the filename
+    file_name="${file_name#"$CURRENT_DIR"}"
 
     # Create the first folder name as a header
-    folder_name=$(echo "$file_name" | cut -d "/" -f 3)
-    echo "Creating markdown for $folder_name"
+    folder_name=$(echo "$file_name" | cut -d "/" -f 2)
+
     rm -f "$DEST_DIR/$folder_name.md"
     touch "$DEST_DIR/$folder_name.md"
 }
@@ -39,22 +41,22 @@ function generate_markdown {
 
     # Markdown file name
     local file_name="$1"
-    local folder_name=$(echo "$file_name" | cut -d "/" -f 3)
+    file_name="${file_name#"$CURRENT_DIR"}"
+    local folder_name=$(echo "$file_name" | cut -d "/" -f 2)
     local markdown_file="$DEST_DIR/$folder_name.md"
+    local header=$(echo "$file_name" | cut -d "/" -f 3 | cut -d "." -f 1)
 
-    echo "Generating markdown for $file_name -> $markdown_file"
-
-    local header=$(echo "$file_name" | cut -d "/" -f 4 | cut -d "." -f 2)
     echo "
 ## ${header//-/ }
-\`\`\`python:$file_name
+\`\`\`python
+$file_name
 \`\`\`
 " >>"$markdown_file"
 }
 
 echo "Creating Markdown files"
 for file in $files; do
-    create_markdowns "$file"
+    create_markdown "$file"
 done
 
 echo "Generating markdown files"
