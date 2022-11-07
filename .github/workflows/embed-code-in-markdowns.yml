@@ -1,0 +1,35 @@
+name: Looping over values in Github Actions
+
+on:
+  push:
+
+env:
+  VALUE_ARRAY_AS_STRING: 'a.md,b.md,c.md'
+
+jobs:
+  run-my-stuff:
+    name: Iterating over comma-separated-values
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo values from ENV
+          run: |
+            IFS="," read -a myarray <<< ${{ env.VALUE_ARRAY_AS_STRING }}
+            for i in "${myarray[@]}"; do
+              echo "Value: ${i}"
+              echo "Value: ${i%.*}"
+            done
+
+      - name: Finding files and store to output
+        id: finding-files
+        run: |
+          echo "::set-output name=FILELIST::$(find . -name '*.md' -print)"
+
+      - name: Processing my found files from output
+        run: |
+          IFS="," read -a myarray <<< ${{ steps.finding-files.outputs.FILELIST }}
+          for i in "${myarray[@]}"; do
+            file_path=$(dirname "${i}")
+            file_name=$(basename "${i}")
+            cd file_path
+            cat file_name
+          done
