@@ -10,8 +10,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Collect Markdowns
-        id: collect-markdowns
-        run: |
-          files=$(find -name '*.md' -print)
-          echo "{MARKDOWN_FILES}=($files)" >> $GITHUB_ENV
+      # - name: Collect Markdowns
+      #   id: collect-markdowns
+      #   run: |
+      #     files=$(find -name '*.md' -print)
+      #     echo "{MARKDOWN_FILES}=($files)" >> $GITHUB_ENV
