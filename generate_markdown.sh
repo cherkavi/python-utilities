@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Generate the list of markdown files from the directory structure
 # Essentially to provide a documentation of the python scripts
-# Usage: ./generate_markdown.sh doc
+# Usage: ./generate_markdown.sh doc/pages
 set -e
 
 # Get the destination directory where the files will be generated
 DEST_DIR=${1:-.}
-CURRENT_DIR=$(pwd)
+CURRENT_DIR=$(pwd)/python
 
 # Get the list of files
-files=$(find . -type f -name "*.py" | sort)
+files=$(find "$CURRENT_DIR" -type f -name "*.py" | sort)
 
 readonly DEST_DIR CURRENT_DIR files
 
@@ -28,8 +28,9 @@ function create_markdowns {
     local file_name="$1"
 
     # Create the first folder name as a header
-    folder_name=$(echo "$file_name" | cut -d "/" -f 2)
+    folder_name=$(echo "$file_name" | cut -d "/" -f 3)
     echo "Creating markdown for $folder_name"
+    rm -f "$DEST_DIR/$folder_name.md"
     touch "$DEST_DIR/$folder_name.md"
 }
 
@@ -38,16 +39,15 @@ function generate_markdown {
 
     # Markdown file name
     local file_name="$1"
-    local folder_name=$(echo "$file_name" | cut -d "/" -f 2)
+    local folder_name=$(echo "$file_name" | cut -d "/" -f 3)
     local markdown_file="$DEST_DIR/$folder_name.md"
 
     echo "Generating markdown for $file_name -> $markdown_file"
 
-    local header=$(echo "$file_name" | cut -d "/" -f 3 | cut -d "." -f 1)
+    local header=$(echo "$file_name" | cut -d "/" -f 4 | cut -d "." -f 2)
     echo "
 ## ${header//-/ }
-\`\`\`python
-$file_name
+\`\`\`python:$file_name
 \`\`\`
 " >>"$markdown_file"
 }
