@@ -9,6 +9,7 @@ This is a walkthrough of the SPHINX workflow. It is intended to be a quick refer
 ```bash
 
 # Preprocessing: Generate markdown files from the original scripts
+# In root directory,
 bash scripts/generate_markdown.sh doc/pages
 ```
 
@@ -21,7 +22,9 @@ bash scripts/generate_markdown.sh doc/pages
 3. To setup sphinx, run the following commands:
 
 ```bash
-python3 -m pip install -U sphinx sphinx_rtd_theme myst-parser
+# In Ubuntu 20.04
+sudo apt-get install texlive texlive-latex-extra pandoc
+python3 -m pip install -U sphinx sphinx_rtd_theme myst-parser nbsphinx
 cd doc
 make html
 ```

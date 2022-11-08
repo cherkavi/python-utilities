@@ -8,19 +8,25 @@ Welcome to Python Utilities's documentation!
 
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html
 
+.. include:: introduction.rst
+
+Table of Contents
+------------------
+
+* :ref:`python`
+* :ref:`jupyter`
+* :ref:`license`
+
+
+.. https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html
+
 .. toctree::
-   :maxdepth: 1
-   :numbered:
+   :maxdepth: 2
    :glob:
    :titlesonly:
-   :caption: Contents:
+   :caption: Contents
+   :hidden:
 
-   pages/*
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   python
+   jupyter
+   license
