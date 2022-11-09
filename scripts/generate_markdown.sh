@@ -49,9 +49,10 @@ function generate_markdown {
 
     echo "
 ## ${header//-/ }
-\`\`\`python
-$file_name
-\`\`\`
+
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=../../python$file_name) -->
+<!-- MARKDOWN-AUTO-DOCS:END -->
+
 " >>"$markdown_file"
 }
 

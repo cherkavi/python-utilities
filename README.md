@@ -4,7 +4,9 @@ This is a walkthrough of the SPHINX workflow. It is intended to be a quick refer
 
 ## Setup
 
-1. The workflow is divided into 3 steps:
+The workflow is divided into 3 steps:
+
+1. Generate Markdowns for the python directory
 
 ```bash
 
@@ -16,10 +18,13 @@ bash scripts/generate_markdown.sh doc/pages
 2. To embed the code into markdown files, run the following command:
 
 ```bash
-# TODO: Add the command to embed the code
+npm i -g markdown-autodocs
+markdown-autodocs -c code-block -o doc/pages/*
 ```
 
-3. To setup sphinx, run the following commands:
+The package is also available as github action. The action can be found [here](https://github.com/marketplace/actions/markdown-autodocs).
+
+3.  To setup sphinx, run the following commands:
 
 ```bash
 # In Ubuntu 20.04
