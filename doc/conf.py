@@ -66,3 +66,11 @@ html_theme_options = {
     'includehidden': True,
     'titles_only': False
 }
+
+# -- Options for MystParser --------------------------------------------------
+
+# REFERENCE: https://myst-parser.readthedocs.io/en/latest/syntax/optional.html?highlight=anchor#auto-generated-header-anchors
+myst_heading_anchors = 3
+myst_enable_extensions = [
+    "linkify",
+]

@@ -15,6 +15,7 @@ Table of Contents
 
 * :ref:`python`
 * :ref:`jupyter`
+* :ref:`markdown`
 * :ref:`license`
 
 
@@ -29,4 +30,5 @@ Table of Contents
 
    python
    jupyter
+   markdown
    license
