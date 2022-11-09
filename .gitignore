@@ -7,3 +7,8 @@ __pycache__
 *.sublime-build
 *.pyc
 **/venv
+
+*env*
+*_build*
+*_static*
+*_templates*
