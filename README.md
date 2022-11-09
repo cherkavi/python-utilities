@@ -24,7 +24,7 @@ bash scripts/generate_markdown.sh doc/pages
 ```bash
 # In Ubuntu 20.04
 sudo apt-get install texlive texlive-latex-extra pandoc
-python3 -m pip install -U sphinx sphinx_rtd_theme myst-parser nbsphinx
+python3 -m pip install -r requirements.txt
 cd doc
 make html
 ```
