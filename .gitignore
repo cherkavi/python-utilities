@@ -9,3 +9,6 @@ __pycache__
 **/venv
 
 *env*
+*_build*
+*_static*
+*_templates*
