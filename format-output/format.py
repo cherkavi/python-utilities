@@ -19,3 +19,13 @@ print("-----")
 s="hello"
 print(">>%20s<<" % (s))
 
+# f-string conversation character
+class Example:
+    def __str__(self) -> str:
+        return "show str"
+    def __repr__(self) -> str:
+        return "show repr юникод"  
+
+print(f"{Example()!r}") # __repr__
+print(f"{Example()!s}") # __str__
+print(f"{Example()!a}") #  like ascii (escapes unicode)
