@@ -1,0 +1,19 @@
+
+@linkedin_namespace.route('/linkedin/test')
+class LinkedInTest(Resource):
+    def __init__(self, api=None, *args, **kwargs):
+        super().__init__(api, *args, **kwargs)
+        self._log = logging.getLogger(self.__class__.__name__)
+
+    @linkedin_namespace.param(name="uuid", description="authentication code", _in="header")
+    @linkedin_namespace.response(401, 'Token not found')
+    @linkedin_namespace.response(402, 'Token has expired already')
+    def get(self):
+        """
+        read Profile of user
+        """
+        save_new_uuid(request.headers["uuid"])
+        save_code_by_uuid(request.headers["uuid"], "333-my-code")
+        save_token_by_uuid(request.headers["uuid"], "333-my-token", 222)
+        return_value = find_by_uuid(request.headers["uuid"])
+        return is_token_valid(return_value), 200
