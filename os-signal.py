@@ -6,6 +6,7 @@ def func(signum, frame):
 
 signal.signal(signal.SIGINT, func)
 while True:
+    # print current process id for sending signals
     print "Running...",os.getpid()
     time.sleep(2)
     os.kill(os.getpid(),signal.SIGINT)
@@ -47,9 +48,10 @@ signal.signal(signal.SIGPIPE, signal_handler)
 signal.signal(signal.SIGALRM, signal_handler)
 signal.signal(signal.SIGTERM, signal_handler)
 
+print("ps number:", os.getpid())
 # While Loop
 while 1:  
-    print("Press Ctrl + C") 
+    print("Press Ctrl + C, or send signal `kill -n 2 <ps number>`") 
     time.sleep(3)
 
 
