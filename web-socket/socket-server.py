@@ -19,4 +19,5 @@ def start_listener():
 
 
 if __name__ == "__main__":
+    print("hostname of server:", socket.gethostname())
     start_listener()
