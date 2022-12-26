@@ -1,10 +1,9 @@
-## run command
+## #webframework 
 # uvicorn simple-fastapi:app --host 0.0.0.0 --port 8080
 
 from datetime import datetime
 from fastapi import FastAPI
 from pydantic import BaseModel
-import numpy as np
 
 # Create a FastAPI app
 app = FastAPI()
