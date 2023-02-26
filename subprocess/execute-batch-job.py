@@ -22,6 +22,8 @@ black_list = ["C:/project/horus/horus-batch-deploy/target/horus-batch-deploy-8.2
 def clear_binary_line(b_line):
     # convert bytes to string, bytes2string, byte to string
     next_line = b_line.decode('utf-8')
+    if len(next_line)==0:
+        return ""            
     if next_line[len(next_line)-1] == "\n":
         next_line = next_line[:-1]
     index = next_line.rfind("/")
