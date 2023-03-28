@@ -1,6 +1,3 @@
-code="bwvdgfa"
-
-
 import requests
 import logging
 
@@ -27,6 +24,8 @@ headers={"Accept": "application/json", "Content-Type": "application/x-www-form-u
 
 client_id="dj0yJmk"
 client_secret="a871c"
+code="bwvdgfa"
+
 redirect_uri="https://e-176-43.eu-central-1.compute.amazonaws.com"
 data=f"code={code}&grant_type=authorization_code&client_id={client_id}&client_secret={client_secret}&redirect_uri={redirect_uri}&response_type=code"
 url="https://api.login.yahoo.com/oauth2/get_token"
