@@ -4,6 +4,8 @@ code="bwvdgfa"
 import requests
 import logging
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    
 # example of importing, import error
 try:
     import http.client as http_client
