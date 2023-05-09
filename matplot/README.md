@@ -1,13 +1,14 @@
+# Jupyter graph
 ```sh
 pip3 install matplotlib
 ```
 
-```
+```python
 import matplotlib.pyplot as plt
 
-matplotlib.pyplot.title("My Title")
-matplotlib.pyplot.xlabel("x-axis label")
-matplotlib.pyplot.ylabel("y-axis label")
+plt.title("My Title")
+plt.xlabel("x-axis label")
+plt.ylabel("y-axis label")
 ```
 
 ```py
