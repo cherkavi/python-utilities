@@ -2,7 +2,7 @@
 
 # https://realpython.com/python-http-server/
 
-# start simple http web server
+# start simple http web server with list of files inside
 python3 -m http.server 9090
 x-www-broser localhost:9090
 
