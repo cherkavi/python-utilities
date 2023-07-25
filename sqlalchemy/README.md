@@ -1,4 +1,6 @@
-[sqlalchemy examples](https://www.programcreek.com/python/example/51986/sqlalchemy.sql.text)
+## Links
+* [sqlalchemy examples](https://www.programcreek.com/python/example/51986/sqlalchemy.sql.text)  
+* [how to use parameters](https://www.psycopg.org/psycopg3/docs/basic/params.html)
 
 postgresql connection string
 ```
