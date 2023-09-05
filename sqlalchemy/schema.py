@@ -5,7 +5,7 @@ from sqlalchemy.dialects.postgresql import JSON
 from . import JobStatus
 
 Base = declarative_base()
-
+#  The ``declarative_base()`` function is now available as sqlalchemy.orm.declarative_base(). (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
 
 class Job(Base):
     __tablename__ = "job"
