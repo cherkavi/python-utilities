@@ -1,0 +1,8 @@
+just an example of 'how to use it'. Or, maybe, even more[ab].
+this is [ab]. new file with markers[bc]. but not for all lines[ab].
+that markers.
+are present[ab]. some lines[bc] still doesn't have them.
+and this text[bc].
+and here I just forget to add dot [ab]
+two markers in the row[bc][ab].
+at the end of the file
