@@ -1,0 +1,3 @@
+this is[ab] internal data[bc] in the file.
+that should be considered.
+as [bc]necessary[ab][bc]. But not a mandatory[bc]

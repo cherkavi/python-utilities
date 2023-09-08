@@ -68,6 +68,32 @@ class TestMarkers(TestCase):
         self.assertTrue("and here I just forget to add dot ." in result, "single line without dot with ab marker")
         self.assertTrue("two markers in the row." in result, "ab is present also")
 
+    def test_filter_lines_without_markers(self):
+        # given
+        data: List[str] = []
+        with open("test-data-02.txt") as file:
+            data = file.readlines()
+        # when
+        result: List[str] = filter_brackets.filter_lines(data, {})
+        # then
+        self.assertEqual(2, len(result), "amount of string without any markers")
+        self.assertTrue("that should be considered." in result, "no markers")
+        self.assertTrue("in the file." in result, "no markers")
+
+
+    def test_filter_lines_with_markers_inside(self):
+        # given
+        data: List[str] = []
+        with open("test-data-02.txt") as file:
+            data = file.readlines()
+        # when
+        result: List[str] = filter_brackets.filter_lines(data, {"bc"})
+        # then
+        self.assertTrue(3, len(result), "amount of string without any markers")
+        self.assertTrue(" internal data in the file." in result, "marker inside the line")
+        self.assertTrue("as necessary. But not a mandatory." in result, "multi markers inside the line")
+
+
 class TestRemoveBrackets(TestCase):
     def test_remove_markers(self):
         # given
