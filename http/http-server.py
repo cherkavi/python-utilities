@@ -15,6 +15,9 @@ class CustomRequestHandler(BaseHTTPRequestHandler):
         # query_params = parse_qs(parsed_url.query)
         # print("Query parameters:", query_params)
 
+        ## Print remote_addr of the client
+        self.wfile.write(f"remote_addr:{self.client_address[0]} <br />\n".encode("utf-8"))
+        
         ## Access to headers, print http headers from GET request
         self.send_response(200)
         
