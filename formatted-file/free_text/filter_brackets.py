@@ -120,6 +120,17 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(" <file template src> <file dest> <marker1> <marker2> <marker3> ... ")
         sys.exit(1)
+    if len(sys.argv) == 2:
+        # print all markers logic
+        with open(sys.argv[1], "r") as file_src:
+            markers_all: Set[str] = set()
+            for each_line in file_src.readlines():
+                markers_all.update(get_markers(each_line))
+        markers_all.remove("[]")
+        output_list: List[str] = list(markers_all)
+        output_list.sort()
+        [print(element) for element in output_list]
+        sys.exit(0)
     file_source: str = sys.argv[1]
     print(f"src: {file_source}")
     file_dest: str = sys.argv[2]
@@ -128,7 +139,7 @@ if __name__ == "__main__":
     for each_marker in range(3, len(sys.argv)):
         markers.add(sys.argv[each_marker])
     print(markers)
-    with open(file_source) as file_src:
+    with open(file_source, "r") as file_src:
         data = file_src.readlines()
     with open(file_dest, "w") as file_dst:
         file_dst.write("\n".join(filter_lines(data, markers)))
