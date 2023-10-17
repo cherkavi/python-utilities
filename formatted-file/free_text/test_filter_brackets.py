@@ -13,7 +13,9 @@ class TestMarkers(TestCase):
         result: List[str] = filter_brackets.filter_lines(data, set())
         # then
         self.assertEqual(8, len(result), "full amount of strings")
-        self.assertTrue("just an example of 'how to use it'. Or, maybe, even more." in result)
+        self.assertTrue(
+            "just an example of 'how to use it'. Or, maybe, even more." in result
+        )
 
     def test_filter_lines_with_not_existing_markers(self):
         # given
@@ -34,12 +36,25 @@ class TestMarkers(TestCase):
         with open("test-data-01.txt") as file:
             data = file.readlines()
         # when
-        result: List[str] = filter_brackets.filter_lines(data, {"[ab]", })
+        result: List[str] = filter_brackets.filter_lines(
+            data,
+            {
+                "[ab]",
+            },
+        )
         # then
         self.assertEqual(7, len(result), "amount of string without any markers")
-        self.assertTrue("just an example of 'how to use it'. Or, maybe, even more." in result, "ab included")
-        self.assertTrue("this is. but not for all lines." in result, "bc marker is filtered out")
-        self.assertTrue("are present. still doesn't have them." in result, "bc marker is filtered out")
+        self.assertTrue(
+            "just an example of 'how to use it'. Or, maybe, even more." in result,
+            "ab included",
+        )
+        self.assertTrue(
+            "this is. but not for all lines." in result, "bc marker is filtered out"
+        )
+        self.assertTrue(
+            "are present. still doesn't have them." in result,
+            "bc marker is filtered out",
+        )
         self.assertTrue("two markers in the row." in result, "conjunction with bc")
         self.assertTrue("and this text." not in result, "filtered out")
 
@@ -52,10 +67,14 @@ class TestMarkers(TestCase):
         result: List[str] = filter_brackets.filter_lines(data, {"[ab]", "[bc]"})
         # then
         self.assertEqual(8, len(result), "amount of string without any markers")
-        self.assertTrue("just an example of 'how to use it'. Or, maybe, even more." in result )
+        self.assertTrue(
+            "just an example of 'how to use it'. Or, maybe, even more." in result
+        )
         self.assertTrue("that markers." in result, "show line without any marker")
         self.assertTrue("and this text." in result, "bc marker is filtered out")
-        self.assertTrue("and here I just forget to add dot " in result, "marker at the end")
+        self.assertTrue(
+            "and here I just forget to add dot " in result, "marker at the end"
+        )
         self.assertTrue("two markers in the row." in result, "ab is present also")
 
     def test_filter_lines_with_multi_markers_inside(self):
@@ -66,22 +85,78 @@ class TestMarkers(TestCase):
         # when
         result: List[str] = filter_brackets.filter_lines(data, {"[bc]"})
         # then
+        self.assertEqual(6, len(result), "amount of string without any markers")
+        self.assertTrue(
+            " internal data in the file." in result, "marker inside the line"
+        )
+        self.assertTrue(
+            " internal data from file. " in result,
+            "marker inside the line with mandatory []",
+        )
+        self.assertTrue("that should be considered." in result, "no markers")
+        self.assertTrue(
+            "as necessary. But not a mandatory" in result,
+            "multi markers inside the line",
+        )
+        self.assertTrue(
+            "filtered: with precedence              " in result,
+            "[] has precedence over other",
+        )
+
+    def test_filter_lines_with_prefix_with_empty_markers(self):
+        # given
+        data: List[str] = []
+        with open("test-data-04.txt") as file:
+            data = file.readlines()
+        # when
+        result: List[str] = filter_brackets.filter_lines(data, {"[xy]"})
+        # then
+        self.assertEqual(2, len(result), "amount of string without any markers")
+        self.assertTrue(
+            "- my third data:  option four" in result, "last chunk without any marker"
+        )
+        self.assertTrue(
+            "- my fourth data:  just a text " in result, "last chunk with []"
+        )
+
+    def test_filter_lines_with_prefix_with_markers(self):
+        # given
+        data: List[str] = []
+        with open("test-data-04.txt") as file:
+            data = file.readlines()
+        # when
+        result: List[str] = filter_brackets.filter_lines(data, {"[ab]"})
+        # then
         self.assertEqual(4, len(result), "amount of string without any markers")
-        self.assertTrue(' internal data in the file.' in result, "marker inside the line")
-        self.assertTrue("as necessary. But not a mandatory" in result, "multi markers inside the line")
+        self.assertTrue(
+            "- my first data: option one",
+            "without last chunks",
+        )
+        self.assertTrue(
+            "- my second data: [prefix] just an information[ab]",
+            "last chunk with marker",
+        )
+        self.assertTrue(
+            "- my third data:  option three, option four" in result,
+            "last chunk without any marker",
+        )
+        self.assertTrue(
+            "- my fourth data:  just a text " in result, "last chunk with []"
+        )
 
 
 class GetMarkersTest(TestCase):
     def test_get_markers(self):
         # given
-        line = "are present.[ab] some lines[bcde] still doesn't have[fgh10] them."
+        line = "are present.[ab] some lines[bcde] still doesn't have[fgh10] them.[last_comma]"
         # when
         markers = filter_brackets.get_markers(line)
         # then
-        self.assertEqual(3, len(markers), "amount of markers")
+        self.assertEqual(4, len(markers), "amount of markers")
         self.assertTrue("[ab]" in markers)
         self.assertTrue("[bcde]" in markers)
         self.assertTrue("[fgh10]" in markers)
+        self.assertTrue("[last_comma]" in markers)
 
 
 class TextChunkTest(TestCase):
@@ -145,7 +220,9 @@ class TextChunkTest(TestCase):
         line: str = "[bc]this is[ab][bc][db] line for[bc] analyzing[ab] [bd] always text[] also there"
         markers: Set[str] = filter_brackets.get_markers(line)
         # when
-        chunks: List[filter_brackets.TextChunk] = filter_brackets.get_chunks_from_line(line, markers)
+        chunks: List[filter_brackets.TextChunk] = filter_brackets.get_chunks_from_line(
+            line, markers
+        )
         # then
         self.assertEqual(7, len(chunks), "5 chunks in line")
         self.assertEqual({"[bc]"}, chunks[0].markers, "chunk-0 markers")
@@ -162,3 +239,17 @@ class TextChunkTest(TestCase):
         self.assertEqual(" always text", chunks[5].text, "chunk-5 text")
         self.assertEqual(set(), chunks[6].markers, "chunk-6 markers")
         self.assertEqual(" also there", chunks[6].text, "chunk-6 text")
+
+    def test_remove_last_comma(self):
+        # given
+        data: List[str] = []
+        with open("test-data-03.txt") as file:
+            data = file.readlines()
+        # when
+        result: List[str] = filter_brackets.filter_lines(data, {"[ab]", "[bc]"})
+        # then
+        self.assertEqual(len(result), 3, "amount of string without any markers")
+        self.assertTrue("remove last, comma, " not in result)
+        self.assertTrue("remove last, comma " not in result)
+        self.assertTrue("  remove last, comma" in result)
+        self.assertTrue("not a last, comma, in the line " in result)

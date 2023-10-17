@@ -10,5 +10,5 @@ x-www-broser localhost:9090
 nohup python3 http-server.py &
 
 # start with /cgi-bin folder processing
-python3 -m http.server --cgi 9090
+python3 -m http.server --cgi 9090 --directory /path/to/dir
 ```

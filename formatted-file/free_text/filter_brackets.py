@@ -1,33 +1,72 @@
-# This is a sample Python script.
+# Parse each line of free text
+# find out all tags like [aaAA] and remain or remove part of the line from the left of it
+# ( till the beginning or next tag )
+# Special tags:
+# [last_comma] - remove last comma in the line, when it exists
 import re
 import sys
 from typing import List, Set, Union
+
+# list of special tag for changing way of processing
+SPECIAL_MARKER_LAST_COMMA: str = "[last_comma]"
+""" remove last comma ( from the end of the line ) if it exists, line will be right-trimmed """
+SPECIAL_MARKER_PREFIX: str = "[prefix]"
+""" marker that remains in the line only when exist at least one another """
+SPECIAL_MARKER_ALWAYS: str = "[]"
+""" text with this marker will be added without any conditions, always present """
+
+SPECIAL_MARKERS_POSTPROCESSING: List[str] = [
+    SPECIAL_MARKER_LAST_COMMA,
+]
 
 
 class TextChunk:
     def __init__(self, text: str):
         self.text: str = text
         self.markers: Set[str] = set()
+        """ list of markers like '[ab]' '[bc]' """
+
+    def __repr__(self):
+        return f"{self.text}: {self.markers}"
 
     def add_marker(self, marker: str) -> None:
         self.markers.add(marker)
 
+    def is_prefix(self) -> bool:
+        return SPECIAL_MARKER_PREFIX in self.markers
+
     def get_text(self, markers_for_filtering: Set[str]) -> Union[str, None]:
         """
         :param markers_for_filtering: list of markers, that should be checked
-        :return: text or nothing
+        :return: text (passed) or nothing ( not passed )
         """
-        if (
-            len(self.markers)
-            and markers_for_filtering
-            and len(markers_for_filtering) > 0
-        ):
-            if len(self.markers.intersection(markers_for_filtering)) > 0:
-                return self.text
-            else:
-                return None
-        else:
+        if len(self.markers) == 0:
             return self.text
+        if SPECIAL_MARKER_ALWAYS in self.markers:
+            return self.text
+        if SPECIAL_MARKER_PREFIX in self.markers:
+            return self.text
+        if markers_for_filtering is None or len(markers_for_filtering) == 0:
+            return self.text
+        if len(self.markers.intersection(markers_for_filtering)) > 0:
+            return self.text
+        else:
+            return None
+
+
+def remove_special_markers_from_collection(list_of_markers: Set[str]) -> Set[str]:
+    result: Set[str] = set(list_of_markers)
+    for each_special_marker in SPECIAL_MARKERS_POSTPROCESSING:
+        if each_special_marker in result:
+            result.remove(each_special_marker)
+    return result
+
+
+def remove_special_markers_from_line(line: str) -> str:
+    result: str = line
+    for each_special_marker in SPECIAL_MARKERS_POSTPROCESSING:
+        result = result.replace(each_special_marker, "")
+    return result
 
 
 def get_nearest_marker(line: str, markers_in_line: Set[str]) -> Union[str, None]:
@@ -36,6 +75,7 @@ def get_nearest_marker(line: str, markers_in_line: Set[str]) -> Union[str, None]
     :param markers_in_line:
     :return: nearest marker to the beginning of the line
     """
+    markers: Set[str] = set(markers_in_line)
     minimal_index: int = len(line)
     result: str = None
     for each_marker in markers_in_line:
@@ -71,7 +111,7 @@ def get_chunks_from_line(line: str, markers_in_line: Set[str]) -> List[TextChunk
             current_line = current_line[len(nearest_marker) :]
             continue
         next_chunk = TextChunk(current_line[:nearest_marker_position])
-        if nearest_marker != "[]":
+        if nearest_marker != SPECIAL_MARKER_ALWAYS:
             # avoid to have empty marker in the set
             next_chunk.add_marker(nearest_marker)
         result.append(next_chunk)
@@ -101,18 +141,41 @@ def filter_lines(lines: List[str], white_markers: Set[str]) -> List[str]:
     for each_line in lines:
         each_line = each_line.strip("\n")
         markers_in_line: Set[str] = set(get_markers(each_line))
-        if len(markers_in_line) > 0:
-            chunks: List[TextChunk] = get_chunks_from_line(each_line, markers_in_line)
-            chunks_text: List[str] = list()
-            for each_chunk in chunks:
-                text: str = each_chunk.get_text(white_markers)
-                if text is not None:
-                    chunks_text.append(text)
-            if len(chunks_text) > 0:
-                result.append("".join(chunks_text))
-        else:
+        each_line = remove_special_markers_from_line(each_line)
+        if len(markers_in_line) == 0:
             # no markers in line
             result.append(each_line)
+            continue
+
+        chunks: List[TextChunk] = get_chunks_from_line(
+            each_line, remove_special_markers_from_collection(markers_in_line)
+        )
+
+        chunks_text: List[str] = list()
+        chunk_counter_prefix: int = 0
+        chunk_counter_added: int = 0
+        for each_chunk in chunks:
+            text: str = each_chunk.get_text(white_markers)
+            if text is not None:
+                chunks_text.append(text)
+                chunk_counter_added += 1
+                if each_chunk.is_prefix():
+                    chunk_counter_prefix += 1
+        if chunk_counter_prefix == chunk_counter_added:
+            continue  # next line, current line has no "white labeled chunks" only "additional/prefixes"
+
+        if len(chunks_text) == 0:
+            continue  # next line
+
+        filtered_string = "".join(chunks_text)
+
+        if SPECIAL_MARKER_LAST_COMMA in markers_in_line:
+            new_line_candidate: str = filtered_string.rstrip()
+            if new_line_candidate.endswith(","):
+                filtered_string = new_line_candidate[0 : len(new_line_candidate) - 1]
+
+        result.append(filtered_string)
+
     return result
 
 
@@ -126,7 +189,7 @@ if __name__ == "__main__":
             markers_all: Set[str] = set()
             for each_line in file_src.readlines():
                 markers_all.update(get_markers(each_line))
-        markers_all.remove("[]")
+        markers_all.remove(SPECIAL_MARKER_ALWAYS)
         output_list: List[str] = list(markers_all)
         output_list.sort()
         [print(element) for element in output_list]

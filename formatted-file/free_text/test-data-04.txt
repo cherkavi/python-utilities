@@ -1,0 +1,4 @@
+- my first data: [prefix] option one,[ab] option two,[bc] option three[cd][last_comma]
+- my second data: [prefix] just an information[ab]
+- my third data: [prefix] option three,[ab] option four
+- my fourth data: [prefix] just a text []

@@ -1,0 +1,3 @@
+remove last,[ab] comma, [bc][last_comma]
+  remove last,[ab] comma,[bc][last_comma]
+not a last,[ab] comma,[bc] in the line [last_comma]

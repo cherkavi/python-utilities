@@ -1,4 +1,6 @@
+filtered: with precedence              [ab][cd][de][ef][]
 this is[ab] internal data[bc] in the file.
+another[ab] internal data[bc] from file. []
 that should be considered.
 [ab] this line has mistake[ab] in marker position[bc]
 as [bc]necessary.[ab][bc] But not a mandatory[bc]
