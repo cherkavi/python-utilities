@@ -1,0 +1,46 @@
+  {
+    "version": "2.0",
+    "routeKey": "$default",
+    "rawPath": "/",
+    "rawQueryString": "bucket=test",
+    "headers": {
+      "x-amzn-lambda-proxying-cell": "0",
+      "content-length": "0",
+      "x-amzn-tls-version": "TLSv1.2",
+      "x-forwarded-proto": "https",
+      "x-forwarded-port": "443",
+      "x-forwarded-for": "2001:a61:....",
+      "x-amzn-lambda-proxy-auth": "HmacSHA256, SignedHeaders=x-amzn-lambda-forwarded-client-ip;x-amzn-lambda-forwarded-host;x-amzn-lambda-proxying-cell, Signature=HCvhx....",
+      "accept": "*/*",
+      "x-amzn-lambda-forwarded-client-ip": "2001:a61:3.....",
+      "x-amzn-tls-cipher-suite": "ECDHE-RSA-AES128-GCM-SHA256",
+      "x-amzn-trace-id": "Self=1-652fd313-069c11813167bb6b1c730189;Root=1-652fd313-...",
+      "host": "3uh2h.....cell-1-lambda-url.us-east-1.on.aws",
+      "x-amzn-lambda-forwarded-host": "3uh2h....lambda-url.us-east-1.on.aws",
+      "accept-encoding": "gzip,deflate",
+      "user-agent": "curl/7.81.0"
+    },
+    "queryStringParameters": {
+      "bucket": "test"
+    },
+    "requestContext": {
+      "accountId": "anonymous",
+      "apiId": "3uh2...",
+      "domainName": "3uh2....cell-1-lambda-url.us-east-1.on.aws",
+      "domainPrefix": "3uh2...",
+      "http": {
+        "method": "GET",
+        "path": "/",
+        "protocol": "HTTP/1.1",
+        "sourceIp": "2001:a61:...",
+        "userAgent": "curl/7.81.0"
+      },
+      "requestId": "1203b328-dec4...",
+      "routeKey": "$default",
+      "stage": "$default",
+      "time": "18/Oct/2023:12:44:03 +0000",
+      "timeEpoch": 1697633043184
+    },
+    "isBase64Encoded": false
+  }
+
