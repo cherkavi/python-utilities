@@ -1,0 +1,3 @@
+remove last,[ab] comma, [bc][last_comma]               [control_one]
+  remove last version two,[ab] comma,[bc][last_comma]              [control_two]
+not a last,[ab] comma,[bc] in the line [last_comma]

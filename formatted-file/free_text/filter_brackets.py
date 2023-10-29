@@ -15,6 +15,10 @@ SPECIAL_MARKER_PREFIX: str = "[prefix]"
 SPECIAL_MARKER_ALWAYS: str = "[]"
 """ text with this marker will be added without any conditions, always present """
 
+SPECIAL_MARKER_CONTROL_PREFIX: str = "[control_"
+""" if at least one marker in the line starts with this prefix and     present in the white-list - show line 
+    if at least one marker in the line starts with this prefix and not present in the white-list - remove the line """
+
 SPECIAL_MARKERS_POSTPROCESSING: List[str] = [
     SPECIAL_MARKER_LAST_COMMA,
 ]
@@ -130,6 +134,28 @@ def get_markers(input_string: str) -> Set[str]:
     return set([f"[{each_marker}]" for each_marker in markers])
 
 
+def get_all_markers(chunks: List[TextChunk]) -> Set[str]:
+    result: Set = set()
+    for each_chunk in chunks:
+        result.update(each_chunk.markers)
+    return result
+
+
+def has_control_marker(markers: Set[str]) -> bool:
+    for each_marker in markers:
+        if each_marker.startswith(SPECIAL_MARKER_CONTROL_PREFIX):
+            return True
+    return False
+
+
+def is_control_marker_in_white_list(markers: Set[str], white_markers: Set[str]) -> bool:
+    control_markers: Set[str] = set()
+    for each_marker in markers:
+        if each_marker.startswith(SPECIAL_MARKER_CONTROL_PREFIX):
+            control_markers.add(each_marker)
+    return len(white_markers.intersection(control_markers)) > 0
+
+
 def filter_lines(lines: List[str], white_markers: Set[str]) -> List[str]:
     """
     this
@@ -139,7 +165,8 @@ def filter_lines(lines: List[str], white_markers: Set[str]) -> List[str]:
     """
     result: List[str] = []
     for each_line in lines:
-        each_line = each_line.strip("\n")
+        each_line = each_line.rstrip(" ")
+        each_line = each_line.rstrip("\n")
         markers_in_line: Set[str] = set(get_markers(each_line))
         each_line = remove_special_markers_from_line(each_line)
         if len(markers_in_line) == 0:
@@ -156,7 +183,7 @@ def filter_lines(lines: List[str], white_markers: Set[str]) -> List[str]:
         chunk_counter_added: int = 0
         for each_chunk in chunks:
             text: str = each_chunk.get_text(white_markers)
-            if text is not None:
+            if text is not None and len(text.strip()) > 0:
                 chunks_text.append(text)
                 chunk_counter_added += 1
                 if each_chunk.is_prefix():
@@ -172,9 +199,16 @@ def filter_lines(lines: List[str], white_markers: Set[str]) -> List[str]:
         if SPECIAL_MARKER_LAST_COMMA in markers_in_line:
             new_line_candidate: str = filtered_string.rstrip()
             if new_line_candidate.endswith(","):
-                filtered_string = new_line_candidate[0 : len(new_line_candidate) - 1]
+                filtered_string = new_line_candidate[0: len(new_line_candidate) - 1]
 
-        result.append(filtered_string)
+        all_markers_in_line: Set[str] = get_all_markers(chunks)
+        if has_control_marker(all_markers_in_line):
+            if is_control_marker_in_white_list(all_markers_in_line, white_markers):
+                result.append(filtered_string)
+            else:
+                pass
+        else:
+            result.append(filtered_string)
 
     return result
 

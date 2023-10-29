@@ -129,21 +129,33 @@ class TestMarkers(TestCase):
         # then
         self.assertEqual(4, len(result), "amount of string without any markers")
         self.assertTrue(
-            "- my first data: option one",
-            "without last chunks",
+            '- my first data:  option one' in result,
+            "with prefix, without last comma",
         )
         self.assertTrue(
-            "- my second data: [prefix] just an information[ab]",
-            "last chunk with marker",
+            '- my second data:  just an information' in result,
+            "with prefix, with filtered data",
         )
         self.assertTrue(
-            "- my third data:  option three, option four" in result,
-            "last chunk without any marker",
+            '- my third data:  option three, option four' in result,
+            "with prefix, with filtered data, with chunk without any marker at the end",
         )
         self.assertTrue(
-            "- my fourth data:  just a text " in result, "last chunk with []"
+            '- my fourth data:  just a text ' in result,
+            "with prefix, with filtered data, with chunk with always-marker at the end",
         )
 
+
+    def test_filter_lines_with_control_marker(self):
+        # given
+        data: List[str] = []
+        with open("test-data-05.txt") as file:
+            data = file.readlines()
+        # when
+        result: List[str] = filter_brackets.filter_lines(data, {"[ab]", "[control_two]"})
+        self.assertEqual(2, len(result), "amount of string without any markers")
+        self.assertTrue('  remove last version two' in result, "control marker")
+        self.assertTrue('not a last, in the line ' in result, "without control marker")
 
 class GetMarkersTest(TestCase):
     def test_get_markers(self):
