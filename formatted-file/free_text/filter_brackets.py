@@ -16,7 +16,8 @@ SPECIAL_MARKER_ALWAYS: str = "[]"
 """ text with this marker will be added without any conditions, always present """
 
 SPECIAL_MARKER_CONTROL_PREFIX: str = "[control_"
-""" if at least one marker in the line starts with this prefix and     present in the white-list - show line 
+""" if           no marker in the line starts with this prefix                                   - normal flow  
+    if at least one marker in the line starts with this prefix and     present in the white-list - normal flow
     if at least one marker in the line starts with this prefix and not present in the white-list - remove the line """
 
 SPECIAL_MARKERS_POSTPROCESSING: List[str] = [
