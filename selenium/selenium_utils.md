@@ -1,3 +1,12 @@
+from selenium.webdriver import Firefox
+>>> from selenium.webdriver.firefox.options import Options
+>>> opts = Options()
+>>> opts.set_headless()
+>>> assert opts.headless  # Operating in headless mode
+>>> browser = Firefox(options=opts)
+>>> browser.get('https://duckduckgo.com')
+
+---
 exception: Message: Expected browser binary location, but unable to find binary in default location, no 'moz:firefoxOptions.binary' capability provided, and no binary flag set on the command line
 > sudo apt install firefox
 
