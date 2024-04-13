@@ -16,9 +16,9 @@ SPECIAL_MARKER_ALWAYS: str = "[]"
 """ text with this marker will be added without any conditions, always present """
 
 SPECIAL_MARKER_CONTROL_PREFIX: str = "[control_"
-""" if           no marker in the line starts with this prefix                                   - normal flow  
-    if at least one marker in the line starts with this prefix and     present in the white-list - normal flow
-    if at least one marker in the line starts with this prefix and not present in the white-list - remove the line """
+""" if           no marker in the line starts with this prefix                                   - normal flow:  evaluate other markers  
+    if at least one marker in the line starts with this prefix and     present in the white-list - normal flow:  evaluate other markers
+    if at least one marker in the line starts with this prefix and not present in the white-list - remove the line without other markers evaluations """
 
 SPECIAL_MARKERS_POSTPROCESSING: List[str] = [
     SPECIAL_MARKER_LAST_COMMA,
@@ -67,11 +67,24 @@ def remove_special_markers_from_collection(list_of_markers: Set[str]) -> Set[str
     return result
 
 
+def remove_control_markers_from_collection(list_of_markers: Set[str]) -> Set[str]:
+    result: Set[str] = set()
+    for each_marker in list_of_markers:
+        if not each_marker.startswith(SPECIAL_MARKER_CONTROL_PREFIX):
+            result.add(each_marker)
+    return result
+    
+
 def remove_special_markers_from_line(line: str) -> str:
     result: str = line
     for each_special_marker in SPECIAL_MARKERS_POSTPROCESSING:
         result = result.replace(each_special_marker, "")
     return result
+
+def remove_control_markers_from_line(line: str) -> str:
+    pattern = r'\[control_[^\]]+\]'
+    # Use re.sub to replace all occurrences of the pattern with an empty string
+    return re.sub(pattern, '', line)
 
 
 def get_nearest_marker(line: str, markers_in_line: Set[str]) -> Union[str, None]:
@@ -166,17 +179,28 @@ def filter_lines(lines: List[str], white_markers: Set[str]) -> List[str]:
     """
     result: List[str] = []
     for each_line in lines:
-        each_line = each_line.rstrip(" ")
         each_line = each_line.rstrip("\n")
         markers_in_line: Set[str] = set(get_markers(each_line))
-        each_line = remove_special_markers_from_line(each_line)
+
+        # check for control markers 
+        if has_control_marker(markers_in_line):
+            if is_control_marker_in_white_list(markers_in_line, white_markers):
+                markers_in_line = remove_control_markers_from_collection(markers_in_line)
+                each_line: str = remove_control_markers_from_line(each_line)
+            else:
+                # control marker exists and it is not in white_lists - skip the line 
+                continue
+
+        each_line = each_line.rstrip(" ")
+        each_line: str = remove_special_markers_from_line(each_line)
         if len(markers_in_line) == 0:
             # no markers in line
             result.append(each_line)
             continue
 
         chunks: List[TextChunk] = get_chunks_from_line(
-            each_line, remove_special_markers_from_collection(markers_in_line)
+            each_line, 
+            remove_special_markers_from_collection(markers_in_line)
         )
 
         chunks_text: List[str] = list()
@@ -201,16 +225,9 @@ def filter_lines(lines: List[str], white_markers: Set[str]) -> List[str]:
             new_line_candidate: str = filtered_string.rstrip()
             if new_line_candidate.endswith(","):
                 filtered_string = new_line_candidate[0: len(new_line_candidate) - 1]
-
-        all_markers_in_line: Set[str] = get_all_markers(chunks)
-        if has_control_marker(all_markers_in_line):
-            if is_control_marker_in_white_list(all_markers_in_line, white_markers):
-                result.append(filtered_string)
-            else:
-                pass
-        else:
-            result.append(filtered_string)
-
+        
+        result.append(filtered_string)
+        
     return result
 
 
