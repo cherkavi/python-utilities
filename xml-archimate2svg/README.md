@@ -8,6 +8,7 @@ code: https://github.com/cherkavi/
 doc: https://my.confluence.com/cherkavi
 some additional information that will be skipped
 ```
+TODO: possible improvement here - instead of documentation to use Properties of certain element.
 
 execution example
 ```sh
