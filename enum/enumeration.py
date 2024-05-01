@@ -10,6 +10,8 @@ class Furniture(enum.Enum):
 print(Furniture.Table)
 print(Furniture.Chair)
 
+print(Furniture(2).name)
+
 
 import enum
 
