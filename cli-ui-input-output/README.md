@@ -1,5 +1,7 @@
 # cli user interface
 
+[my own examples of console UI application](https://github.com/cherkavi/networking-reminder/tree/main/)
+
 ## prompt_toolkit
 ```py
 from prompt_toolkit import prompt
