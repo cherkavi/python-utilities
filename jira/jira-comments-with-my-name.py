@@ -31,7 +31,7 @@ results: List[Result] = []
 for ticket in jira.search_issues(f'project = {PROJECT_NAME} AND resolution = Unresolved AND text ~ {USER_NAME} order by updated DESC'):
     comments = ticket.fields.comment.comments
     if STRICT:
-        comments = [each_comment for each_comment in comments if "q453337" in each_comment.body]
+        comments = [each_comment for each_comment in comments if "my-jira-login" in each_comment.body]
     if TODAY:
         comments = [each_comment for each_comment in comments if each_comment.updated.startswith(datetime.datetime.now().strftime("%Y-%m-%d"))]
     if len(comments) > 0:
