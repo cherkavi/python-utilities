@@ -37,6 +37,7 @@ plt.show()
 > show graphics in browser 
 ```py
 # pip3 install plotly
+# pip3 install pandas
 import plotly.express as px
 import pandas as pd
 
