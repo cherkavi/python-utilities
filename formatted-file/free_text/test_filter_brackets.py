@@ -145,7 +145,6 @@ class TestMarkers(TestCase):
             "with prefix, with filtered data, with chunk with always-marker at the end",
         )
 
-
     def test_filter_lines_with_control_marker(self):
         # given
         data: List[str] = []
@@ -156,6 +155,34 @@ class TestMarkers(TestCase):
         self.assertEqual(2, len(result), "amount of string without any markers")
         self.assertTrue('  remove last version two' in result, "control marker")
         self.assertTrue('not a last, in the line ' in result, "without control marker")
+
+    def test_filter_lines_with_negative_marker_ab(self):
+        # given
+        data: List[str] = []
+        with open("test-data-06.txt") as file:
+            data = file.readlines()
+        # when
+        result: List[str] = filter_brackets.filter_lines(data, {"[ab]", "[dc]"})
+        self.assertEqual(0, len(result), "amount of strings")
+
+        # given
+        data: List[str] = []
+        with open("test-data-06.txt") as file:
+            data = file.readlines()
+        # when
+        result: List[str] = filter_brackets.filter_lines(data, {"[dc]", "[aaa]"})
+        self.assertEqual(1, len(result), "amount of strings")
+        self.assertTrue('line should be shown if no ab tag' in result, "negative [dc]")
+
+        # given
+        data: List[str] = []
+        with open("test-data-06.txt") as file:
+            data = file.readlines()
+        # when
+        result: List[str] = filter_brackets.filter_lines(data, {"[efs]"})
+        self.assertEqual(2, len(result), "amount of strings")
+        self.assertTrue(' if no ab tag' in result, "no negative")
+        self.assertTrue(' if no dc tag' in result, "no negative")
 
 class GetMarkersTest(TestCase):
     def test_get_markers(self):

@@ -1,0 +1,2 @@
+line should be shown[ab] if no dc tag [!dc]
+line should be shown[aaa] if no ab tag [!ab]

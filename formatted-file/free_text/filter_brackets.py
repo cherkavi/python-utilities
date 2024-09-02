@@ -3,6 +3,10 @@
 # ( till the beginning or next tag )
 # Special tags:
 # [last_comma] - remove last comma in the line, when it exists
+# [prefix] - at the beginning of the line will be printed out only when at least one tag is showed
+# [] - print it in any case
+# [control_bbb]  - print line only when control_bbb is white-listed, even other markers exist
+# [!aaAA] - suppress(do not print) if aaAA is white-listed
 import re
 import sys
 from typing import List, Set, Union
@@ -19,6 +23,8 @@ SPECIAL_MARKER_CONTROL_PREFIX: str = "[control_"
 """ if           no marker in the line starts with this prefix                                   - normal flow:  evaluate other markers  
     if at least one marker in the line starts with this prefix and     present in the white-list - normal flow:  evaluate other markers
     if at least one marker in the line starts with this prefix and not present in the white-list - remove the line without other markers evaluations """
+
+SPECIAL_MARKER_NEGATIVE_PREFIX: str = "[!"
 
 SPECIAL_MARKERS_POSTPROCESSING: List[str] = [
     SPECIAL_MARKER_LAST_COMMA,
@@ -73,7 +79,13 @@ def remove_control_markers_from_collection(list_of_markers: Set[str]) -> Set[str
         if not each_marker.startswith(SPECIAL_MARKER_CONTROL_PREFIX):
             result.add(each_marker)
     return result
-    
+
+def remove_negative_markers_from_collection(list_of_markers: Set[str]) -> Set[str]:
+    result: Set[str] = set()
+    for each_marker in list_of_markers:
+        if not each_marker.startswith(SPECIAL_MARKER_NEGATIVE_PREFIX):
+            result.add(each_marker)
+    return result
 
 def remove_special_markers_from_line(line: str) -> str:
     result: str = line
@@ -86,6 +98,10 @@ def remove_control_markers_from_line(line: str) -> str:
     # Use re.sub to replace all occurrences of the pattern with an empty string
     return re.sub(pattern, '', line)
 
+def remove_negative_markers_from_line(line: str) -> str:
+    pattern = r'\[\![^\]]+\]'
+    # Use re.sub to replace all occurrences of the pattern with an empty string
+    return re.sub(pattern, '', line)
 
 def get_nearest_marker(line: str, markers_in_line: Set[str]) -> Union[str, None]:
     """
@@ -161,6 +177,12 @@ def has_control_marker(markers: Set[str]) -> bool:
             return True
     return False
 
+def has_negative_marker(markers: Set[str]) -> bool:
+    for each_marker in markers:
+        if each_marker.startswith(SPECIAL_MARKER_NEGATIVE_PREFIX):
+            return True
+    return False
+
 
 def is_control_marker_in_white_list(markers: Set[str], white_markers: Set[str]) -> bool:
     control_markers: Set[str] = set()
@@ -168,6 +190,13 @@ def is_control_marker_in_white_list(markers: Set[str], white_markers: Set[str]) 
         if each_marker.startswith(SPECIAL_MARKER_CONTROL_PREFIX):
             control_markers.add(each_marker)
     return len(white_markers.intersection(control_markers)) > 0
+
+def is_negative_marker_in_white_list(markers_in_line: Set[str], white_markers: Set[str]) -> bool:
+    negative_markers: Set[str] = set()
+    for each_marker in markers_in_line:
+        if each_marker.startswith(SPECIAL_MARKER_NEGATIVE_PREFIX):
+            negative_markers.add("["+each_marker.removeprefix(SPECIAL_MARKER_NEGATIVE_PREFIX))
+    return len(white_markers.intersection(negative_markers)) > 0
 
 
 def filter_lines(lines: List[str], white_markers: Set[str]) -> List[str]:
@@ -190,6 +219,14 @@ def filter_lines(lines: List[str], white_markers: Set[str]) -> List[str]:
             else:
                 # control marker exists and it is not in white_lists - skip the line 
                 continue
+        
+        if has_negative_marker(markers_in_line):
+            if is_negative_marker_in_white_list(markers_in_line, white_markers):
+                # skip line due to existing of "nagative marker"
+                continue
+            else:
+                markers_in_line = remove_negative_markers_from_collection(markers_in_line)
+                each_line: str = remove_negative_markers_from_line(each_line)
 
         each_line = each_line.rstrip(" ")
         each_line: str = remove_special_markers_from_line(each_line)
