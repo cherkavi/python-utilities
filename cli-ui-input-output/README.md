@@ -2,6 +2,16 @@
 
 [my own examples of console UI application](https://github.com/cherkavi/networking-reminder/tree/main/)
 
+## libraries
+* [curses](https://docs.python.org/3/library/curses.html#curses.wrapper)
+  * [curses examples](https://www.devdungeon.com/content/curses-programming-python)
+* [mpcurses](https://github.com/soda480/mpcurses)
+* [dashing](https://github.com/FedericoCeratto/dashing)
+* [npyscreen](https://npyscreen.readthedocs.io/introduction.html)
+* [curtsies](https://curtsies.readthedocs.io/en/latest/)
+* [urwid](http://urwid.org/)
+* [blessings](https://github.com/erikrose/blessings)
+
 ## prompt_toolkit
 ```py
 from prompt_toolkit import prompt
