@@ -27,7 +27,7 @@ def lambda_handler(event, context):
                 json.dump(row, jsonfile)
                 output.write('\n')
 
-    # save file - TODO: need to check 
+    # save file - need to check 
     item_to_s3 = s3.Object(bucket_name, bucket_key_output)
     item_to_s3.upload_file(json_file.name)
 
