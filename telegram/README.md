@@ -1,8 +1,22 @@
 # telegram
 
-## Telegram
+## obtain telegram credentials
+1. Visit the official Telegram website at my.telegram.org
+2. Log in using your Telegram account phone number
+3. Once logged in, click on "API development tools".
+4. Fill out the form to create a new application:
+   - Enter an App title and Short name
+   - Select "Desktop" as the platform
+   - You can leave the URL and Description fields blank
+5. Click on "Create application".
+6. After creation, you will see an "App configuration" screen that displays:
+   - $TELEGRAM_API_ID (labeled as "App api_id")
+   - $TELEGRAM_API_HASH (labeled as "App api_hash")
+
+## Telegram library
 * [git](https://github.com/alexander-akhmetov/python-telegram)
 * [python telegram doc](https://python-telegram.readthedocs.io/latest/tutorial.html)
+
 ### installation
 ```sh
 python3 -m virtualenv venv
@@ -16,11 +30,11 @@ pip3 install python-telegram
 echo $TELEGRAM_API_ID
 echo $TELEGRAM_API_HASH
 
-python3 send-message.py
+python3 telegram-send-message.py
 ```
 
 
-## Telethon
+## Telethon library
 * [git](https://github.com/LonamiWebs/Telethon)
 * [doc](https://docs.telethon.dev/en/stable/)
 

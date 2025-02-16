@@ -27,6 +27,7 @@ if __name__ == "__main__":
         files_directory='/tmp/.tdlib_files/',
     )
     tg.login()
+
     chat_id = 'me'
     # result = tg.send_message(chat_id, Spoiler('Hello world!'))
     result = tg.send_message(chat_id, text='Hello world!')
