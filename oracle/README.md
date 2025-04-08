@@ -1,4 +1,5 @@
 # Oracle install library
+## Download client
 ```sh
 # check your glibc version 
 ldd --version
@@ -21,4 +22,12 @@ echo "
 export ORACLE_HOME=/path/to/oracle/instant-client
 export LD_LIBRARY_PATH=$ORACLE_DEST_FOLDER/$ORACLE_CLIENT_VERSION:\$LD_LIBRARY_PATH
 " >> ~/.bashrc
+```
+
+## install python package
+```sh
+pip3 install --break-system-packages cx_Oracle
+
+## upgrade 
+# python3 -m pip install --break-system-packages cx_Oracle --upgrade
 ```
