@@ -18,6 +18,10 @@ userpwd = "my_password"
 host = "my_host"
 port = my_port
 service_name = "my_service"
+
+#    dsn_tns = cx_Oracle.makedsn(oracle_host, oracle_port, sid=oracle_sid)
+#    with cx_Oracle.connect(user=oracle_user, password=oracle_pass, dsn=dsn_tns) as oracle_connection:
+#       oracle_connection
 dsn = f'{username}/{userpwd}@{host}:{port}/{service_name}'
 connection = cx_Oracle.connect(dsn)
 
