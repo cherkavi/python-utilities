@@ -1,20 +1,42 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+# Ensure you have the necessary packages installed
+# sudo apt install python3-selenium
 
-# Set up headless Chrome (no GUI)
+from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options
+import sys
+
+if len(sys.argv) <= 1:
+    print("1: provide url as first parameter")
+    sys.exit(1)
+
+url: str = sys.argv[1]
+
+# Check if a webdriver path is provided
+if len(sys.argv) > 2:
+    # /home/soft/selenium_driver/geckodriver
+    webdriver_path = sys.argv[2]
+else:
+    webdriver_path = None
+
 options = Options()
 options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 
-# You can specify the path to chromedriver if not in PATH
-driver = webdriver.Chrome(options=options)
+# Create a service object if a webdriver path is provided
+if webdriver_path is not None:
+    service = Service(webdriver_path)
+    driver = webdriver.Firefox(service=service, options=options)
+else:
+    # Rely on PATH for the geckodriver
+    driver = webdriver.Firefox(options=options)
 
-url = "http://example.com"
 driver.get(url)
 
-# Wait for page to load JS (optional: use WebDriverWait for dynamic content)
-html = driver.page_source
+# Wait for the page to load (optional: use WebDriverWait for dynamic content)
+html: str = driver.page_source
 
-print(html)  # or write to file
+print(html)  # Print the HTML source or write to a file
 
+# Close the browser
 driver.quit()
