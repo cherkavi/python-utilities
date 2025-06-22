@@ -1,6 +1,7 @@
 import pandas as pd
 
 # pip install --break-system-packages "pyiceberg[pandas, sql-sqlite]"
+# pip install --break-system-packages duckdb
 
 # DataFrame - data organized into named columns similar to an SQL table.
 #   DataSet - strongly-typed version of a DataFrame, where each row of the Dataset 
@@ -12,7 +13,6 @@ from pyiceberg.types import StringType, IntegerType, NestedField
 
 import sqlite3
 import os
-import shutil
 
 ## input data 
 my_data = { 
@@ -33,7 +33,7 @@ schema = Schema(
 warehouse_path = "/tmp/warehouse"
 warehouse_is_new:bool=False
 if os.path.exists(warehouse_path):
-    # shutil.rmtree(warehouse_path)
+    # import shutil; shutil.rmtree(warehouse_path)
     warehouse_is_new=False
 else:
     os.makedirs(warehouse_path)
@@ -43,8 +43,9 @@ warehouse_catalog_db=f"/{warehouse_path}/pyiceberg_catalog.db"
 with sqlite3.connect(warehouse_catalog_db) as connection:
     pass
 
+warehouse_catalog_name="default"
 catalog = load_catalog(
-    "default",
+    warehouse_catalog_name,
     **{
         'type': 'sql',
         "uri": f"sqlite://{warehouse_catalog_db}",
@@ -54,13 +55,19 @@ catalog = load_catalog(
 
 ## iceberg fill 
 if warehouse_is_new:
-    catalog.create_namespace("default") 
+    catalog.create_namespace(warehouse_catalog_name) 
     table = catalog.create_table(
-        "default.people",
+        f"{warehouse_catalog_name}.people",
         schema=schema
     )
 else:
-    table = catalog.load_table(
-        "default.people")
+    table = catalog.load_table(f"{warehouse_catalog_name}.people")
 
 table.append(table.scan().to_arrow())
+
+## read data via duckdb
+import duckdb
+with duckdb.connect() as con:
+    result = con.execute("SELECT * FROM iceberg.people").fetchall()
+    for row in result:
+        print(row)
