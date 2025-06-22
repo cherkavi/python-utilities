@@ -71,3 +71,5 @@ with duckdb.connect() as con:
     result = con.execute("SELECT * FROM iceberg.people").fetchall()
     for row in result:
         print(row)
+
+## read data via https://trino.io/
