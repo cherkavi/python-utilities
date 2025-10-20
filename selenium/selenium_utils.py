@@ -1,6 +1,7 @@
 import os
 from time import sleep
 from typing import Optional
+from selenium.webdriver.remote.webelement import WebElement
 
 from pyvirtualdisplay import Display
 from selenium import webdriver
