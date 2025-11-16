@@ -16,6 +16,7 @@
 ## Telegram library
 * [git](https://github.com/alexander-akhmetov/python-telegram)
 * [python telegram doc](https://python-telegram.readthedocs.io/latest/tutorial.html)
+* [python pip](https://pypi.org/project/python-telegram/)
 
 ### installation
 ```sh
@@ -63,14 +64,21 @@ sqlite3 name.session
 select * from entities;
 ```
 
-### possible errors
+### possible error
 ```
 OSError: libssl.so.1.1: cannot open shared object file: No such file or directory
 ```
+solution 1:
 ```sh
 locate libssl.so.1.1
 # /snap/core18/2829/usr/lib/x86_64-linux-gnu/libssl.so.1.1
 export LD_LIBRARY_PATH=/snap/core18/2829/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
 
 ldconfig -p | grep libssl
+```
+solution 2:
+```sh
+wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+rm libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
 ```
