@@ -26,9 +26,14 @@ options.set_preference("general.useragent.override", "Mozilla/5.0 (X11; Linux x8
 options.set_preference("dom.webdriver.enabled", False)
 options.set_preference('useAutomationExtension', False)
 
+# options.set_preference('--user-data-dir', '/tmp/selenium-browser')
+# options.set_preference('--profile-directory', 'Default')
+
+
 service = Service(webdriver_path)
 # https://www.selenium.dev/documentation/
 driver = webdriver.Firefox(service=service, options=options)
+# driver = webdriver.Chrome(service=service, options=options)
 driver.implicitly_wait(5)
 ```
 
