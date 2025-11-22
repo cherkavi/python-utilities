@@ -1,6 +1,9 @@
 # Voice recognition
 ## Installation
 ### prepare OS
+
+For GPU support, you will need to install the NVIDIA CUDA Toolkit.
+
 ```sh
 sudo apt update && sudo apt install ffmpeg 
 ```
@@ -16,6 +19,9 @@ source virtual-env/bin/activate
 ```python
 import whisper
 
+## https://github.com/openai/whisper#avialable-models-and-languages
+# tiny, base, small, medium, large-v1, large-v2, large-v3
+# tiny.en, base.en, small.en, medium.en
 model = whisper.load_model("base") 
 audio_file_path = "~/Downloads/1.mp3" # <-- Replace with your file path
 language_code = "uk" # ISO 639-1 codes: "uk" - Ukrainian, "ru" - Russian
