@@ -6,7 +6,13 @@
 3. [OperaDriver Releases](https://github.com/operasoftware/operachromiumdriver/releases)
 4. [Edge WebDriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 
-## snippets
+## selenium examples
+
+### [selenium with additional parameters](./selenium_headless.debug.md)
+
+### [selenium stealth](./selenium_headless_stealth.debug.md)
+
+### minimal example
 ```py
 from selenium.webdriver import Firefox
 >>> from selenium.webdriver.firefox.options import Options

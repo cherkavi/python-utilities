@@ -15,28 +15,38 @@ import os
 import time
 from typing import List 
 
+
 webdriver_path = os.environ.get("GECKO_DRIVER")
 MAX_PAGE_SIZE=999
 
 options = Options()
 # options.add_argument('--headless')
 options.add_argument('--disable-gpu')
+
 options.set_preference("general.useragent.override", "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0")
 # Make browser automation less detectable
 options.set_preference("dom.webdriver.enabled", False)
 options.set_preference('useAutomationExtension', False)
 
+options.add_argument("--disable-infobars")
+options.set_preference("excludeSwitches", "enable-automation")
+
+## emulate user's profile 
 # options.set_preference('--user-data-dir', '/tmp/selenium-browser')
 # options.set_preference('--profile-directory', 'Default')
 
-
-service = Service(webdriver_path)
-# https://www.selenium.dev/documentation/
-driver = webdriver.Firefox(service=service, options=options)
-# driver = webdriver.Chrome(service=service, options=options)
+driver = webdriver.Firefox(service=Service(webdriver_path), options=options)   # driver = webdriver.Chrome(service=service, options=options)
 driver.implicitly_wait(5)
-```
 
+## doesn't work 
+
+## arguments
+# options.add_argument("--disable-blink-features=AutomationControlled")
+# options.add_argument("--timezone=Europe/Berlin")
+
+## driver after creation adjustment
+# driver.execute_cdp_cmd("Emulation.setTimezoneOverride",{"timezoneId": "Europe/Berlin"}    )
+```
 
 ```py
 url='https://www.rewe.de/angebote/nationale-angebote/'
@@ -58,6 +68,6 @@ shadow_root = driver.execute_script('return arguments[0].shadowRoot', host_eleme
 button_inside_shadow = shadow_root.find_element(By.CSS_SELECTOR, click_shadow_root_button_before[1])
 # driver.execute_script('return arguments[0].click()', button_inside_shadow)
 button_inside_shadow.click()
-
 ```
 
+##
