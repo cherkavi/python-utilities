@@ -40,3 +40,10 @@ from selenium.webdriver import Firefox
 ---
 **exception:** No such file or directory: 'Xvfb' 
 > sudo apt install xvfb
+
+---
+**exception:** selenium.common.exceptions.SessionNotCreatedException: Message: session not created: cannot connect to chrome at 127.0.0.1:34977
+> check version of your Chrome and ChromeDriver 
+google-chrome --version 
+https://googlechromelabs.github.io/chrome-for-testing/#stable
+
