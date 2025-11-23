@@ -2,11 +2,14 @@
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service 
 import sys
 import argparse
 import tty, termios
-import json  # Add this import at the top
-import os  # new import
+import json 
+import os 
+
+WEBDRIVER_PATH = os.environ.get("CHROME_DRIVER")
 
 def getch():
     fd = sys.stdin.fileno()
@@ -73,6 +76,7 @@ GEO_LATITUDE = 48.137154
 GEO_LONGITUDE = 11.576124
 GEO_ACCURACY_M = 50
 
+
 cdp_commands = {
     "Emulation.setTimezoneOverride" : {"timezoneId": TIMEZONE_ID},
     "Emulation.setLocaleOverride" : {"locale": LANGUAGE},
@@ -94,7 +98,11 @@ if PROFILE_DIR:
     os.makedirs(PROFILE_DIR, exist_ok=True)
     chrome_options.add_argument(f"--user-data-dir={PROFILE_DIR}")
 
-driver = uc.Chrome(options=chrome_options)
+if WEBDRIVER_PATH:
+    service = Service(WEBDRIVER_PATH)
+    driver = uc.Chrome(service=service, options=chrome_options)
+else:
+    driver = uc.Chrome(options=chrome_options)
 
 for each_command in cdp_commands:
     driver.execute_cdp_cmd(each_command, cdp_commands[each_command])
