@@ -30,6 +30,8 @@ options.set_preference('useAutomationExtension', False)
 
 options.add_argument("--disable-infobars")
 options.set_preference("excludeSwitches", "enable-automation")
+# options.add_experimental_option("excludeSwitches", ["enable-automation"])
+options.add_experimental_option("useAutomationExtension", False)
 
 ## emulate user's profile 
 # options.set_preference('--user-data-dir', '/tmp/selenium-browser')
