@@ -1,4 +1,20 @@
 # pip3 install --break-system-packages undetected-chromedriver
+# https://github.com/ultrafunkamsterdam/undetected-chromedriver
+
+## run before
+# remote_port=9123
+# google_chrome_pid_file="/tmp/chrome-${remote_port}.pid"
+# google-chrome --remote-debugging-port=${remote_port} --user-data-dir=/home/projects/wohnung-parsing-profile & echo $! > $google_chrome_pid_file
+# # curl http://127.0.0.1:${remote_port}/json # test connection curl
+
+## run after 
+# # stop google-chrome gracefully 
+# kill "$(cat $google_chrome_pid_file)"
+# # if it doesn't exit after a few seconds:
+# sleep 2
+# kill -9 "$(cat $google_chrome_pid_file)"
+
+
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -9,7 +25,7 @@ import tty, termios
 import json 
 import os 
 
-WEBDRIVER_PATH = os.environ.get("CHROME_DRIVER")
+SELENIUM_DRIVER_PATH = os.environ.get("CHROME_DRIVER")
 
 def getch():
     fd = sys.stdin.fileno()
@@ -59,15 +75,21 @@ parser.add_argument('--visual_check',
 parser.add_argument('--cookies_file',
                     help='Path to the cookies file',
                     required=False)
-parser.add_argument('--profile_dir',
+parser.add_argument('--user-data-dir',
                     help='Path to Chrome user-data directory to persist session/profile',
                     required=False)
+parser.add_argument('--remote_debugging_port',
+                    help='connect to existing Chrome process via address',
+                    required=False)
+
 args = parser.parse_args()
+REMOTE_DEBUG= f"127.0.0.1:{args.remote_debugging_port}" if args.remote_debugging_port else None
+
 URL:str = args.url
 OUTPUT_FILE:str = args.output_file
 VISUAL_CHECK:bool = args.visual_check
 COOKIES_FILE = args.cookies_file
-PROFILE_DIR = args.profile_dir  # new variable
+PROFILE_DIR = args.user_data_dir   # new variable
 
 LANGUAGE = "de-DE"
 TIMEZONE_ID = "Europe/Berlin"
@@ -89,20 +111,37 @@ if not VISUAL_CHECK:
     options.append('--headless')
 
 ## open browser 
-chrome_options = Options()
+chrome_options = uc.ChromeOptions()
 for each_argument in options:
     chrome_options.add_argument(each_argument)
 
 # If user provided a profile directory, ensure it exists and pass it to Chrome.
 if PROFILE_DIR:
     os.makedirs(PROFILE_DIR, exist_ok=True)
-    chrome_options.add_argument(f"--user-data-dir={PROFILE_DIR}")
+    # chrome_options.add_argument(f"--user-data-dir={PROFILE_DIR}")
+    chrome_options.user_data_dir=PROFILE_DIR
 
-if WEBDRIVER_PATH:
-    service = Service(WEBDRIVER_PATH)
-    driver = uc.Chrome(service=service, options=chrome_options)
-else:
-    driver = uc.Chrome(options=chrome_options)
+service = None
+if SELENIUM_DRIVER_PATH:
+    service = Service(SELENIUM_DRIVER_PATH)
+
+if REMOTE_DEBUG:
+    print(f"remote debug:{REMOTE_DEBUG}")
+    # for testing the connection: http://127.0.0.1:9123/json 
+    # chrome_options.add_experimental_option("debuggerAddress", REMOTE_DEBUG)     doesn't work with undetected-chromedriver
+    chrome_options.debugger_address=REMOTE_DEBUG
+    service = None
+    chrome_options.user_data_dir=""
+
+
+# if REMOTE_DEBUG:
+#     # only for Selenium.Grid
+#     from selenium import webdriver
+#     driver = webdriver.Remote(command_executor=REMOTE_DEBUG, options=chrome_options)
+# else:
+#     driver = uc.Chrome(service=service, options=chrome_options)
+
+driver = uc.Chrome(service=service, options=chrome_options, use_subprocess=False, keep_alive=True)
 
 for each_command in cdp_commands:
     driver.execute_cdp_cmd(each_command, cdp_commands[each_command])
