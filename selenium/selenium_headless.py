@@ -11,6 +11,9 @@ from selenium.webdriver.common.keys import Keys
 import sys
 import time
 from typing import List 
+import os
+
+DEBUG = True if os.environ.get("DEBUG")=='1' else False
 
 if len(sys.argv) <= 1:
     print("1: provide url as first parameter")
@@ -22,13 +25,19 @@ url: str = sys.argv[1]
 if len(sys.argv) > 2:
     # /home/soft/selenium_driver/geckodriver
     webdriver_path = sys.argv[2]
+    if DEBUG:
+        print(f"driver path is: {webdriver_path}")
 else:
     webdriver_path = None
+    if DEBUG:
+        print(f"driver path is empty")
 
 # 2. Check if an output file is provided
 output_file = None
 if len(sys.argv) > 3:
     output_file = sys.argv[3]
+    if DEBUG:
+        print(f"output file is {output_file}")
 
 MAX_PAGE_SIZE=999
 
