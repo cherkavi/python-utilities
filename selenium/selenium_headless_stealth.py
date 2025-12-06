@@ -14,6 +14,9 @@
 # sleep 2
 # kill -9 "$(cat $google_chrome_pid_file)"
 
+## Check your versions
+# $CHROME_DRIVER --version   # x-www-browser https://googlechromelabs.github.io/chrome-for-testing/
+# chrome://settings/help
 
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
@@ -118,8 +121,8 @@ for each_argument in options:
 # If user provided a profile directory, ensure it exists and pass it to Chrome.
 if PROFILE_DIR:
     os.makedirs(PROFILE_DIR, exist_ok=True)
-    # chrome_options.add_argument(f"--user-data-dir={PROFILE_DIR}")
-    chrome_options.user_data_dir=PROFILE_DIR
+#     # chrome_options.add_argument(f"--user-data-dir={PROFILE_DIR}")
+#     chrome_options.user_data_dir=PROFILE_DIR   # obsolete
 
 service = None
 if SELENIUM_DRIVER_PATH:
@@ -129,9 +132,7 @@ if REMOTE_DEBUG:
     print(f"remote debug:{REMOTE_DEBUG}")
     # for testing the connection: http://127.0.0.1:9123/json 
     # chrome_options.add_experimental_option("debuggerAddress", REMOTE_DEBUG)     doesn't work with undetected-chromedriver
-    chrome_options.debugger_address=REMOTE_DEBUG
-    service = None
-    chrome_options.user_data_dir=""
+    chrome_options.debugger_address=REMOTE_DEBUG    
 
 
 # if REMOTE_DEBUG:
@@ -141,7 +142,7 @@ if REMOTE_DEBUG:
 # else:
 #     driver = uc.Chrome(service=service, options=chrome_options)
 
-driver = uc.Chrome(service=service, options=chrome_options, use_subprocess=False, keep_alive=True)
+driver = uc.Chrome(service=service, options=chrome_options, use_subprocess=False, keep_alive=False, user_data_dir=PROFILE_DIR)
 
 for each_command in cdp_commands:
     driver.execute_cdp_cmd(each_command, cdp_commands[each_command])
@@ -154,13 +155,15 @@ driver.get(URL)
 if VISUAL_CHECK:
     try:
         while True:
-            sys.stdout.write("Visual check passed — press Yes/Ok/J  ( otherwise: Escape )")
+            sys.stdout.write("visual check passed ? press Yes/Ok/J  ( otherwise: Escape )")
             sys.stdout.flush()            
             resp = getch()
             resp_ch=resp.strip().lower()
             if resp_ch in ( 'y', 'o', 'j', 'Y', 'O', 'J' ):
+                sys.stdout.write("\n                    yes\n")
                 break
             elif resp == '\x1b':
+                sys.stdout.write("\n                    NO\n")
                 driver.quit()
                 exit(1)
     except (KeyboardInterrupt, EOFError):
