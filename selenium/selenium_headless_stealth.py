@@ -147,6 +147,8 @@ def chrome_options_builder():
     for each_argument in options:
         chrome_options.add_argument(each_argument)
 
+    chrome_options.binary_location = "/usr/bin/google-chrome" 
+
     if REMOTE_DEBUG:
         # print(f"remote debug:{REMOTE_DEBUG}")
         # for testing the connection: http://127.0.0.1:9123/json 
@@ -175,7 +177,7 @@ except selenium.common.exceptions.SessionNotCreatedException:
     driver = uc.Chrome(service=ChromeService(driver_path), options=chrome_options_builder(), use_subprocess=False, keep_alive=False, user_data_dir=PROFILE_DIR)
 
 for each_command in cdp_commands:
-    print(f"{each_command} --> {cdp_commands[each_command]}")
+    # print(f"{each_command} --> {cdp_commands[each_command]}")
     driver.execute_cdp_cmd(each_command, cdp_commands[each_command])
 
 if COOKIES_FILE:
