@@ -1,4 +1,5 @@
 # pip3 install --break-system-packages undetected-chromedriver
+# pip3 install --break-system-packages webdriver_manager
 # https://github.com/ultrafunkamsterdam/undetected-chromedriver
 
 ## run before
@@ -22,6 +23,9 @@ import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service 
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager #
+import selenium
 import sys
 import argparse
 import tty, termios
@@ -29,6 +33,7 @@ import json
 import os 
 
 SELENIUM_DRIVER_PATH = os.environ.get("CHROME_DRIVER")
+DEFAULT_SELENIUM_CACHE_DIR = "/home/projects/temp/selenium"
 
 def getch():
     fd = sys.stdin.fileno()
@@ -89,6 +94,11 @@ args = parser.parse_args()
 REMOTE_DEBUG= f"127.0.0.1:{args.remote_debugging_port}" if args.remote_debugging_port else None
 
 URL:str = args.url
+if not URL.startswith("http") and not URL.startswith("https"):
+    sys.stderr.write("specify proper url");
+    sys.stderr.flush()
+    sys.exit(1)
+    
 OUTPUT_FILE:str = args.output_file
 VISUAL_CHECK:bool = args.visual_check
 COOKIES_FILE = args.cookies_file
@@ -103,10 +113,15 @@ GEO_ACCURACY_M = 50
 
 
 cdp_commands = {
+    "Browser.grantPermissions": {
+            "permissions": ["geolocation"], 
+            "origin": URL
+         }
+    }
+cdp_commands_after_open = {
     "Emulation.setTimezoneOverride" : {"timezoneId": TIMEZONE_ID},
     "Emulation.setLocaleOverride" : {"locale": LANGUAGE},
-    "Emulation.setGeolocationOverride" : {"latitude": GEO_LATITUDE, "longitude": GEO_LONGITUDE, "accuracy": GEO_ACCURACY_M},
-    "Browser.grantPermissions": {"permissions": ["geolocation"], "origin": URL}
+    "Emulation.setGeolocationOverride" : {"latitude": GEO_LATITUDE, "longitude": GEO_LONGITUDE, "accuracy": GEO_ACCURACY_M}
     }
 
 options = ['--disable-gpu', f"--lang={LANGUAGE}", "--disable-blink-features=AutomationControlled"]
@@ -114,9 +129,6 @@ if not VISUAL_CHECK:
     options.append('--headless')
 
 ## open browser 
-chrome_options = uc.ChromeOptions()
-for each_argument in options:
-    chrome_options.add_argument(each_argument)
 
 # If user provided a profile directory, ensure it exists and pass it to Chrome.
 if PROFILE_DIR:
@@ -128,12 +140,19 @@ service = None
 if SELENIUM_DRIVER_PATH:
     service = Service(SELENIUM_DRIVER_PATH)
 
-if REMOTE_DEBUG:
-    print(f"remote debug:{REMOTE_DEBUG}")
-    # for testing the connection: http://127.0.0.1:9123/json 
-    # chrome_options.add_experimental_option("debuggerAddress", REMOTE_DEBUG)     doesn't work with undetected-chromedriver
-    chrome_options.debugger_address=REMOTE_DEBUG    
 
+def chrome_options_builder():
+    """ to avoid RuntimeError: you cannot reuse the ChromeOptions object """
+    chrome_options = uc.ChromeOptions()
+    for each_argument in options:
+        chrome_options.add_argument(each_argument)
+
+    if REMOTE_DEBUG:
+        # print(f"remote debug:{REMOTE_DEBUG}")
+        # for testing the connection: http://127.0.0.1:9123/json 
+        # chrome_options.add_experimental_option("debuggerAddress", REMOTE_DEBUG)     doesn't work with undetected-chromedriver
+        chrome_options.debugger_address=REMOTE_DEBUG    
+    return chrome_options
 
 # if REMOTE_DEBUG:
 #     # only for Selenium.Grid
@@ -142,15 +161,36 @@ if REMOTE_DEBUG:
 # else:
 #     driver = uc.Chrome(service=service, options=chrome_options)
 
-driver = uc.Chrome(service=service, options=chrome_options, use_subprocess=False, keep_alive=False, user_data_dir=PROFILE_DIR)
+try:
+    driver = uc.Chrome(service=service, options=chrome_options_builder(), use_subprocess=False, keep_alive=False, user_data_dir=PROFILE_DIR)
+except selenium.common.exceptions.SessionNotCreatedException:
+    if SELENIUM_DRIVER_PATH:
+        CUSTOM_CACHE_DIR=os.path.dirname(SELENIUM_DRIVER_PATH)
+    else:
+        CUSTOM_CACHE_DIR = DEFAULT_SELENIUM_CACHE_DIR        
+    if not os.path.exists(CUSTOM_CACHE_DIR):
+        os.makedirs(CUSTOM_CACHE_DIR)
+    os.environ['WDM_CACHE_DIR'] = CUSTOM_CACHE_DIR # print(f"Setting cache directory to: {CUSTOM_CACHE_DIR}")    
+    driver_path=ChromeDriverManager().install()
+    driver = uc.Chrome(service=ChromeService(driver_path), options=chrome_options_builder(), use_subprocess=False, keep_alive=False, user_data_dir=PROFILE_DIR)
 
 for each_command in cdp_commands:
+    print(f"{each_command} --> {cdp_commands[each_command]}")
     driver.execute_cdp_cmd(each_command, cdp_commands[each_command])
 
 if COOKIES_FILE:
     load_cookies(driver, COOKIES_FILE)
 
 driver.get(URL)
+
+for each_command in cdp_commands_after_open:
+    driver.execute_cdp_cmd(each_command, cdp_commands_after_open[each_command])
+
+## check geolocation 
+# result = driver.execute_script(
+#         "navigator.geolocation.getCurrentPosition(pos => console.log('Location:', pos.coords.latitude, pos.coords.longitude)); return 'Geolocation requested';"
+#     )
+# print(f"Script Result: {result}")
 
 if VISUAL_CHECK:
     try:
