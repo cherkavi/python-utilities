@@ -31,6 +31,7 @@ import argparse
 import tty, termios
 import json 
 import os 
+import subprocess
 
 SELENIUM_DRIVER_PATH = os.environ.get("CHROME_DRIVER")
 DEFAULT_SELENIUM_CACHE_DIR = "/home/projects/temp/selenium"
@@ -88,6 +89,9 @@ parser.add_argument('--user-data-dir',
                     required=False)
 parser.add_argument('--remote_debugging_port',
                     help='connect to existing Chrome process via address',
+                    required=False)
+parser.add_argument('--run_bash_script_after_request',
+                    help='after request Y/N execute bash script ( switch to another window? )',
                     required=False)
 
 args = parser.parse_args()
@@ -199,6 +203,8 @@ if VISUAL_CHECK:
         while True:
             sys.stdout.write("visual check passed ? press Yes/Ok/J  ( otherwise: Escape )")
             sys.stdout.flush()            
+            if args.run_bash_script_after_request is not None:                
+                subprocess.run(["bash", args.run_bash_script_after_request])
             resp = getch()
             resp_ch=resp.strip().lower()
             if resp_ch in ( 'y', 'o', 'j', 'Y', 'O', 'J' ):
