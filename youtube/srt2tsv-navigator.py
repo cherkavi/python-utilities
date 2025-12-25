@@ -122,11 +122,13 @@ def _(event):
 
 @kb.add('j', filter=nav_filter)
 @kb.add('о', filter=nav_filter)
+@kb.add('down', filter=nav_filter)
 def _(event):
     browser.selected_index = min(len(browser.filtered_data) - 1, browser.selected_index + 1)
 
 @kb.add('k', filter=nav_filter)
 @kb.add('л', filter=nav_filter)
+@kb.add('up', filter=nav_filter)
 def _(event):
     browser.selected_index = max(0, browser.selected_index - 1)
 
