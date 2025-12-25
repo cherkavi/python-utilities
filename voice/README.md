@@ -7,15 +7,20 @@ For GPU support, you will need to install the NVIDIA CUDA Toolkit.
 ```sh
 sudo apt update && sudo apt install ffmpeg 
 ```
-### python packages
+### installation
 ```sh
-python3 -m venv virtual-env
-
-source virtual-env/bin/activate
-# pip install -U openai-whisper
+python3 -m venv virtual-env; source virtual-env/bin/activate
+# pip3 install -U openai-whisper
+sudo apt install python3-openai-whisper
 ```
 
-## voice recognition
+## usage
+### usage bash
+```sh
+whisper "1.mp3" --model base --output_format srt
+```
+
+### usage python
 ```python
 import whisper
 
