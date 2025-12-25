@@ -28,6 +28,13 @@ from prompt_toolkit.filters import has_focus
 from prompt_toolkit.layout.scrollable_pane import ScrollOffsets
 from prompt_toolkit.data_structures import Point
 
+
+parser = argparse.ArgumentParser(description="Read TSV data from a file.")
+parser.add_argument("--data_file", required=True, help="Path to the TSV file")
+parser.add_argument("--youtube_src", required=True, help="original video to open in youtube")
+args = parser.parse_args()
+
+
 def read_tsv_data(file_path):
     if not os.path.exists(file_path):
         print(f"Error: The file '{file_path}' was not found.")
@@ -40,11 +47,22 @@ def read_tsv_data(file_path):
         print(f"An error occurred: {e}")
         return []
 
+def convert_to_youtube_timestamp(time_str):
+    # Split the time and milliseconds (e.g., "00:04:50" and "720")
+    time_part, _ = time_str.split(',')
+    h, m, s = map(int, time_part.split(':'))
+    
+    # Calculate total seconds
+    total_seconds = h * 3600 + m * 60 + s
+    
+    return f"&t={total_seconds}s"
+
+
 class SubtitleBrowser:
     def __init__(self, data):
         self.data = data or []
         self.selected_index = 0
-        self.yt_url = os.getenv("YT_URL", "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        self.yt_url = args.youtube_src
         self.search_buffer = Buffer()
         self.printed_value = None
         self.filtered_data = self.data
@@ -72,10 +90,6 @@ class SubtitleBrowser:
 
     def get_cursor_position(self):
         return Point(x=0, y=self.selected_index)
-
-parser = argparse.ArgumentParser(description="Read TSV data from a file.")
-parser.add_argument("--data_file", required=True, help="Path to the TSV file")
-args = parser.parse_args()
 
 browser = SubtitleBrowser(read_tsv_data(args.data_file))
 
@@ -116,13 +130,10 @@ def _(event):
 def _(event):
     browser.selected_index = max(0, browser.selected_index - 1)
 
-# --- Page Scrolling ---
-
 @kb.add('d', filter=nav_filter)
 @kb.add('в', filter=nav_filter)
 @kb.add('pagedown', filter=nav_filter)
 def _(event):
-    # Move down by the height of the window
     page_size = content_window.render_info.window_height if content_window.render_info else 10
     browser.selected_index = min(len(browser.filtered_data) - 1, browser.selected_index + page_size)
 
@@ -130,11 +141,8 @@ def _(event):
 @kb.add('г', filter=nav_filter)
 @kb.add('pageup', filter=nav_filter)
 def _(event):
-    # Move up by the height of the window
     page_size = content_window.render_info.window_height if content_window.render_info else 10
     browser.selected_index = max(0, browser.selected_index - page_size)
-
-# ----------------------
 
 @kb.add('p', filter=nav_filter)
 @kb.add('з', filter=nav_filter)
@@ -146,9 +154,8 @@ def _(event):
 @kb.add('н', filter=nav_filter)
 def _(event):
     if browser.filtered_data:
-        raw_ts = browser.filtered_data[browser.selected_index][0]
-        timestamp = raw_ts.strip('[] ') 
-        full_url = f"{browser.yt_url}&t={timestamp}"
+        raw_ts = browser.filtered_data[browser.selected_index][1]                
+        full_url = f"{browser.yt_url}{convert_to_youtube_timestamp(raw_ts)}"
         webbrowser.open(full_url)
 
 @kb.add('/')
@@ -190,6 +197,7 @@ root_container = HSplit([
     ), height=1, style="bg:#222222")
 ])
 
+# focused_element=content_window ensures we start in navigation mode
 app = Application(
     layout=Layout(root_container, focused_element=content_window),
     key_bindings=kb,
