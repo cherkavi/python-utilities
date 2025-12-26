@@ -204,7 +204,12 @@ if VISUAL_CHECK:
             sys.stdout.write("visual check passed ? press Yes/Ok/J  ( otherwise: Escape )")
             sys.stdout.flush()            
             if args.run_bash_script_after_request is not None:                
-                subprocess.run(["bash", args.run_bash_script_after_request])
+                subprocess.Popen(
+                    ["bash", args.run_bash_script_after_request],
+                    stdout=subprocess.DEVNULL,  # Redirect output so it doesn't hang or clutter
+                    stderr=subprocess.DEVNULL,
+                    preexec_fn=os.setpgrp       # Decouples the process group (Unix only)
+                )                
             resp = getch()
             resp_ch=resp.strip().lower()
             if resp_ch in ( 'y', 'o', 'j', 'Y', 'O', 'J' ):
