@@ -54,6 +54,10 @@ def convert_to_youtube_timestamp(time_str):
     
     # Calculate total seconds
     total_seconds = h * 3600 + m * 60 + s
+
+    # shift before 
+    if total_seconds > 2:
+        total_seconds -= 2
     
     return f"&t={total_seconds}s"
 

@@ -15,14 +15,14 @@ class Subtitle:
 def parse_srt_content(content):
     # Updated Regex:
     # (.*?) matches text greedily but stops at the lookahead.
-    # (?=\n\s*\n\d+|\n\d+\s*\n|\Z) looks for the next block or end of file.
+    # (?=\n\s*\n\d+|\n\d+\s*\n|\Z) looks for the next block or end of file.    
     pattern = re.compile(r'(\d+)\s+([\d:,]+) --> ([\d:,]+)\s*(.*?)(?=\n\d+\s*\n|\Z)', re.DOTALL)
     
     subtitles = []
     for match in pattern.finditer(content):
         index = int(match.group(1))
-        start_time = match.group(2)
-        end_time = match.group(3)
+        start_time = match.group(2).strip()
+        end_time = match.group(3).strip()
         
         # Capture raw text and clean it
         raw_text = match.group(4).strip()
@@ -30,7 +30,7 @@ def parse_srt_content(content):
         # Handle non-breaking spaces (\xa0) and other whitespace
         # We split, strip, and filter out strings that are empty or just whitespace
         text_lines = [line.strip() for line in raw_text.split('\n')]
-        text_lines = [line for line in text_lines if line and not line.isspace()]
+        text_lines = [line.strip() for line in text_lines if line and not line.isspace()]
         
         # If the block was just whitespace/blank, text_lines will be an empty list []
         subtitles.append(Subtitle(index, start_time, end_time, text_lines))
@@ -53,7 +53,7 @@ def parse_srt_sequentially(file_path):
 
     i = 0
     while i < len(lines):
-        line = lines[i].strip()
+        line = lines[i].replace('\xa0', '\x20').replace('"', ' ').strip()
 
         # 1. Look for the Index (must be a digit)
         if line.isdigit():
@@ -74,7 +74,7 @@ def parse_srt_sequentially(file_path):
 
         # 3. Collect text lines
         # We ignore lines that are just whitespace or the non-breaking space \xa0
-        clean_line = line.replace('\xa0', '').strip()
+        clean_line = line.strip()
         if clean_line:
             current_text.append(clean_line)
         
