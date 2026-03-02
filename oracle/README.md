@@ -37,6 +37,7 @@ pip3 install --break-system-packages cx_Oracle
 ## issues
 # Cannot locate a 64-bit Oracle Client library: "/home/soft/oracle/instantclient_23_7/lib/libclntsh.so
 # install basiclite of another version
+# or just copy all the files from `/home/soft/oracle/instantclient_23_7` to `/home/soft/oracle/instantclient_23_7/lib`
 
 #  Cannot locate a 64-bit Oracle Client library: "libaio.so.1: cannot open shared object file: No such file or directory"
 # sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
