@@ -14,9 +14,9 @@
 ############################
 
 import os
-import webbrowser
 import argparse
 import csv
+import subprocess
 from prompt_toolkit import Application
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.layout.containers import Window, HSplit, VSplit
@@ -33,6 +33,20 @@ parser = argparse.ArgumentParser(description="Read TSV data from a file.")
 parser.add_argument("--data_file", required=True, help="Path to the TSV file")
 parser.add_argument("--youtube_src", required=True, help="original video to open in youtube")
 args = parser.parse_args()
+
+
+def open_in_browser(full_url):
+    # import webbrowser
+    # import contextlib
+    # with open(os.devnull, "w") as devnull, contextlib.redirect_stderr(devnull):
+    #     webbrowser.open(full_url)
+    with open(os.devnull, "w") as devnull:
+        subprocess.Popen(
+            ["x-www-browser", full_url],
+            stdout=devnull,
+            stderr=devnull,
+            start_new_session=True,
+        )
 
 
 def read_tsv_data(file_path):
@@ -60,6 +74,20 @@ def convert_to_youtube_timestamp(time_str):
         total_seconds -= 2
     
     return f"&t={total_seconds}s"
+
+
+def copy_to_clipboard(text):
+    try:
+        # Use xclip to "spawn" a selection owner
+        process = subprocess.Popen(
+            ['xclip', '-selection', 'clipboard'], 
+            stdin=subprocess.PIPE, 
+            close_fds=True
+        )
+        process.communicate(input=text.encode('utf-8'))
+        # print("Successfully copied to clipboard.")
+    except FileNotFoundError:
+        print("Error: xclip is not installed. Run 'sudo apt install xclip'")    
 
 
 class SubtitleBrowser:
@@ -156,13 +184,20 @@ def _(event):
     if browser.filtered_data:
         browser.printed_value = browser.filtered_data[browser.selected_index][3]
 
+@kb.add('c', filter=nav_filter)
+@kb.add('с', filter=nav_filter)
+def _(event):
+    if browser.filtered_data:
+        selected_value = browser.filtered_data[browser.selected_index][3]
+        copy_to_clipboard(selected_value)
+
 @kb.add('y', filter=nav_filter)
 @kb.add('н', filter=nav_filter)
 def _(event):
     if browser.filtered_data:
         raw_ts = browser.filtered_data[browser.selected_index][1]                
-        full_url = f"{browser.yt_url}{convert_to_youtube_timestamp(raw_ts)}"
-        webbrowser.open(full_url)
+        full_url = f"{browser.yt_url}{convert_to_youtube_timestamp(raw_ts)}"        
+        open_in_browser(full_url)
 
 @kb.add('/')
 @kb.add('.')
@@ -199,7 +234,7 @@ root_container = HSplit([
         search_window,
     ]),
     Window(content=FormattedTextControl(
-        HTML(" <ansigray><b>[j/k/u/d]</b> Nav  <b>[/ .]</b> Search  <b>[y]</b> YT  <b>[p]</b> Print  <b>[Esc]</b> Reset  <b>[q]</b> Quit</ansigray>")
+        HTML(" <ansigray><b>[j/k/u/d]</b> Nav  <b>[/ .]</b> Search  <b>[y]</b> YT  <b>[p]</b> Print  <b>[c]</b> Copy  <b>[Esc]</b> Reset  <b>[q]</b> Quit</ansigray>")
     ), height=1, style="bg:#222222")
 ])
 
