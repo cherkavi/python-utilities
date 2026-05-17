@@ -14,6 +14,12 @@
 #  ranger ~/screenshots
 #  ```
 
+##############
+## installation
+#############
+# pip install python-dateutil
+
+
 from __future__ import annotations
 
 import sys
