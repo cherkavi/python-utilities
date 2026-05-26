@@ -17,7 +17,7 @@
 ##############
 ## installation
 #############
-# pip install python-dateutil
+# pip install python-dateutil         # alternative: pip install dateutils
 
 
 from __future__ import annotations
