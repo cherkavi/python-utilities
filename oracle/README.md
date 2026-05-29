@@ -31,8 +31,9 @@ export LD_LIBRARY_PATH=$ORACLE_DEST_FOLDER/$ORACLE_CLIENT_VERSION:\$LD_LIBRARY_P
 ll $LD_LIBRARY_PATH
 ll $ORACLE_HOME
 
-pip3 install --break-system-packages cx_Oracle
-# python3 -m pip install --break-system-packages cx_Oracle --upgrade
+pip3 install --break-system-packages cx_Oracle  # python3 -m pip install --break-system-packages cx_Oracle --upgrade
+## !!! works only till 3.12 !!!
+# pyenv shell 3.12.10 && python -m pip install --upgrade pip setuptools wheel && python -m pip install cx_Oracle
 
 ## issues
 # Cannot locate a 64-bit Oracle Client library: "/home/soft/oracle/instantclient_23_7/lib/libclntsh.so
