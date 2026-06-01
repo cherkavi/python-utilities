@@ -1,12 +1,8 @@
 # Oracle install library
-## Download client
+## [Download client](https://cx-oracle.readthedocs.io/en/latest/user_guide/installation.html)
 ```sh
-## official doc
-# https://cx-oracle.readthedocs.io/en/latest/user_guide/installation.html
-
 # check your glibc version 
 ldd --version
-
 # download "BasicLite Package Zip" from from 
 # x-www-browser https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
 # wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip
@@ -30,18 +26,6 @@ export LD_LIBRARY_PATH=$ORACLE_DEST_FOLDER/$ORACLE_CLIENT_VERSION:\$LD_LIBRARY_P
 
 ll $LD_LIBRARY_PATH
 ll $ORACLE_HOME
-
-pip3 install --break-system-packages cx_Oracle  # python3 -m pip install --break-system-packages cx_Oracle --upgrade
-## !!! works only till 3.12 !!!
-# pyenv shell 3.12.10 && python -m pip install --upgrade pip setuptools wheel && python -m pip install cx_Oracle
-
-## issues
-# Cannot locate a 64-bit Oracle Client library: "/home/soft/oracle/instantclient_23_7/lib/libclntsh.so
-# install basiclite of another version
-# or just copy all the files from `/home/soft/oracle/instantclient_23_7` to `/home/soft/oracle/instantclient_23_7/lib`
-
-#  Cannot locate a 64-bit Oracle Client library: "libaio.so.1: cannot open shared object file: No such file or directory"
-# sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
 ```
 
 ## install python package
@@ -49,7 +33,23 @@ pip3 install --break-system-packages cx_Oracle  # python3 -m pip install --break
 pip3 install --break-system-packages cx_Oracle
 
 ## upgrade 
-# python3 -m pip install --break-system-packages cx_Oracle --upgrade
+ python3 -m pip install --break-system-packages cx_Oracle --upgrade
+
+## force install 
+pip3 install --break-system-packages cx_Oracle  # python3 -m pip install --break-system-packages cx_Oracle --upgrade
+
+## !!! works only till 3.12 !!!
+# pyenv shell 3.12.10 && python -m pip install --upgrade pip setuptools wheel && python -m pip install cx_Oracle
+```
+
+## issue with installation 
+```
+# Cannot locate a 64-bit Oracle Client library: "/home/soft/oracle/instantclient_23_7/lib/libclntsh.so
+# install basiclite of another version
+# or just copy all the files from `/home/soft/oracle/instantclient_23_7` to `/home/soft/oracle/instantclient_23_7/lib`
+
+#  Cannot locate a 64-bit Oracle Client library: "libaio.so.1: cannot open shared object file: No such file or directory"
+# sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
 ```
 
 ## github workflow step for oracle installation
