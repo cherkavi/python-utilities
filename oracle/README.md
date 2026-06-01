@@ -1,4 +1,19 @@
-# Oracle install library
+# oracledb
+```py
+import oracledb
+
+dsnStr = oracledb.makedsn(ORACLE_HOST, ORACLE_PORT, ORACLE_SID)
+connection = oracledb.connect(user=ORACLE_USER, password=ORACLE_PW, dsn=dsnStr)
+connection.autocommit = False
+
+cursor = connection.cursor()
+dataset=cursor.execute("select * from dual")
+print(dataset.fetchall())
+cursor.close()
+```
+
+# oracle_cx
+
 ## [Download client](https://cx-oracle.readthedocs.io/en/latest/user_guide/installation.html)
 ```sh
 # check your glibc version 
