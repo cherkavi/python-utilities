@@ -1,15 +1,52 @@
 # oracledb
 ```py
 import oracledb
+import os
 
+###############################################################
+### Activate Oracle Thick mode if the database enforces:
+# * Oracle Native Network Encryption 
+# * checksumming
+###############################################################
+client_dir = os.getenv("ORACLE_CLIENT_LIB_DIR")
+if client_dir:
+    oracledb.init_oracle_client(lib_dir=client_dir)
+else:
+    oracledb.init_oracle_client()
+
+###############################################################
+### DSN connection
+###############################################################
 dsnStr = oracledb.makedsn(ORACLE_HOST, ORACLE_PORT, ORACLE_SID)
-connection = oracledb.connect(user=ORACLE_USER, password=ORACLE_PW, dsn=dsnStr)
+# dsnStr = oracledb.makedsn(ORACLE_HOST, ORACLE_PORT, service_name=ORACLE_SERVICE)
+connection = oracledb.connect(user=ORACLE_USER, password=ORACLE_PASS, dsn=dsnStr)
 connection.autocommit = False
 
 cursor = connection.cursor()
 dataset=cursor.execute("select * from dual")
 print(dataset.fetchall())
 cursor.close()
+
+
+###############################################################
+### Parameter connection
+###############################################################
+params = oracledb.ConnectParams(
+    host=ORACLE_HOST,
+    port=ORACLE_PORT,
+    sid=ORACLE_SID
+    # service_name=ORACLE_SID
+)
+
+with oracledb.connect(
+    user=ORACLE_USER,
+    password=ORACLE_PASS,
+    params=params,
+) as connection:
+    with connection.cursor() as cursor:
+        dataset=cursor.execute("select * from dual")
+        print(dataset.fetchall())
+
 ```
 
 # oracle_cx
