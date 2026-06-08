@@ -1,9 +1,8 @@
 # Ensure you have the necessary packages installed
 # sudo apt install python3-selenium
+# pip install --upgrade selenium webdriver-manager
 
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -93,20 +92,43 @@ for each_parameter in sys.argv:
         click_shadow_root_button_before: List[str]=each_parameter.replace("click_shadow_root_button_before=", "").split(",")
         break
 
-# Configure Firefox options
-options = Options()
-options.add_argument('--headless')
-options.add_argument('--disable-gpu')
-options.set_preference("general.useragent.override", "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0")
-# Make browser automation less detectable
-options.set_preference("dom.webdriver.enabled", False)
-options.set_preference('useAutomationExtension', False)
+
+if "chromedriver" in webdriver_path:
+    from selenium.webdriver.chrome.options import Options
+    options = Options()
+    options.add_argument('--headless=new')# options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+else:
+    from selenium.webdriver.firefox.options import Options
+    # Configure Firefox options
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+    options.set_preference("general.useragent.override", "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0")
+    # Make browser automation less detectable
+    options.set_preference("dom.webdriver.enabled", False)
+    options.set_preference('useAutomationExtension', False)
 
 # Create a service object if a webdriver path is provided
 if webdriver_path is not None:
-    service = Service(webdriver_path)
-    # https://www.selenium.dev/documentation/
-    driver = webdriver.Firefox(service=service, options=options)
+    if DEBUG:
+        print(f"webdriver is {webdriver_path}")
+    if "chromedriver" in webdriver_path:
+        if DEBUG:
+            print(f"activate chrome webdriver")
+        from selenium.webdriver.chrome.service import Service
+        service = Service(webdriver_path)
+        # https://www.selenium.dev/documentation/
+        driver = webdriver.Chrome(service=service, options=options)
+    else:
+        if DEBUG:
+            print(f"activate firefox webdriver")
+        from selenium.webdriver.firefox.service import Service
+        service = Service(webdriver_path)
+        # https://www.selenium.dev/documentation/
+        driver = webdriver.Firefox(service=service, options=options)
 else:
     # Rely on PATH for the geckodriver
     driver = webdriver.Firefox(options=options)

@@ -1,10 +1,29 @@
 # Selenium 
 
-## download driver
+## Installation
+### download driver
 1. [Firefox (GeckoDriver)](https://github.com/mozilla/geckodriver/releases)
 2. [ChromeDriver Downloads](https://sites.google.com/chromium.org/driver/downloads)
 3. [OperaDriver Releases](https://github.com/operasoftware/operachromiumdriver/releases)
 4. [Edge WebDriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
+
+### set env variable 
+```sh
+echo $GECKO_DRIVER
+$GECKO_DRIVER --version
+# geckodriver 0.36.0 (a3d508507022 2025-02-24 15:57 +0000)
+```
+
+## dry run
+```sh
+url=https://www.selenium.dev/documentation/                   # destination url for parsing
+PATH_TO_GECKO_DRIVER=/home/soft/selenium_driver/chromedriver  # chrome   
+PATH_TO_GECKO_DRIVER=/home/soft/selenium_driver/geckodriver   # firefox 
+output_file=/tmp/output.txt
+python3 ${HOME_PROJECTS_GITHUB}/python-utilities/selenium/selenium_headless.py $url $PATH_TO_GECKO_DRIVER $output_file
+
+cat /tmp/output.txt
+```
 
 ## selenium examples
 
@@ -12,15 +31,51 @@
 
 ### [selenium stealth](./selenium_headless_stealth.debug.md)
 
-### minimal example
+### minimal example Chrome
 ```py
-from selenium.webdriver import Firefox
->>> from selenium.webdriver.firefox.options import Options
->>> opts = Options()
->>> opts.set_headless()
->>> assert opts.headless  # Operating in headless mode
->>> driver = Firefox(options=options, executable_path=path_to_geckodriver) 
->>> driver.get('https://duckduckgo.com')
+# GECKO_DRIVER=/home/soft/selenium_driver/chromedriver python3
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium import webdriver
+import os
+path_to_geckodriver=os.environ["GECKO_DRIVER"]; print(path_to_geckodriver)
+service = Service(path_to_geckodriver)
+options = Options()
+options.add_argument('--disable-gpu')
+driver = webdriver.Chrome(service=service, options=options)
+driver.get('https://duckduckgo.com')
+```
+
+### minimal example Firefox
+```py
+# python3
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options
+from selenium import webdriver
+import os
+path_to_geckodriver=os.environ["GECKO_DRIVER"]; print(path_to_geckodriver)
+service = Service(path_to_geckodriver)
+options = Options()
+options.add_argument('--disable-gpu')
+driver = webdriver.Firefox(service=service, options=options)
+# DO NOT install Firefox via SNAP !!!
+driver.get('https://duckduckgo.com')
+```
+
+### minimal example Firefox 
+```py
+# python3
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options
+from selenium import webdriver
+import os
+path_to_geckodriver=os.environ["GECKO_DRIVER"]; print(path_to_geckodriver)
+service = Service(path_to_geckodriver)
+options = Options()
+options.add_argument('--disable-gpu')
+driver = webdriver.Firefox(service=service, options=options)
+# DO NOT install Firefox via SNAP !!!
+driver.get('https://duckduckgo.com')
 ```
 
 ## exceptions
