@@ -1,0 +1,8 @@
+{
+  "Approve Request": {
+    "approval": "approve"
+  },
+  "notify": true,
+  "comment": "Approved automatically from test input.",
+  "final_amount": 42
+}
