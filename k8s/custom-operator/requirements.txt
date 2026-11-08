@@ -1,0 +1,2 @@
+kopf>=1.40,<2
+kubernetes>=30.0

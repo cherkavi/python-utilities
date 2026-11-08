@@ -1,0 +1,7 @@
+apiVersion: example.org/v1alpha1
+kind: TimestampWriter
+metadata:
+  name: my-timestamp-writer
+  namespace: default
+spec:
+  enabled: true
