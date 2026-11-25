@@ -1,0 +1,34 @@
+# FRITZ!Box
+FRITZ_HOST=http://192.168.178.1
+FRITZ_USER=home-monitor
+FRITZ_PASSWORD=CHANGE_ME
+
+# Android
+ANDROID_MAC=AA:BB:CC:DD:EE:FF
+DEVICE_NAME=android_phone
+
+# MQTT
+MQTT_HOST=192.168.178.10
+MQTT_PORT=1883
+MQTT_USER=homeassistant
+MQTT_PASSWORD=CHANGE_ME
+
+MQTT_PREFIX=home/network/android_phone
+HA_DISCOVERY_PREFIX=homeassistant
+
+# Monitoring
+POLL_INTERVAL=5
+
+# Threshold in bytes per second
+TRAFFIC_THRESHOLD=512
+
+# Number of consecutive samples above threshold
+MIN_ACTIVE_SAMPLES=2
+
+# Time without significant traffic before returning to idle
+IDLE_TIMEOUT=30
+
+# Unit reported by the FRITZ!Box
+FRITZ_RATE_UNIT=bytes
+
+TZ=Europe/Berlin
